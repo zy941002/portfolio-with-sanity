@@ -97,14 +97,17 @@ export default function Work({ projects }: WorkPageProps) {
                   className="masonry-item group block overflow-hidden inline-block w-full"
                 >
                   <div className={`relative ${getAspectRatio(project.height)} overflow-hidden`}>
-                    <Image
-                      src={project.image
-                        ? urlFor(project.image)?.width(550).height(310).url()
-                        : null}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                    {project.image && (() => {
+                      const imageUrl = urlFor(project.image)?.width(550).height(310).url();
+                      return imageUrl ? (
+                        <Image
+                          src={imageUrl}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : null;
+                    })()}
                     <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 backdrop-blur-sm">
                       <h3 className="text-2xl font-medium text-white mb-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">{project.title}</h3>
                       <div className="flex items-center gap-4 text-white/90 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-100">
