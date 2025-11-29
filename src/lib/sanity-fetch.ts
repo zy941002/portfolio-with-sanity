@@ -47,7 +47,19 @@ export async function getAllProjectDatas(): Promise<Project[]> {
     const query = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, image}`;
+]|order(publishedAt desc)[0...12]{
+  _id,
+  title,
+  category,
+  publishedAt,
+  "image": image.asset->url,
+  "slug": slug.current,
+  height,
+  description,
+  client,
+  role,
+  technologies
+}`;
 
     const result = await client.fetch(query);
 

@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps<ProjectPageProps, { slug: string }> 
         notFound: true,
       };
     }
-    
+
     return {
       props: {
         projectDetail,
@@ -72,8 +72,8 @@ export default function ProjectDetailPage({ projectDetail }: ProjectPageProps) {
   return (
     <PageLayout activePage="work" darkBg>
       <section className="pt-40 pb-20 px-6 lg:px-20">
-        <Link 
-          href="/work" 
+        <Link
+          href="/work"
           className="inline-flex items-center text-white/70 hover:text-white mb-8 transition-colors"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" className="mr-2">
@@ -150,4 +150,4 @@ export default function ProjectDetailPage({ projectDetail }: ProjectPageProps) {
       </section>
     </PageLayout>
   );
-} 
+}
