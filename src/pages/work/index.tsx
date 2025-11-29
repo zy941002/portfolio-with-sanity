@@ -5,14 +5,23 @@ import { GetStaticProps } from 'next';
 import React, { useState } from 'react';
 import {  fetchAllProjects, hasSanityClient } from '@/lib/sanity-fetch';
 import { NEXT_REVALIDATE } from '@/conf';
+import imageUrlBuilder from "@sanity/image-url";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-
-
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production';
 
 // Define the page props type
 interface WorkPageProps {
   projects: Project[];
 }
+
+
+const urlFor = (source: SanityImageSource) =>
+  projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    : null;
+
 
 // Use getStaticProps for static data fetching
 export const getStaticProps: GetStaticProps<WorkPageProps> = async () => {
@@ -39,7 +48,7 @@ export const getStaticProps: GetStaticProps<WorkPageProps> = async () => {
 export default function Work({ projects }: WorkPageProps) {
   // Get unique categories
   const allCategories = ["All", ...Array.from(new Set(projects.map((project: Project) => project.category)))];
-  
+
   // New: for managing the currently selected category and filtered projects
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const filteredProjects = selectedCategory === 'All'
@@ -65,7 +74,7 @@ export default function Work({ projects }: WorkPageProps) {
           <p className="text-xl text-white/80 mb-8 max-w-2xl">
             Explore my photographic series, each of which conveys a unique visual language and emotional story.
           </p>
-          
+
           {/* Filter Categories */}
           <div className="flex flex-wrap gap-4 mb-12">
             {allCategories.map((category: string) => (
@@ -78,18 +87,20 @@ export default function Work({ projects }: WorkPageProps) {
               </button>
             ))}
           </div>
-          
+
           {/* Projects Grid */}
           <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
             {filteredProjects.map((project: Project, index: number) => (
               <div key={index} className="mb-8 break-inside-avoid">
-                <a 
+                <a
                   href={`/work/project/${project.slug}`}
                   className="masonry-item group block overflow-hidden inline-block w-full"
                 >
                   <div className={`relative ${getAspectRatio(project.height)} overflow-hidden`}>
                     <Image
-                      src={project.image}
+                      src={project.image
+                        ? urlFor(project.image)?.width(550).height(310).url()
+                        : null}
                       alt={project.title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -112,4 +123,4 @@ export default function Work({ projects }: WorkPageProps) {
       </section>
     </PageLayout>
   );
-} 
+}

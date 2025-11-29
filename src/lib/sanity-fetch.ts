@@ -44,21 +44,13 @@ export async function getAllProjectDatas(): Promise<Project[]> {
   }
 
   try {
-    const query = `*[_type == "post"] | order(publishedAt desc) {
-      _id,
-      title,
-      category,
-      publishedAt,
-      "image": image.asset->url,
-      "slug": slug.current,
-      height,
-      description,
-      client,
-      role,
-      technologies
-    }`;
-    
+    const query = `*[
+  _type == "post"
+  && defined(slug.current)
+]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, image}`;
+
     const result = await client.fetch(query);
+
     return result as Project[];
   } catch (error) {
     console.error('Error fetching data from Sanity:', error);
@@ -87,13 +79,13 @@ export async function getProjectDataBySlug(slug: string): Promise<ProjectDetail 
       role,
       technologies
     }`;
-    
+
     const result = await client.fetch(query, { slug });
     if (!result) {
       console.log(`Project with slug "${slug}" not found`);
       return null;
     }
-    
+
     return result as ProjectDetail;
   } catch (error) {
     console.error('Error fetching project details from Sanity:', (error as {message: string}).message);
