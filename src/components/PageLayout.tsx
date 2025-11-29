@@ -23,7 +23,7 @@ export default function PageLayout({
       {/* Full-screen Background Image */}
       {showBackgroundImage && (
         <div className="inset-0 z-[-20]">
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{ backgroundImage: 'url(/hero-background.jpg)' }}
           ></div>
@@ -37,32 +37,32 @@ export default function PageLayout({
           <Link href="/" className="text-white text-2xl font-medium">
             Portfolio Template<span className="text-theme-red">.</span>
           </Link>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex gap-8">
-            <Link 
-              href="/work" 
+            <Link
+              href="/work"
               className={`text-white hover:text-theme-red transition-colors ${activePage === 'work' ? 'border-b border-theme-red' : ''}`}
             >
               Portfolio
             </Link>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               className={`text-white hover:text-theme-red transition-colors ${activePage === 'about' ? 'border-b border-theme-red' : ''}`}
             >
               About
             </Link>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className={`text-white hover:text-theme-red transition-colors ${activePage === 'contact' ? 'border-b border-theme-red' : ''}`}
             >
               Contact
             </Link>
-            
+
           </nav>
-          
+
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -86,28 +86,28 @@ export default function PageLayout({
       {isMenuOpen && (
         <div className="fixed inset-0 bg-theme-black z-40 px-6 py-20">
           <div className="flex flex-col gap-8">
-            <Link 
-              href="/work" 
-              className={`text-4xl font-medium text-white theme-hover ${activePage === 'work' ? 'border-b border-theme-red' : ''}`} 
+            <Link
+              href="/work"
+              className={`text-4xl font-medium text-white theme-hover ${activePage === 'work' ? 'border-b border-theme-red' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Portfolio
             </Link>
-            <Link 
-              href="/about" 
-              className={`text-4xl font-medium text-white theme-hover ${activePage === 'about' ? 'border-b border-theme-red' : ''}`} 
+            <Link
+              href="/about"
+              className={`text-4xl font-medium text-white theme-hover ${activePage === 'about' ? 'border-b border-theme-red' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
-            <Link 
-              href="/contact" 
-              className={`text-4xl font-medium text-white theme-hover ${activePage === 'contact' ? 'border-b border-theme-red' : ''}`} 
+            <Link
+              href="/contact"
+              className={`text-4xl font-medium text-white theme-hover ${activePage === 'contact' ? 'border-b border-theme-red' : ''}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
             </Link>
-            
+
           </div>
         </div>
       )}
@@ -125,4 +125,4 @@ export default function PageLayout({
       </footer>
     </div>
   );
-} 
+}

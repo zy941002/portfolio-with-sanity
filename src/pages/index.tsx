@@ -9,7 +9,7 @@ export default function Home() {
     <PageLayout fullHeight showBackgroundImage activePage="home">
       {/* Full-screen Background Image */}
       <div className="fixed inset-0 z-[-20]">
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: 'url(/hero-background.jpg)' }}
         ></div>
@@ -45,13 +45,13 @@ export default function Home() {
         </div>
         <div className="max-w-[1440px] mx-auto relative z-10">
           <h1 className="text-5xl md:text-7xl font-medium mb-8 text-white">
-            Visual Storyteller<br />
+            你好，这里是瓦闻！<br />
             <span className="theme-primary">Through Photography</span>
           </h1>
           <p className="text-xl md:text-2xl text-theme-light-gray max-w-2xl mb-12 animate-fadeInDelayed text-white">
             I capture the world through light and shadow, specializing in architecture, portrait, and landscape photography, telling stories through my unique visual perspective.
           </p>
-          <Link 
+          <Link
             href="/work"
             className="btn btn-primary animate-fadeInDelayed2"
           >
@@ -59,7 +59,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
     </PageLayout>
   )
-} 
+}
