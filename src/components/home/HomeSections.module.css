@@ -1,0 +1,324 @@
+/* 容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6rem;
+}
+
+/* Hero 模块 */
+.heroSection {
+  /* Hero section container */
+  width: 100%;
+}
+
+.heroContainer {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.heroImageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.heroImage {
+  width: 100%;
+  object-fit: contain;
+}
+
+.heroContent {
+  width: 100%;
+  position: relative;
+}
+
+/* 语言选择器 */
+.languageSwitcher {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+}
+
+.languageLink {
+  color: white;
+  transition: color 0.2s;
+}
+
+.languageLink:hover {
+  color: white;
+}
+
+.languageLinkActive {
+  color: var(--waura-brown);
+}
+
+.languageSeparator {
+  margin: 0 0.25rem;
+}
+
+/* 品牌名称 */
+.brandContainer {
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .brandContainer {
+    margin-top: 4rem;
+  }
+}
+
+.brandTitle {
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-weight: 900;
+  font-size: 1.2em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  text-shadow:
+    1px 1px 0px currentColor,
+    2px 2px 0px currentColor;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  font-size: 3.75rem;
+}
+
+@media (min-width: 768px) {
+  .brandTitle {
+    font-size: 4.5rem;
+  }
+}
+
+.brandSubtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brandStar {
+  color: var(--waura-deep-gray);
+}
+
+.brandName {
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--waura-deep-gray);
+}
+
+.brandEyebrow {
+  color: var(--waura-deep-gray);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+/* Quote 模块 */
+.quoteSection {
+  background-color: var(--waura-pink);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 30vh 1.5rem; */
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.quoteContainer {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.quoteText {
+  font-size: 1.5rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+
+
+.quoteAuthor {
+  color: var(--waura-deep-gray);
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+}
+
+/* About 模块 */
+.aboutSection {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.aboutContainer {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.aboutTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.aboutContent {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.aboutSignature {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.aboutSignatureLine {
+  border-color: var(--waura-border);
+  margin-bottom: 1rem;
+}
+
+.aboutSignatureText {
+  font-size: 0.875rem;
+  letter-spacing: 0.4em;
+  color: var(--waura-deep-gray);
+}
+
+/* ChannelGrid 模块 */
+.channelGridSection {
+  background-color: var(--waura-pink);
+  padding: 4rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .channelGridSection {
+    padding: 4rem 3rem;
+  }
+}
+
+.channelGridContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.channelGridTop {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  place-items: center;
+}
+
+@media (min-width: 768px) {
+  .channelGridTop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.channelGridBottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  place-items: center;
+}
+
+
+.channelItem {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.channelItemLarge {
+  grid-column: span 2;
+}
+
+.channelIcon {
+  width: 5rem;
+  height: 5rem;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 1rem;
+  position: relative;
+}
+
+.channelIconLarge {
+  width: 6rem;
+  height: 6rem;
+}
+
+.channelLabel {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.channelDescription {
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+}
+
+/* Contact 模块 */
+.contactSection {
+  background-color: var(--waura-pink);
+  padding: 4rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .contactSection {
+    padding: 4rem 3rem;
+  }
+}
+
+.contactContainer {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+}
+
+.contactItem {
+  display: inline-flex;
+}
+
+.contactStudioName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--waura-brown);
+  margin-bottom: 0.5rem;
+}
+
+.contactLabel {
+  width: 100px;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.contactNotes {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+}
+
+

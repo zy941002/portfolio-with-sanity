@@ -12,12 +12,12 @@ export function loadEnv() {
 
   for (const file of envFiles) {
     const envPath = path.join(cwd, file)
-    
+
     try {
       if (fs.existsSync(envPath)) {
         console.log(`Loading environment variables from ${file}`)
         config({ path: envPath })
-        
+
         // Check if the necessary environment variables have been successfully loaded
         if (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
           console.log(`Successfully loaded environment variables from ${file}`)
@@ -31,4 +31,4 @@ export function loadEnv() {
 
   console.warn('Failed to load necessary environment variables from any environment file')
   return false
-} 
+}

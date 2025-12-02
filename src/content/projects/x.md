@@ -6,7 +6,7 @@ publishedAt: 2025-11-29T03:13:04.832Z
 image: https://cdn.sanity.io/images/kno2j23t/production/7f98c099ba61c069649e2f9d60b64d7dc6a7248e-1080x1080.jpg
 client: ""
 role: ""
-technologies: []
+technologies: ["Tec1","Tec2"]
 height: "sm"
 slug: x
 ---
