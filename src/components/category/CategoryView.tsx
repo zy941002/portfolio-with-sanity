@@ -140,7 +140,7 @@ function CategoryCard({
   )
 }
 
-function ProductCard({product, language}: {product: ProductItem & {thumbnail?: string}}) {
+function ProductCard({product, language}: {product: ProductItem & {thumbnail?: string}; language: LanguageKey}) {
   return (
     <div className="bg-waura-pink-light rounded-2xl p-4 flex flex-col gap-3">
       {product.thumbnail ? (

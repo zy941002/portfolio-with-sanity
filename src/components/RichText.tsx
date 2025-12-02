@@ -1,4 +1,4 @@
-import {PortableText} from '@portabletext/react'
+import {PortableText, type PortableTextComponents} from '@portabletext/react'
 import type {PortableTextBlock} from '@portabletext/types'
 
 interface RichTextProps {
@@ -6,9 +6,9 @@ interface RichTextProps {
   className?: string
 }
 
-const components = {
+const components: Partial<PortableTextComponents> = {
   block: {
-    normal: ({children}: {children: React.ReactNode}) => (
+    normal: ({children}) => (
       <p className="leading-relaxed tracking-wide mb-4">{children}</p>
     ),
   },

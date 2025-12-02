@@ -1,4 +1,3 @@
-import LanguageSwitcher from '@/components/LanguageSwitcher'
 import type {LanguageParam} from '@/lib/language'
 
 interface SiteLayoutProps {
@@ -7,7 +6,7 @@ interface SiteLayoutProps {
   pathSegments?: string[]
 }
 
-export default function SiteLayout({children, langParam, pathSegments = []}: SiteLayoutProps) {
+export default function SiteLayout({children}: SiteLayoutProps) {
   return (
     <div className="min-h-screen bg-waura-pink text-waura-brown">
       {/* <header className="px-6 md:px-12 py-8 flex items-center justify-between">

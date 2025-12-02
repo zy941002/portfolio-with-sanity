@@ -118,7 +118,6 @@ function Quote({section, language}: {section: QuoteModule; language: LanguageKey
 }
 
 function About({section, language}: {section: AboutModule; language: LanguageKey}) {
-  const title = pickLocalizedText(section.title, language)
   const signature = pickLocalizedText(section.signature, language)
   const body = pickLocalizedRichText(section.body, language)
   return (
