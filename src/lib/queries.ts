@@ -36,59 +36,135 @@ export const HOME_PAGE_QUERY = groq`
 }
 `
 
-export const CATEGORY_SLUGS_QUERY = groq`
-*[_type == "productCategory" && defined(slug.current)]{
-  "slug": slug.current
+export const CATEGORY_IDS_QUERY = groq`
+*[_type in ["productCategory", "productCategoryLevel2"]]{
+  _id
 }
 `
 
-export const CATEGORY_BY_SLUG_QUERY = groq`
-*[_type == "productCategory" && slug.current == $slug][0]{
+export const LEVEL_1_CATEGORIES_QUERY = groq`
+*[_type == "productCategory" && level == 1] | order(sortOrder asc, label.zhHans asc){
+  _id,
+  label,
+  level,
+  sortOrder,
+  "coverURL": coverURL.asset->url,
+  "children": children[]-> {
+    _id,
+    label,
+    level,
+    "coverURL": coverURL.asset->url
+  }
+}
+`
+
+export const PRODUCT_IDS_QUERY = groq`
+*[_type == "productItem"]{
+  _id
+}
+`
+
+export const PRODUCT_BY_ID_QUERY = groq`
+*[_type == "productItem" && _id == $id][0]{
   _id,
   "slug": slug.current,
   title,
-  level,
-  "coverUrl": cover.asset->url,
-  leftColumnTitle,
-  leftColumnDescription,
-  relatedEvents[]->{
+  summary,
+  description,
+  "gallery": gallery[].asset->url,
+  materials,
+  size,
+  price,
+  "primaryCategory": primaryCategory-> {
     _id,
-    title,
-    description,
-    startDate,
-    endDate
-  },
-  featuredProducts[]->{
-    _id,
-    title,
-    summary,
-    "thumbnail": gallery[0].asset->url,
-    price
-  },
-  parent->{
-    _id,
-    "slug": slug.current,
-    title,
-    level
-  },
-  "children": *[_type == "productCategory" && references(^._id)] | order(sortOrder asc){
-    _id,
-    "slug": slug.current,
-    title,
+    "title": label,
     level,
-    "coverUrl": cover.asset->url
-  },
-  "products": *[_type == "productItem" && references(^._id)] | order(sortOrder asc){
-    _id,
-    "slug": slug.current,
-    title,
-    summary,
-    materials,
-    size,
-    price,
-    "thumbnail": coalesce(gallery[0].asset->url, "")
+    "coverURL": coverURL.asset->url,
+    "parent": *[_type == "productCategory" && ^._id in children[]._ref][0]{
+      _id,
+      "title": label,
+      level,
+      "coverURL": coverURL.asset->url
+    }
   }
 }
+`
+
+export const CATEGORY_BY_ID_QUERY = groq`
+coalesce(
+  *[_type == "productCategory" && _id == $id][0]{
+    _id,
+    "title": label,
+    level,
+    sortOrder,
+    "coverURL": coverURL.asset->url,
+    leftColumnTitle,
+    leftColumnDescription,
+    relatedEvents[]->{
+      _id,
+      title,
+      description,
+      startDate,
+      endDate,
+      "cover": cover.asset->url
+    },
+    featuredProducts[]->{
+      _id,
+      title,
+      summary,
+      "thumbnail": gallery[0].asset->url,
+      price
+    },
+    "children": children[]-> {
+      _id,
+      "title": label,
+      level,
+      "coverURL": coverURL.asset->url
+    },
+    "products": *[_type == "productItem" && primaryCategory._ref in ^.children[]._id] | order(sortOrder asc){
+      _id,
+      "slug": slug.current,
+      title,
+      summary,
+      materials,
+      size,
+      price,
+      "thumbnail": coalesce(gallery[0].asset->url, "")
+    }
+  },
+  *[_type == "productCategoryLevel2" && _id == $id][0]{
+    _id,
+    "title": label,
+    level,
+    "coverURL": coverURL.asset->url,
+    "parent": *[_type == "productCategory" && ^._id in children[]._ref][0]{
+      _id,
+      "title": label,
+      level,
+      "coverURL": coverURL.asset->url,
+      leftColumnTitle,
+      leftColumnDescription
+    },
+    "events": *[_type == "event" && category._ref == ^._id] | order(startDate desc){
+      _id,
+      title,
+      description,
+      startDate,
+      endDate,
+      "cover": cover.asset->url
+    },
+    "products": *[_type == "productItem" && primaryCategory._ref == ^._id] | order(sortOrder asc){
+      _id,
+      "slug": slug.current,
+      title,
+      summary,
+      materials,
+      size,
+      price,
+      "thumbnail": coalesce(gallery[0].asset->url, "")
+    }
+  }
+)
 `
 
 

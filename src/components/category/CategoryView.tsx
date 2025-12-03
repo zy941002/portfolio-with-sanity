@@ -3,7 +3,7 @@ import Link from 'next/link'
 import RichText from '@/components/RichText'
 import {pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
 import type {LanguageKey} from '@/lib/language'
-import type {CategoryDocument, CategorySummary, ProductItem} from '@/types/content'
+import type {CategoryDocument, CategorySummary, ProductItem, EventDocument} from '@/types/content'
 
 interface CategoryViewProps {
   category: CategoryDocument
@@ -15,22 +15,25 @@ export default function CategoryView({category, language, langParam}: CategoryVi
   const title = pickLocalizedText(category.title, language)
   const description = pickLocalizedRichText(category.leftColumnDescription, language)
   const columnTitle = pickLocalizedText(category.leftColumnTitle, language)
+
   const isLevel1 = category.level === 1
-  const isLevel2 = category.level === 2
   const children = category.children ?? []
   const products = category.products ?? []
+  // 获取活动：一级分类使用 relatedEvents，二级分类使用 events
+  const events = (isLevel1 ? category.relatedEvents : category.events) ?? []
 
+  // 一级分类显示二级分类，二级分类显示产品
   const gridItems: Array<CategorySummary | (ProductItem & {thumbnail?: string})> =
-    isLevel1 || (isLevel2 && children.length) ? children : products
+    isLevel1 ? children : products
 
   return (
     <section className="px-6 md:px-12">
       <div className="bg-white rounded-3xl shadow-soft overflow-hidden">
         <div className="flex flex-col md:flex-row">
           <aside className="md:w-2/5 bg-waura-pink-light p-8 flex flex-col gap-6">
-            {category.coverUrl ? (
+            {category.coverURL ? (
               <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
-                <Image src={category.coverUrl} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+                <Image src={category.coverURL} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
               </div>
             ) : null}
             <div>
@@ -38,16 +41,14 @@ export default function CategoryView({category, language, langParam}: CategoryVi
               <h1 className="text-3xl font-semibold mt-2">{title}</h1>
             </div>
             <RichText value={description} className="text-waura-deep-gray text-sm" />
-            {category.relatedEvents?.length ? (
+            {events.length > 0 ? (
               <div>
-                <p className="text-waura-deep-gray tracking-[0.4em] uppercase text-sm mb-2">相关店内活动</p>
-                <ul className="space-y-3">
-                  {category.relatedEvents.map((event) => (
-                    <li key={event._id} className="text-waura-brown text-sm">
-                      {pickLocalizedText(event.title, language)}
-                    </li>
+                <p className="text-waura-deep-gray tracking-[0.4em] uppercase text-sm mb-3">店内活动</p>
+                <div className="space-y-3">
+                  {events.map((event) => (
+                    <EventCard key={event._id} event={event} language={language} />
                   ))}
-                </ul>
+                </div>
               </div>
             ) : null}
           </aside>
@@ -59,7 +60,7 @@ export default function CategoryView({category, language, langParam}: CategoryVi
                 isCategoryItem(item) ? (
                   <CategoryCard key={item._id} item={item} langParam={langParam} language={language} />
                 ) : (
-                  <ProductCard key={item._id} product={item} language={language} />
+                  <ProductCard key={item._id} product={item} language={language} langParam={langParam} />
                 ),
               )}
             </div>
@@ -79,16 +80,16 @@ function Breadcrumb({
   langParam: string
   language: LanguageKey
 }) {
-  const segments: Array<{label: string; slug?: string}> = []
+  const segments: Array<{label: string; id?: string}> = []
   if (category.parent) {
     segments.push({
       label: pickLocalizedText(category.parent.title, language),
-      slug: category.parent.slug,
+      id: category.parent._id,
     })
   }
   segments.push({
     label: pickLocalizedText(category.title, language),
-    slug: category.slug,
+    id: category._id,
   })
 
   return (
@@ -97,10 +98,10 @@ function Breadcrumb({
         Home
       </Link>
       {segments.map((segment, index) => (
-        <span key={segment.slug || index} className="flex items-center gap-2">
+        <span key={segment.id || index} className="flex items-center gap-2">
           <span className="text-waura-border">/</span>
-          {segment.slug ? (
-            <Link href={`/${langParam}/category/${segment.slug}`} className={index === segments.length - 1 ? 'text-waura-brown' : 'hover:text-waura-brown'}>
+          {segment.id ? (
+            <Link href={`/${langParam}/category/${segment.id}`} className={index === segments.length - 1 ? 'text-waura-brown' : 'hover:text-waura-brown'}>
               {segment.label}
             </Link>
           ) : (
@@ -125,14 +126,15 @@ function CategoryCard({
   langParam: string
   language: LanguageKey
 }) {
+
   return (
     <Link
-      href={`/${langParam}/category/${item.slug}`}
+      href={`/${langParam}/category/${item._id}`}
       className="bg-waura-pink-light rounded-2xl p-4 flex flex-col gap-3 hover:-translate-y-1 transition"
     >
-      {item.coverUrl ? (
+      {item.coverURL ? (
         <div className="relative w-full aspect-square rounded-xl overflow-hidden">
-          <Image src={item.coverUrl} alt={pickLocalizedText(item.title, language) || ''} fill className="object-cover" sizes="(max-width: 768px) 50vw, 20vw" />
+          <Image src={item.coverURL} alt={pickLocalizedText(item.title, language) || ''} fill className="object-cover" sizes="(max-width: 768px) 50vw, 20vw" />
         </div>
       ) : null}
       <p className="text-center text-lg">{pickLocalizedText(item.title, language)}</p>
@@ -140,17 +142,73 @@ function CategoryCard({
   )
 }
 
-function ProductCard({product, language}: {product: ProductItem & {thumbnail?: string}; language: LanguageKey}) {
+function ProductCard({
+  product,
+  language,
+  langParam,
+}: {
+  product: ProductItem & {thumbnail?: string}
+  language: LanguageKey
+  langParam: string
+}) {
   return (
-    <div className="bg-waura-pink-light rounded-2xl p-4 flex flex-col gap-3">
+    <Link
+      href={`/${langParam}/product/${product._id}`}
+      className="bg-waura-pink-light rounded-2xl p-4 flex flex-col gap-3 hover:-translate-y-1 transition"
+    >
       {product.thumbnail ? (
         <div className="relative w-full aspect-square rounded-xl overflow-hidden">
-          <Image src={product.thumbnail} alt={pickLocalizedText(product.title, language) || ''} fill className="object-cover" sizes="(max-width: 768px) 50vw, 20vw" />
+          <Image
+            src={product.thumbnail}
+            alt={pickLocalizedText(product.title, language) || ''}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 50vw, 20vw"
+          />
         </div>
       ) : null}
       <div>
         <p className="text-base font-medium">{pickLocalizedText(product.title, language)}</p>
         {product.price ? <p className="text-sm text-waura-deep-gray mt-1">{product.price}</p> : null}
+      </div>
+    </Link>
+  )
+}
+
+function EventCard({
+  event,
+  language,
+}: {
+  event: EventDocument
+  language: LanguageKey
+}) {
+  const eventTitle = pickLocalizedText(event.title, language)
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return ''
+    const date = new Date(dateStr)
+    return date.toLocaleDateString(language === 'zhHans' ? 'zh-CN' : language === 'zhHant' ? 'zh-TW' : 'en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  }
+
+  return (
+    <div className="bg-white rounded-xl p-4 flex flex-col gap-3">
+      {event.cover ? (
+        <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+          <Image src={event.cover} alt={eventTitle || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+        </div>
+      ) : null}
+      <div>
+        <h3 className="text-base font-semibold text-waura-brown">{eventTitle}</h3>
+        {(event.startDate || event.endDate) && (
+          <p className="text-xs text-waura-deep-gray mt-1">
+            {event.startDate && formatDate(event.startDate)}
+            {event.startDate && event.endDate && ' - '}
+            {event.endDate && formatDate(event.endDate)}
+          </p>
+        )}
       </div>
     </div>
   )

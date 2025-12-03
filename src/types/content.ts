@@ -70,19 +70,36 @@ export interface CategorySummary {
   _id: string
   title?: LocalizedText
   slug?: string
-  coverUrl?: string
+  coverURL?: string
   leftColumnTitle?: LocalizedText
   leftColumnDescription?: LocalizedRichText
   level?: number
+  inheritFromParent?: boolean
 }
 
 export interface CategoryDocument extends CategorySummary {
   level: number
+  inheritFromParent?: boolean
   relatedEvents?: EventDocument[]
   featuredProducts?: ProductItem[]
-  parent?: CategorySummary & {level: number}
-  children?: CategorySummary[]
+  parent?: CategorySummary & {
+    level: number
+    coverURL?: string
+    leftColumnTitle?: LocalizedText
+    leftColumnDescription?: LocalizedRichText
+    relatedEvents?: EventDocument[]
+    featuredProducts?: ProductItem[]
+  }
+  children?: (CategorySummary & {
+    parent?: CategorySummary & {
+      level: number
+      coverURL?: string
+      leftColumnTitle?: LocalizedText
+      leftColumnDescription?: LocalizedRichText
+    }
+  })[]
   products?: ProductItem[]
+  events?: EventDocument[]
 }
 
 export interface EventDocument {
@@ -91,6 +108,7 @@ export interface EventDocument {
   description?: LocalizedRichText
   startDate?: string
   endDate?: string
+  cover?: string
 }
 
 export interface ProductItem {

@@ -6,6 +6,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <title>gallery瓦聞</title>
+        <meta name="description" content="gallery瓦聞" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Component {...pageProps} />

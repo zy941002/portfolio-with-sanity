@@ -17,9 +17,15 @@ interface HomeSectionsProps {
   sections: HomePageSection[]
   language: LanguageKey
   langParam?: string
+  categories?: Array<{
+    _id: string
+    label?: import('@/types/content').LocalizedText
+    slug?: string
+    coverURL?: string
+  }>
 }
 
-export default function HomeSections({sections, language, langParam}: HomeSectionsProps) {
+export default function HomeSections({sections, language, langParam, categories}: HomeSectionsProps) {
   return (
     <div className={styles.container}>
       {sections.map((section) => {
@@ -31,7 +37,7 @@ export default function HomeSections({sections, language, langParam}: HomeSectio
           case 'aboutModule':
             return <About key={section._key} section={section} language={language} />
           case 'channelGridModule':
-            return <ChannelGrid key={section._key} section={section} language={language} />
+            return <ChannelGrid key={section._key} section={section} language={language} langParam={langParam} categories={categories} />
           case 'contactModule':
             return <Contact key={section._key} section={section} language={language} />
           default:
@@ -77,19 +83,6 @@ function Hero({section, language, langParam}: {section: HeroModule; language: La
             ))}
           </div>
 
-          {/* 品牌名称 */}
-          {/* <div className={styles.brandContainer}>
-            {title ? (
-              <div className="mb-4">
-                <h1 className={styles.brandTitle}>{title}</h1>
-                <div className={styles.brandSubtitle}>
-                  <span className={styles.brandStar}>★</span>
-                  <span className={styles.brandName}>wauramoon</span>
-                </div>
-              </div>
-            ) : null}
-            {eyebrow ? <p className={styles.brandEyebrow}>{eyebrow}</p> : null}
-          </div> */}
         </div>
       </div>
     </section>
@@ -105,7 +98,7 @@ function Quote({section, language}: {section: QuoteModule; language: LanguageKey
   return (
     <section className={styles.quoteSection}>
       <div className={styles.quoteContainer}>
-        <p className={styles.quoteText}>&ldquo;{quote}&rdquo;</p>
+        <p className={styles.quoteText}>{quote}</p>
         {(author || source) && (
           <p className={styles.quoteAuthor}>
             {author}
@@ -138,7 +131,88 @@ function About({section, language}: {section: AboutModule; language: LanguageKey
   )
 }
 
-function ChannelGrid({section, language}: {section: ChannelGridModule; language: LanguageKey}) {
+function ChannelGrid({
+  section,
+  language,
+  langParam,
+  categories,
+}: {
+  section: ChannelGridModule
+  language: LanguageKey
+  langParam?: string
+  categories?: Array<{
+    _id: string
+    label?: import('@/types/content').LocalizedText
+    slug?: string
+    coverURL?: string
+  }>
+}) {
+  // 如果有一级分类数据，优先展示分类
+  if (categories && categories.length > 0) {
+    const topItems = categories.slice(0, 3)
+    const bottomItems = categories.slice(3, 5)
+    const currentLangParam = langParam || 'zh-hans'
+
+    return (
+      <section className={styles.channelGridSection}>
+        <div className={styles.channelGridContainer}>
+          {/* 上排：三个分类 */}
+          {topItems.length > 0 && (
+            <div className={styles.channelGridTop}>
+              {topItems.map((category) => (
+                <Link
+                  key={category._id}
+                  href={`/${currentLangParam}/category/${category._id}`}
+                  className={styles.channelItem}
+                >
+                  {category.coverURL ? (
+                    <div className={styles.channelIcon}>
+                      <Image
+                        src={category.coverURL}
+                        alt={pickLocalizedText(category.label, language) || ''}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                      />
+                    </div>
+                  ) : null}
+                  <p className={styles.channelLabel}>瓦闻 {pickLocalizedText(category.label, language)}</p>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* 下排：两个分类，第一个较大 */}
+          {bottomItems.length > 0 && (
+            <div className={styles.channelGridBottom}>
+              {bottomItems.map((category, index) => (
+                <Link
+                  key={category._id}
+                  href={`/${currentLangParam}/category/${category._id}`}
+                  className={`${styles.channelItem} ${index === 0 ? styles.channelItemLarge : ''}`}
+                >
+                  {category.coverURL ? (
+                    <div className={index === 0 ? styles.channelIconLarge : styles.channelIcon}>
+                      <Image
+                        src={category.coverURL}
+                        alt={pickLocalizedText(category.label, language) || ''}
+                        fill
+                        className="object-cover"
+                        sizes={index === 0 ? '96px' : '80px'}
+                      />
+                    </div>
+                  ) : null}
+                  <p className={styles.channelLabel}>{pickLocalizedText(category.label, language)}</p>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  // 如果没有分类数据，使用原来的 channel items
   if (!section.items?.length) return null
 
   // 假设前三个是上排，后两个是下排
