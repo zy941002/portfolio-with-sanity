@@ -13,17 +13,19 @@ interface ProductPageProps {
   languageKey: ReturnType<typeof resolveLanguageKey>
   product: ProductItem & {
     gallery?: string[]
-    primaryCategory?: {
+    videoUrl?: string
+    videoLink?: string
+    level1Category?: {
       _id: string
       title?: import('@/types/content').LocalizedText
       level?: number
       coverURL?: string
-      parent?: {
-        _id: string
-        title?: import('@/types/content').LocalizedText
-        level?: number
-        coverURL?: string
-      }
+    }
+    level2Category?: {
+      _id: string
+      title?: import('@/types/content').LocalizedText
+      level?: number
+      coverURL?: string
     }
   }
   id: string

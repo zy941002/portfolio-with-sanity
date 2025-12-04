@@ -19,12 +19,28 @@ export default function CategoryView({category, language, langParam}: CategoryVi
   const isLevel1 = category.level === 1
   const children = category.children ?? []
   const products = category.products ?? []
-  // 获取活动：一级分类使用 relatedEvents，二级分类使用 events
-  const events = (isLevel1 ? category.relatedEvents : category.events) ?? []
+  // 获取活动：一级分类使用 relatedEvents（用于左侧边栏），二级分类使用 events（用于主网格）
+  const categoryEvents = category.events ?? []
+  const relatedEvents = category.relatedEvents ?? []
+  const events = isLevel1 ? relatedEvents : categoryEvents
 
-  // 一级分类显示二级分类，二级分类显示产品
-  const gridItems: Array<CategorySummary | (ProductItem & {thumbnail?: string})> =
-    isLevel1 ? children : products
+  // 一级分类显示子分类，二级分类根据一级分类的 isEvent 来决定展示活动和商品的顺序
+  const parentIsEvent = category.parent?.isEvent ?? false
+  let gridItems: Array<CategorySummary | (ProductItem & {thumbnail?: string}) | EventDocument> = []
+
+  if (isLevel1) {
+    // 一级分类：显示子分类
+    gridItems = children
+  } else {
+    // 二级分类：同时显示活动和商品，根据一级分类的 isEvent 决定顺序
+    if (parentIsEvent) {
+      // 如果一级分类是活动分类，优先显示活动，然后显示商品
+      gridItems = [...categoryEvents, ...products]
+    } else {
+      // 如果一级分类不是活动分类，优先显示商品，然后显示活动
+      gridItems = [...products, ...categoryEvents]
+    }
+  }
 
   return (
     <section className="px-6 md:px-12">
@@ -56,13 +72,15 @@ export default function CategoryView({category, language, langParam}: CategoryVi
           <div className="md:w-3/5 p-8">
             <Breadcrumb category={category} langParam={langParam} language={language} />
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-              {gridItems.map((item) =>
-                isCategoryItem(item) ? (
-                  <CategoryCard key={item._id} item={item} langParam={langParam} language={language} />
-                ) : (
-                  <ProductCard key={item._id} product={item} language={language} langParam={langParam} />
-                ),
-              )}
+              {gridItems.map((item) => {
+                if (isCategoryItem(item)) {
+                  return <CategoryCard key={item._id} item={item} langParam={langParam} language={language} />
+                } else if (isEventItem(item)) {
+                  return <EventCard key={item._id} event={item} language={language} isGrid={true} />
+                } else {
+                  return <ProductCard key={item._id} product={item} language={language} langParam={langParam} />
+                }
+              })}
             </div>
           </div>
         </div>
@@ -113,8 +131,12 @@ function Breadcrumb({
   )
 }
 
-function isCategoryItem(item: CategorySummary | (ProductItem & {thumbnail?: string})): item is CategorySummary {
+function isCategoryItem(item: CategorySummary | (ProductItem & {thumbnail?: string}) | EventDocument): item is CategorySummary {
   return 'level' in item || 'leftColumnTitle' in item
+}
+
+function isEventItem(item: CategorySummary | (ProductItem & {thumbnail?: string}) | EventDocument): item is EventDocument {
+  return 'startDate' in item || 'endDate' in item
 }
 
 function CategoryCard({
@@ -178,9 +200,11 @@ function ProductCard({
 function EventCard({
   event,
   language,
+  isGrid = false,
 }: {
   event: EventDocument
   language: LanguageKey
+  isGrid?: boolean
 }) {
   const eventTitle = pickLocalizedText(event.title, language)
   const formatDate = (dateStr?: string) => {
@@ -193,15 +217,15 @@ function EventCard({
     })
   }
 
-  return (
-    <div className="bg-white rounded-xl p-4 flex flex-col gap-3">
+  const content = (
+    <>
       {event.cover ? (
-        <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-          <Image src={event.cover} alt={eventTitle || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+        <div className={`relative w-full ${isGrid ? 'aspect-square' : 'aspect-video'} rounded-lg overflow-hidden`}>
+          <Image src={event.cover} alt={eventTitle || ''} fill className="object-cover" sizes="(max-width: 768px) 50vw, 20vw" />
         </div>
       ) : null}
       <div>
-        <h3 className="text-base font-semibold text-waura-brown">{eventTitle}</h3>
+        <h3 className={`${isGrid ? 'text-base font-medium' : 'text-base font-semibold text-waura-brown'}`}>{eventTitle}</h3>
         {(event.startDate || event.endDate) && (
           <p className="text-xs text-waura-deep-gray mt-1">
             {event.startDate && formatDate(event.startDate)}
@@ -210,6 +234,20 @@ function EventCard({
           </p>
         )}
       </div>
+    </>
+  )
+
+  if (isGrid) {
+    return (
+      <div className="bg-waura-pink-light rounded-2xl p-4 flex flex-col gap-3 hover:-translate-y-1 transition">
+        {content}
+      </div>
+    )
+  }
+
+  return (
+    <div className="bg-white rounded-xl p-4 flex flex-col gap-3">
+      {content}
     </div>
   )
 }

@@ -74,6 +74,7 @@ export interface CategorySummary {
   leftColumnTitle?: LocalizedText
   leftColumnDescription?: LocalizedRichText
   level?: number
+  isEvent?: boolean
   inheritFromParent?: boolean
 }
 
@@ -118,6 +119,8 @@ export interface ProductItem {
   description?: LocalizedRichText
   gallery?: string[]
   thumbnail?: string
+  videoUrl?: string
+  videoLink?: string
   materials?: LocalizedText
   size?: LocalizedText
   price?: string

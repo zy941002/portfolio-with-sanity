@@ -48,11 +48,13 @@ export const LEVEL_1_CATEGORIES_QUERY = groq`
   label,
   level,
   sortOrder,
+  isEvent,
   "coverURL": coverURL.asset->url,
   "children": children[]-> {
     _id,
     label,
     level,
+    isEvent,
     "coverURL": coverURL.asset->url
   }
 }
@@ -72,20 +74,22 @@ export const PRODUCT_BY_ID_QUERY = groq`
   summary,
   description,
   "gallery": gallery[].asset->url,
+  "videoUrl": video.asset->url,
+  videoLink,
   materials,
   size,
   price,
-  "primaryCategory": primaryCategory-> {
+  "level1Category": level1Category-> {
     _id,
     "title": label,
     level,
-    "coverURL": coverURL.asset->url,
-    "parent": *[_type == "productCategory" && ^._id in children[]._ref][0]{
-      _id,
-      "title": label,
-      level,
-      "coverURL": coverURL.asset->url
-    }
+    "coverURL": coverURL.asset->url
+  },
+  "level2Category": level2Category-> {
+    _id,
+    "title": label,
+    level,
+    "coverURL": coverURL.asset->url
   }
 }
 `
@@ -97,6 +101,7 @@ coalesce(
     "title": label,
     level,
     sortOrder,
+    isEvent,
     "coverURL": coverURL.asset->url,
     leftColumnTitle,
     leftColumnDescription,
@@ -119,9 +124,10 @@ coalesce(
       _id,
       "title": label,
       level,
+      isEvent,
       "coverURL": coverURL.asset->url
     },
-    "products": *[_type == "productItem" && primaryCategory._ref in ^.children[]._id] | order(sortOrder asc){
+    "products": *[_type == "productItem" && level1Category._ref == ^._id] | order(sortOrder asc){
       _id,
       "slug": slug.current,
       title,
@@ -130,22 +136,32 @@ coalesce(
       size,
       price,
       "thumbnail": coalesce(gallery[0].asset->url, "")
+    },
+    "events": *[_type == "event" && level1Category._ref == ^._id] | order(startDate desc){
+      _id,
+      title,
+      description,
+      startDate,
+      endDate,
+      "cover": cover.asset->url
     }
   },
   *[_type == "productCategoryLevel2" && _id == $id][0]{
     _id,
     "title": label,
     level,
+    isEvent,
     "coverURL": coverURL.asset->url,
     "parent": *[_type == "productCategory" && ^._id in children[]._ref][0]{
       _id,
       "title": label,
       level,
+      isEvent,
       "coverURL": coverURL.asset->url,
       leftColumnTitle,
       leftColumnDescription
     },
-    "events": *[_type == "event" && category._ref == ^._id] | order(startDate desc){
+    "events": *[_type == "event" && level2Category._ref == ^._id] | order(startDate desc){
       _id,
       title,
       description,
@@ -153,7 +169,7 @@ coalesce(
       endDate,
       "cover": cover.asset->url
     },
-    "products": *[_type == "productItem" && primaryCategory._ref == ^._id] | order(sortOrder asc){
+    "products": *[_type == "productItem" && level2Category._ref == ^._id] | order(sortOrder asc){
       _id,
       "slug": slug.current,
       title,
