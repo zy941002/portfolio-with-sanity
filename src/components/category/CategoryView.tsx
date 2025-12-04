@@ -26,6 +26,7 @@ export default function CategoryView({category, language, langParam}: CategoryVi
 
   // 一级分类显示子分类，二级分类根据一级分类的 isEvent 来决定展示活动和商品的顺序
   const parentIsEvent = category.parent?.isEvent ?? false
+  console.log('parentIsEvent', parentIsEvent, category)
   let gridItems: Array<CategorySummary | (ProductItem & {thumbnail?: string}) | EventDocument> = []
 
   if (isLevel1) {
@@ -74,7 +75,7 @@ export default function CategoryView({category, language, langParam}: CategoryVi
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
               {gridItems.map((item) => {
                 if (isCategoryItem(item)) {
-                  return <CategoryCard key={item._id} item={item} langParam={langParam} language={language} />
+                  return <CategoryCard key={item._id} item={item} langParam={langParam} language={language} parentId={isLevel1 ? category._id : undefined} />
                 } else if (isEventItem(item)) {
                   return <EventCard key={item._id} event={item} language={language} isGrid={true} />
                 } else {
@@ -143,15 +144,21 @@ function CategoryCard({
   item,
   langParam,
   language,
+  parentId,
 }: {
   item: CategorySummary
   langParam: string
   language: LanguageKey
+  parentId?: string
 }) {
+  // 如果是从一级分类页面点击子分类，在 URL 中包含一级分类的 ID
+  const href = parentId
+    ? `/${langParam}/category/${item._id}?parent=${parentId}`
+    : `/${langParam}/category/${item._id}`
 
   return (
     <Link
-      href={`/${langParam}/category/${item._id}`}
+      href={href}
       className="bg-waura-pink-light rounded-2xl p-4 flex flex-col gap-3 hover:-translate-y-1 transition"
     >
       {item.coverURL ? (

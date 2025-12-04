@@ -32,9 +32,10 @@ export default function CategoryPage({langParam, languageKey, category}: Categor
   )
 }
 
-export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async ({params}) => {
+export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async ({params, query}) => {
   const langParam = ensureLanguageParam(params?.lang as string | undefined)
   const id = params?.slug as string
+  const parentIdFromQuery = query.parent as string | undefined
 
   if (!sanityClient || !id) {
     return {notFound: true}
@@ -58,47 +59,72 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
   }
   console.log('============================')
 
-  // 如果是二级分类，需要根据商品数据确定正确的 parent，然后重新查询商品和活动
+  // 如果是二级分类，需要确定正确的 parent，然后重新查询商品和活动
   if (category.level === 2) {
-    // 先查询该二级分类下的所有商品，获取它们的 level1Category
-    const productsWithLevel1 = await sanityClient.fetch(
-      `*[_type == "productItem" && level2Category._ref == $level2Id]{
-        _id,
-        "level1CategoryRef": level1Category._ref
-      }`,
-      {level2Id: id}
-    )
-
-    // 从商品数据中获取最常见的 level1Category（通常是正确的 parent）
-    const level1CategoryCounts = new Map<string, number>()
-    productsWithLevel1.forEach((p: {level1CategoryRef?: string}) => {
-      if (p.level1CategoryRef) {
-        level1CategoryCounts.set(p.level1CategoryRef, (level1CategoryCounts.get(p.level1CategoryRef) || 0) + 1)
-      }
-    })
-
-    // 找到出现次数最多的 level1Category
     let correctParentId = category.parent?._id
-    if (level1CategoryCounts.size > 0) {
-      const sortedLevel1Categories = Array.from(level1CategoryCounts.entries()).sort((a, b) => b[1] - a[1])
-      correctParentId = sortedLevel1Categories[0][0]
 
-      // 如果查询到的 parent 不正确，重新查询正确的 parent
-      if (correctParentId !== category.parent?._id) {
-        const correctParent = await sanityClient.fetch(
-          `*[_type == "productCategory" && _id == $parentId][0]{
-            _id,
-            "title": label,
-            level,
-            isEvent,
-            "coverURL": coverURL.asset->url,
-            leftColumnTitle,
-            leftColumnDescription
-          }`,
-          {parentId: correctParentId}
-        )
-        if (correctParent) {
-          category.parent = correctParent
+    // 优先使用 URL 查询参数中的 parent ID（如果提供）
+    if (parentIdFromQuery) {
+      // 验证这个 parent ID 是否真的包含当前二级分类
+      const parentWithChild = await sanityClient.fetch(
+        `*[_type == "productCategory" && _id == $parentId && $level2Id in children[]._ref][0]{
+          _id,
+          "title": label,
+          level,
+          isEvent,
+          "coverURL": coverURL.asset->url,
+          leftColumnTitle,
+          leftColumnDescription
+        }`,
+        {parentId: parentIdFromQuery, level2Id: id}
+      )
+      if (parentWithChild) {
+        correctParentId = parentIdFromQuery
+        category.parent = parentWithChild
+      }
+    }
+
+    // 如果没有从查询参数获取到有效的 parent，则根据商品数据确定
+    if (!correctParentId) {
+      // 先查询该二级分类下的所有商品，获取它们的 level1Category
+      const productsWithLevel1 = await sanityClient.fetch(
+        `*[_type == "productItem" && level2Category._ref == $level2Id]{
+          _id,
+          "level1CategoryRef": level1Category._ref
+        }`,
+        {level2Id: id}
+      )
+
+      // 从商品数据中获取最常见的 level1Category（通常是正确的 parent）
+      const level1CategoryCounts = new Map<string, number>()
+      productsWithLevel1.forEach((p: {level1CategoryRef?: string}) => {
+        if (p.level1CategoryRef) {
+          level1CategoryCounts.set(p.level1CategoryRef, (level1CategoryCounts.get(p.level1CategoryRef) || 0) + 1)
+        }
+      })
+
+      // 找到出现次数最多的 level1Category
+      if (level1CategoryCounts.size > 0) {
+        const sortedLevel1Categories = Array.from(level1CategoryCounts.entries()).sort((a, b) => b[1] - a[1])
+        correctParentId = sortedLevel1Categories[0][0]
+
+        // 如果查询到的 parent 不正确，重新查询正确的 parent
+        if (correctParentId !== category.parent?._id) {
+          const correctParent = await sanityClient.fetch(
+            `*[_type == "productCategory" && _id == $parentId][0]{
+              _id,
+              "title": label,
+              level,
+              isEvent,
+              "coverURL": coverURL.asset->url,
+              leftColumnTitle,
+              leftColumnDescription
+            }`,
+            {parentId: correctParentId}
+          )
+          if (correctParent) {
+            category.parent = correctParent
+          }
         }
       }
     }
