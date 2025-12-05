@@ -135,6 +135,8 @@ coalesce(
       materials,
       size,
       price,
+      isEvent,
+      isExpired,
       "thumbnail": coalesce(gallery[0].asset->url, "")
     },
     "events": *[_type == "event" && level1Category._ref == ^._id] | order(startDate desc){
@@ -177,10 +179,29 @@ coalesce(
       materials,
       size,
       price,
+      isEvent,
+      isExpired,
       "thumbnail": coalesce(gallery[0].asset->url, "")
     }
   }
 )
+`
+
+export const EVENT_IDS_QUERY = groq`
+*[_type == "event"]{
+  _id
+}
+`
+
+export const EVENT_BY_ID_QUERY = groq`
+*[_type == "event" && _id == $id][0]{
+  _id,
+  title,
+  description,
+  startDate,
+  endDate,
+  "cover": cover.asset->url
+}
 `
 
 

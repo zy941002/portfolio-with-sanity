@@ -1,0 +1,311 @@
+/* 主容器 */
+.section {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+.container {
+  background-color: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .flexContainer {
+    flex-direction: row;
+  }
+}
+
+/* 左侧边栏 */
+.aside {
+  width: 100%;
+  background-color: var(--waura-pink-light);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .aside {
+    width: 40%;
+  }
+}
+
+.coverImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.titleSection {
+  /* 标题区域容器 */
+}
+
+.columnTitle {
+  color: var(--waura-deep-gray);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.mainTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.description {
+  color: var(--waura-deep-gray);
+  font-size: 0.875rem;
+}
+
+.eventsSection {
+  /* 活动区域容器 */
+}
+
+.eventsTitle {
+  color: var(--waura-deep-gray);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.eventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* 右侧内容区 */
+.content {
+  width: 100%;
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .content {
+    width: 60%;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.breadcrumbLink {
+  transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+  color: var(--waura-brown);
+}
+
+.breadcrumbActive {
+  color: var(--waura-brown);
+}
+
+.breadcrumbSegment {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumbSeparator {
+  color: var(--waura-border);
+}
+
+/* Category Card */
+.categoryCard {
+  background-color: var(--waura-pink-light);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s;
+}
+
+.categoryCard:hover {
+  transform: translateY(-0.25rem);
+}
+
+.categoryImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.categoryTitle {
+  text-align: center;
+  font-size: 1.125rem;
+}
+
+/* Product Card */
+.productCard {
+  background-color: var(--waura-pink-light);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s;
+}
+
+.productCard:hover {
+  transform: translateY(-0.25rem);
+}
+
+.productImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.productInfo {
+  /* 商品信息容器 */
+}
+
+.productTitle {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.productPrice {
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+  margin-top: 0.25rem;
+}
+
+/* Event Card */
+.eventCard {
+  background-color: var(--waura-pink-light);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.2s;
+}
+
+.eventCard:hover {
+  transform: translateY(-0.25rem);
+}
+
+.eventCardSidebar {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eventImageWrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.eventImageWrapperGrid {
+  aspect-ratio: 1;
+}
+
+.eventImageWrapperSidebar {
+  aspect-ratio: 16 / 9;
+}
+
+.eventInfo {
+  /* 活动信息容器 */
+}
+
+.eventTitle {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.eventTitleSidebar {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--waura-brown);
+}
+
+.eventDate {
+  font-size: 0.75rem;
+  color: var(--waura-deep-gray);
+  margin-top: 0.25rem;
+}
+
+/* Event Product Card (侧边栏活动商品) */
+.eventProductCard {
+  background-color: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eventProductImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.eventProductInfo {
+  /* 活动商品信息容器 */
+}
+
+.eventProductTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--waura-brown);
+}
+
+.eventProductPrice {
+  font-size: 0.75rem;
+  color: var(--waura-deep-gray);
+  margin-top: 0.25rem;
+}
+

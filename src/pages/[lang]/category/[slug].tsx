@@ -37,6 +37,8 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
   const id = params?.slug as string
   const parentIdFromQuery = query.parent as string | undefined
 
+
+
   if (!sanityClient || !id) {
     return {notFound: true}
   }
@@ -47,17 +49,7 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
     return {notFound: true}
   }
 
-  // 添加调试日志
-  console.log('=== Category Query Result ===')
-  console.log('Category ID:', id)
-  console.log('Category Level:', category.level)
-  console.log('Category Title:', category.title)
-  if (category.level === 2) {
-    console.log('Parent ID:', category.parent?._id)
-    console.log('Parent Title:', category.parent?.title)
-    console.log('Parent isEvent:', category.parent?.isEvent)
-  }
-  console.log('============================')
+
 
   // 如果是二级分类，需要确定正确的 parent，然后重新查询商品和活动
   if (category.level === 2) {
@@ -141,6 +133,8 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
           materials,
           size,
           price,
+          isEvent,
+          isExpired,
           "thumbnail": coalesce(gallery[0].asset->url, "")
         }`,
         {level2Id: id, level1Id: correctParentId}
@@ -213,6 +207,33 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
   // 应用继承逻辑
   const categoryWithInheritance = applyCategoryInheritance(category)
 
+  // 如果当前分类是活动分类，查询所有没过期的活动商品
+  let allEventProducts: Array<{
+    _id: string
+    slug?: string
+    title?: import('@/types/content').LocalizedText
+    summary?: import('@/types/content').LocalizedText
+    thumbnail?: string
+    price?: string
+    isEvent?: boolean
+    isExpired?: boolean
+  }> = []
+
+  if (categoryWithInheritance.isEvent) {
+    allEventProducts = await sanityClient.fetch(
+      `*[_type == "productItem" && isEvent == true && (isExpired != true || !defined(isExpired))] | order(sortOrder asc){
+        _id,
+        "slug": slug.current,
+        title,
+        summary,
+        price,
+        isEvent,
+        isExpired,
+        "thumbnail": coalesce(gallery[0].asset->url, "")
+      }`
+    )
+  }
+
   const languageKey = resolveLanguageKey(langParam)
 
   return {
@@ -220,6 +241,7 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
       langParam,
       languageKey,
       category: categoryWithInheritance,
+      ...(categoryWithInheritance.isEvent ? {allEventProducts} : {}),
       id,
     },
   }

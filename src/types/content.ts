@@ -125,6 +125,8 @@ export interface ProductItem {
   size?: LocalizedText
   price?: string
   slug?: string
+  isEvent?: boolean
+  isExpired?: boolean
 }
 
 
