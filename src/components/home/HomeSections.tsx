@@ -20,6 +20,7 @@ interface HomeSectionsProps {
   categories?: Array<{
     _id: string
     label?: import('@/types/content').LocalizedText
+    tags?: import('@/types/content').LocalizedText
     slug?: string
     coverURL?: string
   }>
@@ -57,13 +58,16 @@ function Hero({section, language, langParam}: {section: HeroModule; language: La
     <section className={styles.heroSection}>
       <div className={styles.heroContainer}>
         {section.backgroundImage ? (
-          <Image
-            className={styles.heroImageWrapper}
-            src={section.backgroundImage}
-            alt={title || 'hero'}
-            fill
-            sizes="100vw"
-          />
+          <div className={styles.heroImageWrapper}>
+            <Image
+              src={section.backgroundImage}
+              alt={title || 'hero'}
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{width: '100%', height: 'auto'}}
+            />
+          </div>
         ) : null}
         <div className={styles.heroContent}>
           {/* 语言选择 - 右上角 */}
@@ -78,11 +82,21 @@ function Hero({section, language, langParam}: {section: HeroModule; language: La
                 >
                   {option.label}
                 </Link>
-                {index < LANGUAGE_OPTIONS.length - 1 && <span className={styles.languageSeparator}>•</span>}
+                {index < LANGUAGE_OPTIONS.length - 1 && <span className={styles.languageSeparator}>★</span>}
               </span>
             ))}
           </div>
 
+          {/* 品牌名称 */}
+          {title && (
+            <div className={styles.brandContainer}>
+              <h1 className={styles.brandTitle}>{title}</h1>
+              <div className={styles.brandSubtitle}>
+                <span className={styles.brandStar}>★</span>
+                <span className={styles.brandName}>wauramoon</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -90,15 +104,18 @@ function Hero({section, language, langParam}: {section: HeroModule; language: La
 }
 
 function Quote({section, language}: {section: QuoteModule; language: LanguageKey}) {
-  const quote = pickLocalizedText(section.quote, language)
+  const quote = pickLocalizedRichText(section.quote, language)
   const author = pickLocalizedText(section.author, language)
   const source = pickLocalizedText(section.source, language)
 
-  if (!quote) return null
+
+  if (!quote || quote.length === 0) return null
   return (
     <section className={styles.quoteSection}>
       <div className={styles.quoteContainer}>
-        <p className={styles.quoteText}>{quote}</p>
+        <div className={styles.quoteText}>
+          <RichText value={quote} />
+        </div>
         {(author || source) && (
           <p className={styles.quoteAuthor}>
             {author}
@@ -111,7 +128,6 @@ function Quote({section, language}: {section: QuoteModule; language: LanguageKey
 }
 
 function About({section, language}: {section: AboutModule; language: LanguageKey}) {
-  const signature = pickLocalizedText(section.signature, language)
   const body = pickLocalizedRichText(section.body, language)
   return (
     <section className={styles.aboutSection}>
@@ -120,12 +136,12 @@ function About({section, language}: {section: AboutModule; language: LanguageKey
         <div className={styles.aboutContent}>
           <RichText value={body} />
         </div>
-        {signature ? (
+        {/* {signature ? (
           <div className={styles.aboutSignature}>
             <hr className={styles.aboutSignatureLine} />
             <p className={styles.aboutSignatureText}>{signature}</p>
           </div>
-        ) : null}
+        ) : null} */}
       </div>
     </section>
   )
@@ -143,70 +159,46 @@ function ChannelGrid({
   categories?: Array<{
     _id: string
     label?: import('@/types/content').LocalizedText
+    tags?: import('@/types/content').LocalizedText
     slug?: string
     coverURL?: string
   }>
 }) {
   // 如果有一级分类数据，优先展示分类
   if (categories && categories.length > 0) {
-    const topItems = categories.slice(0, 3)
-    const bottomItems = categories.slice(3, 5)
     const currentLangParam = langParam || 'zh-hans'
 
     return (
       <section className={styles.channelGridSection}>
         <div className={styles.channelGridContainer}>
-          {/* 上排：三个分类 */}
-          {topItems.length > 0 && (
-            <div className={styles.channelGridTop}>
-              {topItems.map((category) => (
-                <Link
-                  key={category._id}
-                  href={`/${currentLangParam}/category/${category._id}`}
-                  className={styles.channelItem}
-                >
-                  {category.coverURL ? (
-                    <div className={styles.channelIcon}>
-                      <Image
-                        src={category.coverURL}
-                        alt={pickLocalizedText(category.label, language) || ''}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
-                      />
-                    </div>
-                  ) : null}
-                  <p className={styles.channelLabel}>瓦闻 {pickLocalizedText(category.label, language)}</p>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {/* 下排：两个分类，第一个较大 */}
-          {bottomItems.length > 0 && (
-            <div className={styles.channelGridBottom}>
-              {bottomItems.map((category, index) => (
-                <Link
-                  key={category._id}
-                  href={`/${currentLangParam}/category/${category._id}`}
-                  className={`${styles.channelItem} ${index === 0 ? styles.channelItemLarge : ''}`}
-                >
-                  {category.coverURL ? (
-                    <div className={index === 0 ? styles.channelIconLarge : styles.channelIcon}>
-                      <Image
-                        src={category.coverURL}
-                        alt={pickLocalizedText(category.label, language) || ''}
-                        fill
-                        className="object-cover"
-                        sizes={index === 0 ? '96px' : '80px'}
-                      />
-                    </div>
-                  ) : null}
+          <div className={styles.channelGrid}>
+            {categories.map((category) => (
+              <Link
+                key={category._id}
+                href={`/${currentLangParam}/category/${category._id}`}
+                className={styles.channelItem}
+              >
+                {category.coverURL ? (
+                  <div className={styles.channelIcon}>
+                    <Image
+                      src={category.coverURL}
+                      alt={pickLocalizedText(category.label, language) || ''}
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                    />
+                  </div>
+                ) : null}
+                <div className={styles.channelLabelContainer}>
+                  {category.tags && (
+                    <p className={styles.channelTag}>{pickLocalizedText(category.tags, language)}</p>
+                  )}
+                  <span className={styles.channelStar}>★</span>
                   <p className={styles.channelLabel}>{pickLocalizedText(category.label, language)}</p>
-                </Link>
-              ))}
-            </div>
-          )}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     )
@@ -308,8 +300,9 @@ function Contact({section, language}: {section: ContactModule; language: Languag
             </div>
           )}
           {notes && (
-            <div className={styles.contactNotes}>
-              <p>({notes})</p>
+            <div className={styles.contactItem}>
+            <p className={styles.contactLabel}></p>
+              <p>{notes}</p>
             </div>
           )}
         </div>

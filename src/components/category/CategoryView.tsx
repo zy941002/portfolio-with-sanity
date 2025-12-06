@@ -20,6 +20,7 @@ export default function CategoryView({category, language, langParam}: CategoryVi
   const isLevel1 = category.level === 1
   const children = category.children ?? []
   const products = category.products ?? []
+  const parentIsEvent = category.parent?.isEvent ?? false
 
   // 筛选出活动商品（isEvent 为 true 且 isExpired 为 false）
   const eventProducts = products.filter((product) => product.isEvent === true && product.isExpired !== true)
@@ -27,15 +28,27 @@ export default function CategoryView({category, language, langParam}: CategoryVi
   // 筛选出非活动商品（isEvent 不为 true 的商品）
   const regularProducts = products.filter((product) => product.isEvent !== true)
 
-  let gridItems: Array<CategorySummary | (ProductItem & {thumbnail?: string})> = []
-  //
+  let baseItems: Array<CategorySummary | (ProductItem & {thumbnail?: string})> = []
 
   if (isLevel1) {
-    gridItems = children
+    // 一级分类：显示子分类
+    baseItems = children
   } else {
-    gridItems = regularProducts
+    // 二级分类：如果一级分类是活动分类，显示活动商品；否则显示普通商品
+    if (parentIsEvent) {
+      baseItems = eventProducts
+    } else {
+      baseItems = regularProducts
+    }
   }
 
+  // 确保至少有 9 项，不够的用占位符填充
+  const MIN_ITEMS = 9
+  const gridItems: Array<CategorySummary | (ProductItem & {thumbnail?: string}) | null> = [...baseItems]
+  while (gridItems.length < MIN_ITEMS) {
+    gridItems.push(null)
+  }
+  console.log(eventProducts, '----eventProducts')
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -53,7 +66,7 @@ export default function CategoryView({category, language, langParam}: CategoryVi
             <RichText value={description} className={styles.description} />
             {eventProducts.length > 0 ? (
               <div className={styles.eventsSection}>
-                <p className={styles.eventsTitle}>店内活动</p>
+                <p className={styles.eventsTitle}>相关店内活动</p>
                 <div className={styles.eventsList}>
                   {eventProducts.map((product) => (
                     <EventProductCard key={product._id} product={product} language={language} langParam={langParam} />
@@ -66,8 +79,10 @@ export default function CategoryView({category, language, langParam}: CategoryVi
           <div className={styles.content}>
             <Breadcrumb category={category} langParam={langParam} language={language} />
             <div className={styles.grid}>
-              {gridItems.map((item) => {
-                if (isCategoryItem(item)) {
+              {gridItems.map((item, index) => {
+                if (item === null) {
+                  return <PlaceholderCard key={`placeholder-${index}`} />
+                } else if (isCategoryItem(item)) {
                   return <CategoryCard key={item._id} item={item} langParam={langParam} language={language} parentId={isLevel1 ? category._id : undefined} />
                 } else {
                   return <ProductCard key={item._id} product={item} language={language} langParam={langParam} />
@@ -179,6 +194,9 @@ function ProductCard({
       ) : null}
       <div className={styles.productInfo}>
         <p className={styles.productTitle}>{pickLocalizedText(product.title, language)}</p>
+        {product.summary && (
+          <p className={styles.productSummary}>{pickLocalizedText(product.summary, language)}</p>
+        )}
         {product.price ? <p className={styles.productPrice}>{product.price}</p> : null}
       </div>
     </Link>
@@ -194,24 +212,24 @@ function EventProductCard({
   language: LanguageKey
   langParam: string
 }) {
+  const title = pickLocalizedText(product.subTitle, language)
+
+
   return (
     <Link href={`/${langParam}/product/${product._id}`} className={styles.eventProductCard}>
-      {product.thumbnail ? (
-        <div className={styles.eventProductImageWrapper}>
-          <Image
-            src={product.thumbnail}
-            alt={pickLocalizedText(product.title, language) || ''}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 50vw, 20vw"
-          />
-        </div>
-      ) : null}
       <div className={styles.eventProductInfo}>
-        <p className={styles.eventProductTitle}>{pickLocalizedText(product.title, language)}</p>
-        {product.price ? <p className={styles.eventProductPrice}>{product.price}</p> : null}
+        {title && <p className={styles.eventProductTitle}>{title}</p>}
       </div>
     </Link>
+  )
+}
+
+function PlaceholderCard() {
+  return (
+    <div className={styles.placeholderCard}>
+      <div className={styles.placeholderImageWrapper} />
+      <div className={styles.placeholderTitle} />
+    </div>
   )
 }
 

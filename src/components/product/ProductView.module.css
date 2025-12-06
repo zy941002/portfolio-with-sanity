@@ -1,0 +1,187 @@
+.container {
+  overflow: hidden;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 左侧边栏 */
+.aside {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 15vh;
+  position: relative;
+}
+
+.coverImageWrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.titleSection {
+  text-align: center;
+}
+
+.columnTitle {
+  color: var(--waura-deep-gray);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.mainTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.summary {
+  color: var(--waura-deep-gray);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.description {
+  padding: 50px;
+  font-size: 14px;
+  font-family: '方正兰亭细黑', sans-serif;
+}
+
+.productInfo {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: '方正兰亭细黑', sans-serif;
+  text-align: center;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.infoLabel {
+  font-size: 0.75rem;
+  color: var(--waura-deep-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.infoValue {
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--waura-brown);
+}
+
+/* 右侧内容区 */
+.content {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.contentInner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.gallery {
+  flex: 1;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  overflow: auto hidden;
+  gap: 20px;
+  min-height: 0;
+  align-items: center;
+}
+
+/* Firefox 滚动条样式 */
+.gallery {
+  scrollbar-width: auto;
+  scrollbar-color: var(--waura-brown) transparent;
+}
+
+.galleryItem {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  flex-shrink: 0;
+  flex-basis: 100%;
+  overflow: hidden;
+}
+
+.galleryItemVideo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.breadcrumb {
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.breadcrumbLink {
+  transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+  color: var(--waura-brown);
+}
+
+.breadcrumbActive {
+  color: var(--waura-brown);
+}
+
+.breadcrumbSegment {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumbSeparator {
+  color: var(--waura-border);
+}
+

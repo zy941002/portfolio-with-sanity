@@ -1,12 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
+/* 自定义字体 */
+@font-face {
+  font-family: 'Gothic';
+  src: url('/fonts/GOTHIC.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gothic';
+  src: url('/fonts/GOTHICB.TTF') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gothic';
+  src: url('/fonts/GOTHICBI.TTF') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gothic';
+  src: url('/fonts/GOTHICI.TTF') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MPLUS';
+  src: url('/fonts/MPLUS中文像素.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '方正兰亭细黑';
+  src: url('/fonts/方正兰亭细黑.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '方正兰亭细黑';
+  src: url('/fonts/方正兰亭细黑.TTF') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --waura-pink: #f8b9c0;
   --waura-pink-light: #fdd5db;
   --waura-card: #fff3f5;
   --waura-brown: #4f2f2f;
-  --waura-deep-gray: #765f5f;
+  --waura-deep-gray: #000;
   --waura-border: rgba(79, 47, 47, 0.2);
   --waura-bg: #fef1f3;
 }

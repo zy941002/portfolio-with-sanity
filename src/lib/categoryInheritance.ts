@@ -1,4 +1,4 @@
-import type {CategoryDocument, CategorySummary} from '@/types/content'
+import type {CategoryDocument} from '@/types/content'
 
 /**
  * 处理分类的继承逻辑

@@ -4,6 +4,7 @@ import RichText from '@/components/RichText'
 import {pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
 import type {LanguageKey} from '@/lib/language'
 import type {ProductItem} from '@/types/content'
+import styles from './ProductView.module.css'
 
 interface ProductViewProps {
   product: ProductItem & {
@@ -35,103 +36,119 @@ export default function ProductView({product, language, langParam}: ProductViewP
   const level1Category = product.level1Category
   const level2Category = product.level2Category
 
+  // 检查是否有视频
+  const hasVideo = !!(product.videoUrl || product.videoLink)
+
+  // 获取封面图：优先使用 thumbnail，否则使用 gallery 的第一张图
+  const coverImage = product.thumbnail || (product.gallery && product.gallery.length > 0 ? product.gallery[0] : null)
+
+  // 获取图集：
+  // - 如果有视频：右侧优先显示视频，不显示图集
+  // - 如果没有视频：右侧显示图集（如果封面图来自 gallery，从第二张开始；否则显示所有 gallery）
+  const hasThumbnail = !!product.thumbnail
+  const galleryImages = !hasVideo && product.gallery && product.gallery.length > 0
+    ? (hasThumbnail ? product.gallery : product.gallery.slice(1))
+    : []
+
+
+
   return (
-    <section className="px-6 md:px-12">
-      <div className="bg-white rounded-3xl shadow-soft overflow-hidden">
-        <div className="flex flex-col md:flex-row">
-          {/* 左侧：图片画廊和视频 */}
-          <aside className="md:w-2/5 bg-waura-pink-light p-8">
-            <div className="space-y-4">
-              {/* 视频展示 */}
-              {(product.videoUrl || product.videoLink) && (
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black">
-                  {product.videoUrl ? (
-                    <video
-                      src={product.videoUrl}
-                      controls
-                      className="w-full h-full object-contain"
-                      playsInline
-                    >
-                      您的浏览器不支持视频播放
-                    </video>
-                  ) : product.videoLink ? (
-                    <iframe
-                      src={getEmbedUrl(product.videoLink)}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      title={title || 'Product video'}
-                    />
-                  ) : null}
+    <section>
+      <div className={styles.container}>
+        <div className={styles.flexContainer}>
+          {/* 左侧边栏：图片、标题、描述 */}
+          <aside className={styles.aside}>
+            {coverImage ? (
+              <div className={styles.coverImageWrapper}>
+                <Image src={coverImage} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+              </div>
+            ) : null}
+            <div className={styles.titleSection}>
+              <h1 className={styles.mainTitle}>{title}</h1>
+              {summary && <p className={styles.summary}>{summary}</p>}
+            </div>
+            {description && (
+              <RichText value={description} className={styles.description} />
+            )}
+            <div className={styles.productInfo}>
+              {materials && (
+                <div className={styles.infoItem}>
+                  <p className={styles.infoLabel}>材质</p>
+                  <p className={styles.infoValue}>{materials}</p>
                 </div>
               )}
+              {size && (
+                <div className={styles.infoItem}>
+                  <p className={styles.infoLabel}>尺寸</p>
+                  <p className={styles.infoValue}>{size}</p>
+                </div>
+              )}
+              {product.price && (
+                <div className={styles.infoItem}>
+                  <p className={styles.infoLabel}>价格</p>
+                  <p className={styles.price}>{product.price}</p>
+                </div>
+              )}
+            </div>
+          </aside>
 
-              {/* 图片画廊 */}
-              {product.gallery && product.gallery.length > 0 ? (
-                <>
-                  {product.gallery.map((imageUrl, index) => (
-                    <div key={index} className="relative w-full aspect-square rounded-2xl overflow-hidden">
+          {/* 右侧内容区：有视频则优先展示视频，没有视频则展示图集 */}
+          <div className={styles.content}>
+            <div className={styles.contentInner}>
+              <Breadcrumb
+                product={product}
+                level1Category={level1Category}
+                level2Category={level2Category}
+                langParam={langParam}
+                language={language}
+              />
+              <div className={styles.gallery}>
+              {/* 有视频则优先展示视频 */}
+              {hasVideo ? (
+                <div className={styles.galleryItemVideo}>
+                  <div className={styles.videoWrapper}>
+                    {product.videoUrl ? (
+                      <video
+                        src={product.videoUrl}
+                        controls
+                        className="w-full h-full object-contain"
+                        playsInline
+                      >
+                        您的浏览器不支持视频播放
+                      </video>
+                    ) : product.videoLink ? (
+                      <iframe
+                        src={getEmbedUrl(product.videoLink)}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        title={title || 'Product video'}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              ) : (
+                /* 没有视频则展示图集 */
+                galleryImages.length > 0 ? (
+                  galleryImages.map((imageUrl, index) => (
+                    <div key={index} className={styles.galleryItem}>
                       <Image
                         src={imageUrl}
                         alt={title ? `${title} - ${index + 1}` : `Product image ${index + 1}`}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 40vw"
+                        sizes="(max-width: 768px) 100vw, 70vw"
                       />
                     </div>
-                  ))}
-                </>
-              ) : !product.videoUrl && !product.videoLink ? (
-                <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-gray-200">
-                  <div className="absolute inset-0 flex items-center justify-center text-waura-deep-gray">
-                    暂无图片
+                  ))
+                ) : (
+                  <div className={styles.galleryItem}>
+                    <div className="absolute inset-0 flex items-center justify-center text-waura-deep-gray">
+                      暂无图片
+                    </div>
                   </div>
-                </div>
-              ) : null}
-            </div>
-          </aside>
-
-          {/* 右侧：商品信息 */}
-          <div className="md:w-3/5 p-8">
-            <Breadcrumb
-              product={product}
-              level1Category={level1Category}
-              level2Category={level2Category}
-              langParam={langParam}
-              language={language}
-            />
-
-            <div className="mt-6 space-y-6">
-              <div>
-                <h1 className="text-3xl font-semibold mb-2">{title}</h1>
-                {summary && <p className="text-waura-deep-gray text-lg">{summary}</p>}
-              </div>
-
-              {description && (
-                <div className="text-waura-deep-gray">
-                  <RichText value={description} />
-                </div>
+                )
               )}
-
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-waura-border">
-                {materials && (
-                  <div>
-                    <p className="text-sm text-waura-deep-gray mb-1">材质</p>
-                    <p className="text-base">{materials}</p>
-                  </div>
-                )}
-                {size && (
-                  <div>
-                    <p className="text-sm text-waura-deep-gray mb-1">尺寸</p>
-                    <p className="text-base">{size}</p>
-                  </div>
-                )}
-                {product.price && (
-                  <div className="col-span-2">
-                    <p className="text-sm text-waura-deep-gray mb-1">价格</p>
-                    <p className="text-2xl font-semibold text-waura-brown">{product.price}</p>
-                  </div>
-                )}
               </div>
             </div>
           </div>
@@ -195,22 +212,22 @@ function Breadcrumb({
   })
 
   return (
-    <nav className="text-sm text-waura-deep-gray flex flex-wrap gap-2">
-      <Link href={`/${langParam}`} className="hover:text-waura-brown">
+    <nav className={styles.breadcrumb}>
+      <Link href={`/${langParam}`} className={styles.breadcrumbLink}>
         Home
       </Link>
       {segments.map((segment, index) => (
-        <span key={segment.id || index} className="flex items-center gap-2">
-          <span className="text-waura-border">/</span>
+        <span key={segment.id || index} className={styles.breadcrumbSegment}>
+          <span className={styles.breadcrumbSeparator}>/</span>
           {segment.id ? (
             <Link
               href={`/${langParam}/category/${segment.id}`}
-              className={index === segments.length - 1 ? 'text-waura-brown' : 'hover:text-waura-brown'}
+              className={index === segments.length - 1 ? styles.breadcrumbActive : styles.breadcrumbLink}
             >
               {segment.label}
             </Link>
           ) : (
-            <span className="text-waura-brown">{segment.label}</span>
+            <span className={styles.breadcrumbActive}>{segment.label}</span>
           )}
         </span>
       ))}

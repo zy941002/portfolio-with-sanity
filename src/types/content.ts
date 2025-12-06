@@ -18,7 +18,7 @@ export interface HeroModule {
 
 export interface QuoteModule {
   _key: string
-  quote?: LocalizedText
+  quote?: LocalizedRichText
   author?: LocalizedText
   source?: LocalizedText
 }
@@ -115,6 +115,7 @@ export interface EventDocument {
 export interface ProductItem {
   _id: string
   title?: LocalizedText
+  subTitle?: LocalizedText
   summary?: LocalizedText
   description?: LocalizedRichText
   gallery?: string[]

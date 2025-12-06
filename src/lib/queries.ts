@@ -46,6 +46,7 @@ export const LEVEL_1_CATEGORIES_QUERY = groq`
 *[_type == "productCategory" && level == 1] | order(sortOrder asc, label.zhHans asc){
   _id,
   label,
+  tags,
   level,
   sortOrder,
   isEvent,
@@ -71,6 +72,7 @@ export const PRODUCT_BY_ID_QUERY = groq`
   _id,
   "slug": slug.current,
   title,
+  subTitle,
   summary,
   description,
   "gallery": gallery[].asset->url,
@@ -116,6 +118,7 @@ coalesce(
     featuredProducts[]->{
       _id,
       title,
+      subTitle,
       summary,
       "thumbnail": gallery[0].asset->url,
       price
@@ -131,7 +134,9 @@ coalesce(
       _id,
       "slug": slug.current,
       title,
+      subTitle,
       summary,
+      description,
       materials,
       size,
       price,
@@ -175,7 +180,9 @@ coalesce(
       _id,
       "slug": slug.current,
       title,
+      subTitle,
       summary,
+      description,
       materials,
       size,
       price,

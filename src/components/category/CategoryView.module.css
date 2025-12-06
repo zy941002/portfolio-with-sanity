@@ -1,60 +1,39 @@
-/* 主容器 */
-.section {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .section {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
 .container {
-  background-color: white;
-  border-radius: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
 .flexContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .flexContainer {
-    flex-direction: row;
-  }
-}
 
 /* 左侧边栏 */
 .aside {
-  width: 100%;
-  background-color: var(--waura-pink-light);
-  padding: 2rem;
+  width: 30%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  align-items: center;
+  top: 15vh;
+  position: relative;
 }
 
-@media (min-width: 768px) {
-  .aside {
-    width: 40%;
-  }
-}
 
 .coverImageWrapper {
   position: relative;
-  width: 100%;
+  width: 150px;
+  height: 150px;
   aspect-ratio: 1;
-  border-radius: 1rem;
   overflow: hidden;
 }
 
 .titleSection {
   /* 标题区域容器 */
+  margin-top: 120px;
+  font-family: '方正兰亭细黑', sans-serif;
 }
 
 .columnTitle {
@@ -80,7 +59,7 @@
 }
 
 .eventsTitle {
-  color: var(--waura-deep-gray);
+  text-align: center;
   letter-spacing: 0.4em;
   text-transform: uppercase;
   font-size: 0.875rem;
@@ -95,27 +74,21 @@
 
 /* 右侧内容区 */
 .content {
-  width: 100%;
-  padding: 2rem;
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (min-width: 768px) {
-  .content {
-    width: 60%;
-  }
-}
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: row;
+  width: 750px;
+  column-gap: 150px;
+  row-gap: 40px;
 }
 
 /* Breadcrumb */
@@ -151,46 +124,40 @@
 
 /* Category Card */
 .categoryCard {
-  background-color: var(--waura-pink-light);
-  border-radius: 1rem;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  transition: transform 0.2s;
-}
-
-.categoryCard:hover {
-  transform: translateY(-0.25rem);
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
 }
 
 .categoryImageWrapper {
   position: relative;
-  width: 100%;
+  width: 150px;
   aspect-ratio: 1;
-  border-radius: 0.75rem;
   overflow: hidden;
 }
 
 .categoryTitle {
   text-align: center;
-  font-size: 1.125rem;
+  font-size: 14px;
+  font-family: '方正兰亭细黑', sans-serif;
 }
 
 /* Product Card */
 .productCard {
-  background-color: var(--waura-pink-light);
-  border-radius: 1rem;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   transition: transform 0.2s;
+  align-items: center;
+  font-family: '方正兰亭细黑', sans-serif;
 }
 
-.productCard:hover {
-  transform: translateY(-0.25rem);
-}
+/* .productCard:hover {
+  transform: translateY(-0.25rem); */
+/* } */
 
 .productImageWrapper {
   position: relative;
@@ -277,12 +244,9 @@
 
 /* Event Product Card (侧边栏活动商品) */
 .eventProductCard {
-  background-color: white;
   border-radius: 0.75rem;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
 }
 
 .eventProductImageWrapper {
@@ -297,15 +261,46 @@
   /* 活动商品信息容器 */
 }
 
+.eventProductDescription {
+  font-size: 14px;
+  font-family: '方正兰亭细黑', sans-serif;
+  color: var(--waura-deep-gray);
+  line-height: 1.6;
+}
+
 .eventProductTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--waura-brown);
+  font-size: 14px;
 }
 
 .eventProductPrice {
   font-size: 0.75rem;
   color: var(--waura-deep-gray);
   margin-top: 0.25rem;
+}
+
+/* Placeholder Card */
+.placeholderCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.placeholderImageWrapper {
+  position: relative;
+  width: 150px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 0.75rem;
+}
+
+.placeholderTitle {
+  width: 100px;
+  height: 1rem;
+  background-color:  white;
+  border-radius: 0.25rem;
 }
 

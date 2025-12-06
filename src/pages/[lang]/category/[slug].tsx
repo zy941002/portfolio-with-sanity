@@ -123,23 +123,60 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
 
     // 使用正确的 parent ID 重新查询商品和活动
     if (correctParentId) {
-      // 重新查询商品，确保只显示匹配一级分类的商品
-      const filteredProducts = await sanityClient.fetch(
-        `*[_type == "productItem" && level2Category._ref == $level2Id && level1Category._ref == $level1Id] | order(sortOrder asc){
-          _id,
-          "slug": slug.current,
-          title,
-          summary,
-          materials,
-          size,
-          price,
-          isEvent,
-          isExpired,
-          "thumbnail": coalesce(gallery[0].asset->url, "")
+      // 获取父级分类信息，检查是否是活动分类
+      const parentCategory = await sanityClient.fetch(
+        `*[_type == "productCategory" && _id == $parentId][0]{
+          isEvent
         }`,
-        {level2Id: id, level1Id: correctParentId}
+        {parentId: correctParentId}
       )
-      category.products = filteredProducts
+
+      // 如果父级是活动分类，查询所有活动商品并筛选出属于该二级分类的；否则查询该二级分类下的商品
+      if (parentCategory?.isEvent) {
+        // 查询所有活动商品，然后筛选出属于该二级分类的
+        const allEventProducts = await sanityClient.fetch(
+          `*[_type == "productItem" && isEvent == true && (isExpired != true || !defined(isExpired))] | order(sortOrder asc){
+            _id,
+            "slug": slug.current,
+            title,
+            subTitle,
+            summary,
+            description,
+            materials,
+            size,
+            price,
+            isEvent,
+            isExpired,
+            "level2CategoryRef": level2Category._ref,
+            "thumbnail": coalesce(gallery[0].asset->url, "")
+          }`
+        )
+        // 筛选出属于该二级分类的活动商品
+        const filteredEventProducts = allEventProducts.filter(
+          (product: {level2CategoryRef?: string}) => product.level2CategoryRef === id
+        )
+        category.products = filteredEventProducts
+      } else {
+        // 重新查询商品，确保只显示匹配一级分类的商品
+        const filteredProducts = await sanityClient.fetch(
+          `*[_type == "productItem" && level2Category._ref == $level2Id && level1Category._ref == $level1Id] | order(sortOrder asc){
+            _id,
+            "slug": slug.current,
+            title,
+            subTitle,
+            summary,
+            description,
+            materials,
+            size,
+            price,
+            isEvent,
+            isExpired,
+            "thumbnail": coalesce(gallery[0].asset->url, "")
+          }`,
+          {level2Id: id, level1Id: correctParentId}
+        )
+        category.products = filteredProducts
+      }
 
       // 重新查询活动，确保只显示匹配一级分类的活动
       const filteredEvents = await sanityClient.fetch(
@@ -207,31 +244,24 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
   // 应用继承逻辑
   const categoryWithInheritance = applyCategoryInheritance(category)
 
-  // 如果当前分类是活动分类，查询所有没过期的活动商品
-  let allEventProducts: Array<{
-    _id: string
-    slug?: string
-    title?: import('@/types/content').LocalizedText
-    summary?: import('@/types/content').LocalizedText
-    thumbnail?: string
-    price?: string
-    isEvent?: boolean
-    isExpired?: boolean
-  }> = []
-
+  // 如果当前分类是活动分类，查询所有没过期的活动商品并替换 category.products
   if (categoryWithInheritance.isEvent) {
-    allEventProducts = await sanityClient.fetch(
+    const allEventProducts = await sanityClient.fetch(
       `*[_type == "productItem" && isEvent == true && (isExpired != true || !defined(isExpired))] | order(sortOrder asc){
         _id,
         "slug": slug.current,
         title,
+        subTitle,
         summary,
+        description,
         price,
         isEvent,
         isExpired,
         "thumbnail": coalesce(gallery[0].asset->url, "")
       }`
     )
+    // 将查询到的所有活动商品赋值给 category.products
+    categoryWithInheritance.products = allEventProducts
   }
 
   const languageKey = resolveLanguageKey(langParam)
@@ -241,7 +271,6 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
       langParam,
       languageKey,
       category: categoryWithInheritance,
-      ...(categoryWithInheritance.isEvent ? {allEventProducts} : {}),
       id,
     },
   }
