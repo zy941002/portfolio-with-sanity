@@ -135,29 +135,63 @@
   justify-content: center;
   text-align: center;
   border-bottom: 0.5px solid white;
+  position: relative;
 }
 
 .quoteContainer {
   max-width: 56rem;
-  margin: 0 auto;
+  position:  absolute;
+  top: 50%;
+  transform: translateY(-50%) + 10%;
+  /* bottom: 0; */
+  /* bottom: 15%; */
+  /* margin: 0 auto; */
 }
 
 .quoteText {
   margin-bottom: 1.5rem;
+  font-size: 16px;
 }
 
 .quoteSection :global(p) {
-  margin: 0;
   font-family: '方正兰亭细黑', sans-serif;
-  font-size: 16px; /* 16号 = 16pt = 21.33px */
+  font-size: 28px;
   font-weight: bold;
   line-height: 1.75;
 }
+
+/* .aboutContent {
+  position: absolute;
+  bottom: 0;
+} */
+
+.quoteText :global(p) {
+  margin-bottom: 250px;
+}
+
+.quoteText :global(p:empty) {
+  margin-bottom: 0;
+}
+
 .quoteSection :global(strong) {
   margin: 0;
   font-weight: bold;
 }
 
+
+.aboutContent :global(p) {
+  margin-bottom: 80px;
+  font-size: 22px;
+}
+
+.aboutContent :global(p:empty) {
+  margin-bottom: 0;
+}
+
+.aboutContent :global(strong) {
+  margin: 0;
+  font-weight: bold;
+}
 
 
 .quoteAuthor {
@@ -175,11 +209,13 @@
   align-items: center;
   justify-content: center;
   border-bottom: 0.5px solid white;
+  position: relative;
 }
 
 .aboutContainer {
-  max-width: 56rem;
-  margin: 0 auto;
+  max-width: 80%;
+  position: absolute;
+  bottom: 20%;
 }
 
 .aboutTitle {
