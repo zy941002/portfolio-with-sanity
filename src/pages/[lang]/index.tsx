@@ -2,7 +2,7 @@ import type {GetStaticPaths, GetStaticProps} from 'next'
 import Head from 'next/head'
 import HomeSections from '@/components/home/HomeSections'
 import SiteLayout from '@/components/SiteLayout'
-import {HOME_PAGE_QUERY, LEVEL_1_CATEGORIES_QUERY} from '@/lib/queries'
+import {HOME_PAGE_QUERY, LEVEL_1_CATEGORIES_QUERY, PLATFORMS_QUERY} from '@/lib/queries'
 import {ensureLanguageParam, LANGUAGE_PARAM_TO_KEY, resolveLanguageKey, type LanguageParam} from '@/lib/language'
 import {sanityClient} from '@/lib/sanityClient'
 import type {HomePageDocument} from '@/types/content'
@@ -17,16 +17,17 @@ interface HomePageProps {
     slug?: string
     coverURL?: string
   }>
+  platform?: import('@/types/content').Platform
 }
 
-export default function HomePage({langParam, languageKey, home, categories}: HomePageProps) {
+export default function HomePage({langParam, languageKey, home, categories, platform}: HomePageProps) {
   return (
     <>
       <Head>
         <title>gallery瓦聞wauramoon</title>
       </Head>
       <SiteLayout langParam={langParam} pathSegments={[]}>
-        <HomeSections sections={home.sections || []} language={languageKey} langParam={langParam} categories={categories} />
+        <HomeSections sections={home.sections || []} language={languageKey} langParam={langParam} categories={categories} platform={platform} />
       </SiteLayout>
     </>
   )
@@ -45,7 +46,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async ({params}) =>
     return {notFound: true}
   }
 
-  const [home, categories] = await Promise.all([
+  const [home, categories, platform] = await Promise.all([
     sanityClient.fetch<HomePageDocument>(HOME_PAGE_QUERY),
     sanityClient.fetch<Array<{
       _id: string
@@ -53,6 +54,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async ({params}) =>
       slug?: string
       coverURL?: string
     }>>(LEVEL_1_CATEGORIES_QUERY).catch(() => []),
+    sanityClient.fetch<import('@/types/content').Platform>(PLATFORMS_QUERY).catch(() => null),
   ])
 
   if (!home) {
@@ -67,6 +69,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async ({params}) =>
       languageKey,
       home,
       categories: categories || [],
+      platform: platform || undefined,
     },
     revalidate: 60,
   }

@@ -24,4 +24,15 @@ export function pickLocalizedRichText(
   return []
 }
 
+export type LocalizedImage = Partial<Record<LanguageKey, string>>
+
+export function pickLocalizedImage(value: LocalizedImage | null | undefined, lang: LanguageKey): string {
+  if (!value) return ''
+  if (value[lang]) return value[lang] as string
+  for (const key of FALLBACK_ORDER) {
+    if (value[key]) return value[key] as string
+  }
+  return ''
+}
+
 

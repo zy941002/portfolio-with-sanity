@@ -59,7 +59,7 @@
 }
 
 :root {
-  --waura-pink: #f8b9c0;
+  --waura-pink: #feb3b0;
   --waura-pink-light: #fdd5db;
   --waura-card: #fff3f5;
   --waura-brown: #4f2f2f;
@@ -132,5 +132,19 @@ body {
   text-shadow:
     1px 1px 0px currentColor,
     2px 2px 0px currentColor;
+}
+
+/* 页面过渡动画 */
+.page-transition-wrapper {
+  opacity: 1;
+  filter: brightness(1) blur(0);
+  transition: opacity 0.25s ease-in-out,
+              filter 0.25s ease-in-out;
+  will-change: opacity, filter;
+}
+
+.page-transition-wrapper.transitioning {
+  opacity: 0.85;
+  filter: blur(1px);
 }
 

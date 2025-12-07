@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import RichText from '@/components/RichText'
-import {pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
+import {pickLocalizedImage, pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
 import {LANGUAGE_OPTIONS, buildLanguageHref, type LanguageKey} from '@/lib/language'
 import type {
   AboutModule,
@@ -9,6 +9,7 @@ import type {
   ContactModule,
   HeroModule,
   HomePageSection,
+  ImageModule,
   QuoteModule,
 } from '@/types/content'
 import styles from './HomeSections.module.css'
@@ -24,9 +25,10 @@ interface HomeSectionsProps {
     slug?: string
     coverURL?: string
   }>
+  platform?: import('@/types/content').Platform
 }
 
-export default function HomeSections({sections, language, langParam, categories}: HomeSectionsProps) {
+export default function HomeSections({sections, language, langParam, categories, platform}: HomeSectionsProps) {
   return (
     <div className={styles.container}>
       {sections.map((section) => {
@@ -40,7 +42,9 @@ export default function HomeSections({sections, language, langParam, categories}
           case 'channelGridModule':
             return <ChannelGrid key={section._key} section={section} language={language} langParam={langParam} categories={categories} />
           case 'contactModule':
-            return <Contact key={section._key} section={section} language={language} />
+            return <Contact key={section._key} section={section} language={language} platform={platform} />
+          case 'imageModule':
+            return <ImageSection key={section._key} section={section} language={language} />
           default:
             return null
         }
@@ -200,6 +204,11 @@ function ChannelGrid({
             ))}
           </div>
         </div>
+        <div className={styles.channelGridDescription}>
+          {language === 'zhHans' && '图标设计截取自劳伦·科里的插画'}
+          {language === 'zhHant' && '圖標設計截取自勞倫·科里的插畫'}
+          {language === 'en' && 'Icon design excerpted from Lauren Corey\'s illustration'}
+        </div>
       </section>
     )
   }
@@ -260,11 +269,14 @@ function ChannelGrid({
   )
 }
 
-function Contact({section, language}: {section: ContactModule; language: LanguageKey}) {
+function Contact({section, language, platform}: {section: ContactModule; language: LanguageKey; platform?: import('@/types/content').Platform}) {
   const studioName = pickLocalizedText(section.studioName, language)
   const address = pickLocalizedText(section.address, language)
   const businessHours = pickLocalizedText(section.businessHours, language)
   const notes = pickLocalizedText(section.notes, language)
+
+  // 使用独立的 platform document 数据
+  const platforms = platform?.platforms || []
 
   return (
     <section className={styles.contactSection}>
@@ -305,7 +317,60 @@ function Contact({section, language}: {section: ContactModule; language: Languag
               <p>{notes}</p>
             </div>
           )}
+          {platforms.length > 0 && (
+            <div className={styles.contactPlatforms}>
+              {platforms.map((platformItem) => (
+                <div key={platformItem._key} className={styles.platformItem}>
+                  {platformItem.logoUrl && (
+                    <div className={styles.platformLogoWrapper}>
+                      <Image
+                        src={platformItem.logoUrl}
+                        alt="平台 Logo"
+                        width={60}
+                        height={60}
+                        className={styles.platformLogo}
+                      />
+                      {platformItem.qrCodeUrl && (
+                        <div className={styles.platformQrCode}>
+                          <Image
+                            src={platformItem.qrCodeUrl}
+                            alt="二维码"
+                            width={150}
+                            height={150}
+                            className={styles.qrCodeImage}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
+      </div>
+    </section>
+  )
+}
+
+function ImageSection({section, language}: {section: ImageModule; language: LanguageKey}) {
+  const imageUrl = pickLocalizedImage(section.image, language)
+  const altText = pickLocalizedText(section.alt, language)
+
+  if (!imageUrl) return null
+
+  return (
+    <section className={styles.imageSection}>
+      <div className={styles.imageContainer}>
+        <Image
+          src={imageUrl}
+          alt={altText || ''}
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{width: '100%', height: 'auto'}}
+          className={styles.imageModuleImage}
+        />
       </div>
     </section>
   )

@@ -31,7 +31,18 @@ export const HOME_PAGE_QUERY = groq`
     mobile,
     email,
     businessHours,
-    notes
+    notes,
+    image{
+      "zhHans": zhHans.asset->url,
+      "zhHant": zhHant.asset->url,
+      "en": en.asset->url
+    },
+    alt,
+    platforms[]{
+      _key,
+      "logoUrl": logo.asset->url,
+      "qrCodeUrl": qrCode.asset->url
+    }
   }
 }
 `
@@ -208,6 +219,17 @@ export const EVENT_BY_ID_QUERY = groq`
   startDate,
   endDate,
   "cover": cover.asset->url
+}
+`
+
+export const PLATFORMS_QUERY = groq`
+*[_type == "platform"][0]{
+  _id,
+  platforms[]{
+    _key,
+    "logoUrl": logo.asset->url,
+    "qrCodeUrl": qrCode.asset->url
+  }
 }
 `
 

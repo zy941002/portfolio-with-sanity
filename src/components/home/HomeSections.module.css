@@ -140,17 +140,14 @@
 
 .quoteContainer {
   max-width: 56rem;
-  position:  absolute;
-  top: 50%;
-  transform: translateY(-50%) + 10%;
-  /* bottom: 0; */
-  /* bottom: 15%; */
-  /* margin: 0 auto; */
+  height: 50%;
 }
 
 .quoteText {
-  margin-bottom: 1.5rem;
   font-size: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .quoteSection :global(p) {
@@ -160,13 +157,11 @@
   line-height: 1.75;
 }
 
-/* .aboutContent {
-  position: absolute;
-  bottom: 0;
-} */
-
-.quoteText :global(p) {
-  margin-bottom: 250px;
+.quoteText :global(div) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .quoteText :global(p:empty) {
@@ -180,7 +175,6 @@
 
 
 .aboutContent :global(p) {
-  margin-bottom: 80px;
   font-size: 22px;
 }
 
@@ -213,25 +207,27 @@
 }
 
 .aboutContainer {
-  max-width: 80%;
+  max-width: 60%;
   position: absolute;
-  bottom: 20%;
-}
-
-.aboutTitle {
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-  text-align: center;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
 }
 
 .aboutContent {
   font-family: '方正兰亭细黑', sans-serif;
   font-size: 14px; /* 12号 = 12pt = 16px */
   text-align: left;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+
+.aboutContent :global(div) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .aboutSignature {
@@ -261,6 +257,18 @@
   justify-content: center;
   padding: 0;
   border-bottom: 0.5px solid white;
+  position: relative;
+}
+
+.channelGridDescription {
+  font-family: '方正兰亭细黑', sans-serif;
+  font-size: 12px;
+  position: absolute;
+  width: max-content;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  color: #9FA0A0;
 }
 
 
@@ -357,8 +365,9 @@
 .contactContainer {
   width: 100%;
   height: 100%;
+  margin-bottom: 15%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
 }
 
@@ -395,5 +404,90 @@
   font-family: '方正兰亭细黑', sans-serif;
   margin-top: 1rem;
   font-size: 16px; /* 12号 = 12pt = 16px */
+}
+
+.contactPlatforms {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.platformItem {
+  position: relative;
+}
+
+.platformLogoWrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.platformLogoWrapper:hover {
+  transform: scale(1.1);
+}
+
+.platformLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 15px;
+  padding: 8px;
+}
+
+.platformQrCode {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+  margin-bottom: 10px;
+}
+
+.platformLogoWrapper:hover .platformQrCode {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.qrCodeImage {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Image 模块 */
+.imageSection {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5px solid white;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageModuleImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 

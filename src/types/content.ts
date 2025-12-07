@@ -44,6 +44,21 @@ export interface ChannelGridModule {
   items?: ChannelItem[]
 }
 
+export interface Platform {
+  _id: string
+  platforms?: Array<{
+    _key: string
+    logoUrl?: string
+    qrCodeUrl?: string
+  }>
+}
+
+export interface ContactModulePlatform {
+  _key: string
+  logoUrl?: string
+  qrCodeUrl?: string
+}
+
 export interface ContactModule {
   _key: string
   studioName?: LocalizedText
@@ -53,6 +68,15 @@ export interface ContactModule {
   email?: string
   businessHours?: LocalizedText
   notes?: LocalizedText
+  platforms?: ContactModulePlatform[]
+}
+
+import type {LocalizedImage} from '@/lib/localize'
+
+export interface ImageModule {
+  _key: string
+  image?: LocalizedImage
+  alt?: LocalizedText
 }
 
 export type HomePageSection =
@@ -61,6 +85,7 @@ export type HomePageSection =
   | (AboutModule & {_type: 'aboutModule'})
   | (ChannelGridModule & {_type: 'channelGridModule'})
   | (ContactModule & {_type: 'contactModule'})
+  | (ImageModule & {_type: 'imageModule'})
 
 export interface HomePageDocument {
   sections: HomePageSection[]
