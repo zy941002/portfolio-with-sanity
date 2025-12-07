@@ -131,7 +131,7 @@
   width: 100vw;
   aspect-ratio: 16 / 9;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   text-align: center;
   border-bottom: 0.5px solid white;
@@ -140,7 +140,8 @@
 
 .quoteContainer {
   max-width: 56rem;
-  height: 50%;
+  height: 40%;
+  margin-bottom: 10%;
 }
 
 .quoteText {
