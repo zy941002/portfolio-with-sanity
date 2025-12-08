@@ -112,6 +112,7 @@ coalesce(
   *[_type == "productCategory" && _id == $id][0]{
     _id,
     "title": label,
+    tags,
     level,
     sortOrder,
     isEvent,
@@ -173,6 +174,7 @@ coalesce(
     "parent": *[_type == "productCategory" && ^._id in children[]._ref][0]{
       _id,
       "title": label,
+      tags,
       level,
       isEvent,
       "coverURL": coverURL.asset->url,

@@ -94,6 +94,7 @@ export interface HomePageDocument {
 export interface CategorySummary {
   _id: string
   title?: LocalizedText
+  tags?: LocalizedText
   slug?: string
   coverURL?: string
   leftColumnTitle?: LocalizedText
@@ -110,6 +111,7 @@ export interface CategoryDocument extends CategorySummary {
   featuredProducts?: ProductItem[]
   parent?: CategorySummary & {
     level: number
+    tags?: LocalizedText
     coverURL?: string
     leftColumnTitle?: LocalizedText
     leftColumnDescription?: LocalizedRichText

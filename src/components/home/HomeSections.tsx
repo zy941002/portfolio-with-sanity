@@ -326,8 +326,8 @@ function Contact({section, language, platform}: {section: ContactModule; languag
                       <Image
                         src={platformItem.logoUrl}
                         alt="平台 Logo"
-                        width={60}
-                        height={60}
+                        width={30}
+                        height={30}
                         className={styles.platformLogo}
                       />
                       {platformItem.qrCodeUrl && (
@@ -335,8 +335,8 @@ function Contact({section, language, platform}: {section: ContactModule; languag
                           <Image
                             src={platformItem.qrCodeUrl}
                             alt="二维码"
-                            width={150}
-                            height={150}
+                            width={200}
+                            height={200}
                             className={styles.qrCodeImage}
                           />
                         </div>

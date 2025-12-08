@@ -161,6 +161,9 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  position: absolute;
+  top: 20px;
+  right: 100px;
 }
 
 .breadcrumbLink {
@@ -183,5 +186,75 @@
 
 .breadcrumbSeparator {
   color: var(--waura-border);
+}
+
+/* 联系方式平台 */
+.contactPlatforms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contactTitleWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.contactTitle {
+  font-family: '方正兰亭细黑', sans-serif;
+  font-size: 0.875rem;
+  color: var(--waura-deep-gray);
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.contactTitleWrapper:hover .contactTitle {
+  color: var(--waura-brown);
+}
+
+.qrCodesContainer {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 1;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 400px;
+}
+
+.contactTitleWrapper:hover .qrCodesContainer {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.qrCodesContainer div {
+  flex: 1;
+}
+
+.qrCodeWrapper {
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.qrCodeImage {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  display: block;
 }
 

@@ -10,12 +10,15 @@ interface CategoryViewProps {
   category: CategoryDocument
   language: LanguageKey
   langParam: string
+  platform?: import('@/types/content').Platform
 }
 
-export default function CategoryView({category, language, langParam}: CategoryViewProps) {
+export default function CategoryView({category, language, langParam, platform}: CategoryViewProps) {
   const title = pickLocalizedText(category.title, language)
   const description = pickLocalizedRichText(category.leftColumnDescription, language)
-  const columnTitle = pickLocalizedText(category.leftColumnTitle, language)
+  // 如果是二级分类，使用父分类的 tags；否则使用自己的 tags
+  const tagsSource = category.level === 2 && category.parent?.tags ? category.parent.tags : category.tags
+  const subTitle = pickLocalizedText(tagsSource, language)
 
   const isLevel1 = category.level === 1
   const children = category.children ?? []
@@ -48,7 +51,7 @@ export default function CategoryView({category, language, langParam}: CategoryVi
   while (gridItems.length < MIN_ITEMS) {
     gridItems.push(null)
   }
-  console.log(eventProducts, '----eventProducts')
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -60,7 +63,8 @@ export default function CategoryView({category, language, langParam}: CategoryVi
               </div>
             ) : null}
             <div className={styles.titleSection}>
-              <p className={styles.columnTitle}>{columnTitle}</p>
+              {subTitle && <span className={styles.subTitle}>{subTitle}</span>}
+              {subTitle && <span className={styles.subTitle}>★</span>}
               <h1 className={styles.mainTitle}>{title}</h1>
             </div>
             <RichText value={description} className={styles.description} />
@@ -74,6 +78,29 @@ export default function CategoryView({category, language, langParam}: CategoryVi
                 </div>
               </div>
             ) : null}
+
+            {platform?.platforms && platform.platforms.length > 0 && (
+              <div className={styles.contactPlatforms}>
+                <div className={styles.contactTitleWrapper}>
+                  <span className={styles.contactTitle}>★联系方式★</span>
+                  <div className={styles.qrCodesContainer}>
+                    {platform.platforms.map((platformItem) => (
+                      platformItem.qrCodeUrl && (
+                        <div key={platformItem._key}>
+                          <Image
+                            src={platformItem.qrCodeUrl}
+                            alt="二维码"
+                            width={150}
+                            height={150}
+                            className={styles.qrCodeImage}
+                          />
+                        </div>
+                      )
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </aside>
 
           <div className={styles.content}>

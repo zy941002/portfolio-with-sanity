@@ -2,7 +2,7 @@ import type {GetServerSideProps} from 'next'
 import Head from 'next/head'
 import CategoryView from '@/components/category/CategoryView'
 import SiteLayout from '@/components/SiteLayout'
-import {CATEGORY_BY_ID_QUERY} from '@/lib/queries'
+import {CATEGORY_BY_ID_QUERY, PLATFORMS_QUERY} from '@/lib/queries'
 import {ensureLanguageParam, resolveLanguageKey, type LanguageParam} from '@/lib/language'
 import {sanityClient} from '@/lib/sanityClient'
 import {applyCategoryInheritance} from '@/lib/categoryInheritance'
@@ -14,9 +14,10 @@ interface CategoryPageProps {
   languageKey: ReturnType<typeof resolveLanguageKey>
   category: CategoryDocument
   id: string
+  platform?: import('@/types/content').Platform
 }
 
-export default function CategoryPage({langParam, languageKey, category}: CategoryPageProps) {
+export default function CategoryPage({langParam, languageKey, category, platform}: CategoryPageProps) {
   const categoryTitle = pickLocalizedText(category.title, languageKey)
   const pageTitle = categoryTitle ? `${categoryTitle} - gallery瓦聞` : 'gallery瓦聞'
 
@@ -26,7 +27,7 @@ export default function CategoryPage({langParam, languageKey, category}: Categor
         <title>{pageTitle}</title>
       </Head>
       <SiteLayout langParam={langParam} pathSegments={['category', category._id || '']}>
-        <CategoryView category={category} language={languageKey} langParam={langParam} />
+        <CategoryView category={category} language={languageKey} langParam={langParam} platform={platform} />
       </SiteLayout>
     </>
   )
@@ -43,7 +44,10 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
     return {notFound: true}
   }
 
-  const category = await sanityClient.fetch<CategoryDocument>(CATEGORY_BY_ID_QUERY, {id})
+  const [category, platform] = await Promise.all([
+    sanityClient.fetch<CategoryDocument>(CATEGORY_BY_ID_QUERY, {id}),
+    sanityClient.fetch<import('@/types/content').Platform>(PLATFORMS_QUERY).catch(() => null),
+  ])
 
   if (!category) {
     return {notFound: true}
@@ -272,6 +276,7 @@ export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (
       languageKey,
       category: categoryWithInheritance,
       id,
+      platform: platform || undefined,
     },
   }
 }

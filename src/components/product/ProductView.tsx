@@ -24,9 +24,10 @@ interface ProductViewProps {
   }
   language: LanguageKey
   langParam: string
+  platform?: import('@/types/content').Platform
 }
 
-export default function ProductView({product, language, langParam}: ProductViewProps) {
+export default function ProductView({product, language, langParam, platform}: ProductViewProps) {
   const title = pickLocalizedText(product.title, language)
   const summary = pickLocalizedText(product.summary, language)
   const description = pickLocalizedRichText(product.description, language)
@@ -90,6 +91,28 @@ export default function ProductView({product, language, langParam}: ProductViewP
                 </div>
               )}
             </div>
+            {platform?.platforms && platform.platforms.length > 0 && (
+              <div className={styles.contactPlatforms}>
+                <div className={styles.contactTitleWrapper}>
+                  <span className={styles.contactTitle}>★联系方式★</span>
+                  <div className={styles.qrCodesContainer}>
+                    {platform.platforms.map((platformItem) => (
+                      platformItem.qrCodeUrl && (
+                        <div key={platformItem._key} className={styles.qrCodeWrapper}>
+                          <Image
+                            src={platformItem.qrCodeUrl}
+                            alt="二维码"
+                            width={150}
+                            height={150}
+                            className={styles.qrCodeImage}
+                          />
+                        </div>
+                      )
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </aside>
 
           {/* 右侧内容区：有视频则优先展示视频，没有视频则展示图集 */}

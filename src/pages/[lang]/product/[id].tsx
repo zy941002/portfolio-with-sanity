@@ -2,7 +2,7 @@ import type {GetStaticPaths, GetStaticProps} from 'next'
 import Head from 'next/head'
 import ProductView from '@/components/product/ProductView'
 import SiteLayout from '@/components/SiteLayout'
-import {PRODUCT_BY_ID_QUERY, PRODUCT_IDS_QUERY} from '@/lib/queries'
+import {PRODUCT_BY_ID_QUERY, PRODUCT_IDS_QUERY, PLATFORMS_QUERY} from '@/lib/queries'
 import {ensureLanguageParam, LANGUAGE_PARAM_TO_KEY, resolveLanguageKey, type LanguageParam} from '@/lib/language'
 import {sanityClient} from '@/lib/sanityClient'
 import {pickLocalizedText} from '@/lib/localize'
@@ -29,9 +29,10 @@ interface ProductPageProps {
     }
   }
   id: string
+  platform?: import('@/types/content').Platform
 }
 
-export default function ProductPage({langParam, languageKey, product}: ProductPageProps) {
+export default function ProductPage({langParam, languageKey, product, platform}: ProductPageProps) {
   const productTitle = pickLocalizedText(product.title, languageKey)
   const pageTitle = productTitle ? `${productTitle} - gallery瓦聞` : 'gallery瓦聞'
 
@@ -41,7 +42,7 @@ export default function ProductPage({langParam, languageKey, product}: ProductPa
         <title>{pageTitle}</title>
       </Head>
       <SiteLayout langParam={langParam} pathSegments={['product', product._id || '']}>
-        <ProductView product={product} language={languageKey} langParam={langParam} />
+        <ProductView product={product} language={languageKey} langParam={langParam} platform={platform} />
       </SiteLayout>
     </>
   )
@@ -70,7 +71,10 @@ export const getStaticProps: GetStaticProps<ProductPageProps> = async ({params})
     return {notFound: true}
   }
 
-  const product = await sanityClient.fetch<ProductPageProps['product']>(PRODUCT_BY_ID_QUERY, {id})
+  const [product, platform] = await Promise.all([
+    sanityClient.fetch<ProductPageProps['product']>(PRODUCT_BY_ID_QUERY, {id}),
+    sanityClient.fetch<import('@/types/content').Platform>(PLATFORMS_QUERY).catch(() => null),
+  ])
 
   if (!product) {
     return {notFound: true}
@@ -84,6 +88,7 @@ export const getStaticProps: GetStaticProps<ProductPageProps> = async ({params})
       languageKey,
       product,
       id,
+      platform: platform || undefined,
     },
     revalidate: 60,
   }
