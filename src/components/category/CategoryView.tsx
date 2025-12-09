@@ -57,27 +57,32 @@ export default function CategoryView({category, language, langParam, platform}: 
       <div className={styles.container}>
         <div className={styles.flexContainer}>
           <aside className={styles.aside}>
-            {category.coverURL ? (
-              <div className={styles.coverImageWrapper}>
-                <Image src={category.coverURL} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
-              </div>
-            ) : null}
-            <div className={styles.titleSection}>
-              {subTitle && <span className={styles.subTitle}>{subTitle}</span>}
-              {subTitle && <span className={styles.subTitle}>★</span>}
-              <h1 className={styles.mainTitle}>{title}</h1>
-            </div>
-            <RichText value={description} className={styles.description} />
-            {eventProducts.length > 0 ? (
-              <div className={styles.eventsSection}>
-                <p className={styles.eventsTitle}>相关店内活动</p>
-                <div className={styles.eventsList}>
-                  {eventProducts.map((product) => (
-                    <EventProductCard key={product._id} product={product} language={language} langParam={langParam} />
-                  ))}
+            <div style={{height: '50vh'}} className={styles.coverImageSection}>
+              {category.coverURL ? (
+                <div className={styles.coverImageWrapper}>
+                  <Image src={category.coverURL} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
                 </div>
+              ) : null}
+              <div className={styles.titleSection}>
+                {subTitle && <span className={styles.subTitle}>{subTitle}</span>}
+                {subTitle && <span className={styles.subTitle}>★</span>}
+                <h1 className={styles.mainTitle}>{title}</h1>
               </div>
-            ) : null}
+            </div>
+
+            <div style={{height: '50vh'}} className={styles.descriptionSection}>
+              <RichText value={description} className={styles.description} />
+              {eventProducts.length > 0 ? (
+                <div className={styles.eventsSection}>
+                  <p className={styles.eventsTitle}>相关店内活动</p>
+                  <div className={styles.eventsList}>
+                    {eventProducts.map((product) => (
+                      <EventProductCard key={product._id} product={product} language={language} langParam={langParam} />
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
 
             {platform?.platforms && platform.platforms.length > 0 && (
               <div className={styles.contactPlatforms}>
@@ -221,10 +226,10 @@ function ProductCard({
       ) : null}
       <div className={styles.productInfo}>
         <p className={styles.productTitle}>{pickLocalizedText(product.title, language)}</p>
-        {product.summary && (
+        {/* {product.summary && (
           <p className={styles.productSummary}>{pickLocalizedText(product.summary, language)}</p>
-        )}
-        {product.price ? <p className={styles.productPrice}>{product.price}</p> : null}
+        )} */}
+        {/* {product.price ? <p className={styles.productPrice}>{product.price}</p> : null} */}
       </div>
     </Link>
   )

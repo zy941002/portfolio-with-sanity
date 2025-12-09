@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
+* {
+  font-family: '方正兰亭细黑', sans-serif;
+}
+
 /* 自定义字体 */
 @font-face {
   font-family: 'Gothic';

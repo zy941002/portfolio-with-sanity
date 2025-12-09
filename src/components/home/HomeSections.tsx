@@ -195,9 +195,12 @@ function ChannelGrid({
                 ) : null}
                 <div className={styles.channelLabelContainer}>
                   {category.tags && (
-                    <p className={styles.channelTag}>{pickLocalizedText(category.tags, language)}</p>
+                    <>
+                      <p className={styles.channelTag}>{pickLocalizedText(category.tags, language)}</p>
+                      <span className={styles.channelStar}>★</span>
+                    </>
                   )}
-                  <span className={styles.channelStar}>★</span>
+
                   <p className={styles.channelLabel}>{pickLocalizedText(category.label, language)}</p>
                 </div>
               </Link>
