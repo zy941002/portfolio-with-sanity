@@ -447,12 +447,10 @@
   transform: translateX(-50%);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   z-index: 1000;
   pointer-events: none;
-  display: block;
-  width: max-content;
-  height: max-content;
+  white-space: nowrap;
 }
 
 .platformLogoWrapper:hover .platformQrCode {
@@ -468,7 +466,6 @@
   padding: 12px;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  display: block;
 }
 
 /* Image 模块 */

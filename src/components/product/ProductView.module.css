@@ -1,5 +1,5 @@
 .container {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .flexContainer {
@@ -43,12 +43,15 @@
   font-size: 1.875rem;
   font-weight: 600;
   margin-top: 0.5rem;
+  font-family: '方正兰亭细黑', sans-serif;
 }
 
 .summary {
   color: var(--waura-deep-gray);
   font-size: 0.875rem;
   margin-top: 0.5rem;
+  font-family: '方正兰亭细黑', sans-serif;
+
 }
 
 .description {
@@ -97,7 +100,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .contentInner {
@@ -110,11 +113,12 @@
   min-height: 0;
   width: 80%;
   margin: 0 auto;
+  overflow: visible;
 }
 
 .gallery {
   flex: 1;
-  width: 500px;
+  width: 600px;
   display: flex;
   flex-direction: row;
   overflow: auto hidden;
@@ -123,11 +127,11 @@
   align-items: center;
 }
 
-/* Firefox 滚动条样式 */
-.gallery {
-  scrollbar-width: auto;
-  scrollbar-color: var(--waura-brown) transparent;
+.gallerySwiper {
+  width: 500px;
+  height: 550px;
 }
+
 
 .galleryItem {
   position: relative;

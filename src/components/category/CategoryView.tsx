@@ -239,13 +239,30 @@ function EventProductCard({
   language: LanguageKey
   langParam: string
 }) {
-  const title = pickLocalizedText(product.subTitle, language)
+  const tags = product.tags?.map((tag) => pickLocalizedText(tag, language)).filter(Boolean).slice(0, 3) || []
+  console.log(product)
 
+  // 确保有3个tags，不足的用空字符串填充
+  const [tag1, tag2, tag3] = [
+    tags[0] || '',
+    tags[1] || '',
+    tags[2] || '',
+  ]
 
   return (
     <Link href={`/${langParam}/product/${product._id}`} className={styles.eventProductCard}>
       <div className={styles.eventProductInfo}>
-        {title && <p className={styles.eventProductTitle}>{title}</p>}
+        {tags.length > 0 && (
+          <div className={styles.eventProductTags}>
+            {tag1 && <span className={styles.eventProductTag}>{tag1}</span>}
+            {tag1 && tag2 && <span className={styles.tagSeparator}>★</span>}
+            {tag2 && (
+              <span className={styles.eventProductTagCenter}>{tag2}</span>
+            )}
+            {tag2 && tag3 && <span className={styles.tagSeparator}>★</span>}
+            {tag3 && <span className={styles.eventProductTag}>{tag3}</span>}
+          </div>
+        )}
       </div>
     </Link>
   )

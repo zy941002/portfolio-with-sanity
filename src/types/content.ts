@@ -152,6 +152,7 @@ export interface ProductItem {
   materials?: LocalizedText
   size?: LocalizedText
   price?: string
+  tags?: LocalizedText[]
   slug?: string
   isEvent?: boolean
   isExpired?: boolean

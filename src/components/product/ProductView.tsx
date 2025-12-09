@@ -4,6 +4,11 @@ import RichText from '@/components/RichText'
 import {pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
 import type {LanguageKey} from '@/lib/language'
 import type {ProductItem} from '@/types/content'
+import {Swiper, SwiperSlide} from 'swiper/react'
+import {Navigation, Pagination, Autoplay} from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 import styles from './ProductView.module.css'
 
 interface ProductViewProps {
@@ -153,17 +158,57 @@ export default function ProductView({product, language, langParam, platform}: Pr
               ) : (
                 /* 没有视频则展示图集 */
                 galleryImages.length > 0 ? (
-                  galleryImages.map((imageUrl, index) => (
-                    <div key={index} className={styles.galleryItem}>
-                      <Image
-                        src={imageUrl}
-                        alt={title ? `${title} - ${index + 1}` : `Product image ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 70vw"
-                      />
+                  <>
+                    <div className='custom-nav-prev' style={{ zIndex: 999, cursor: 'pointer'}}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </div>
-                  ))
+
+                      <Swiper
+                        modules={[Navigation, Pagination, Autoplay]}
+                        spaceBetween={20}
+                        slidesPerView={1}
+                        navigation={{
+                          enabled: true,
+                          nextEl: '.custom-nav-next', // 指向外部的下一个箭头
+                          prevEl: '.custom-nav-prev', // 指向外部的上一个箭头
+                        }}
+                        autoplay={{
+                          delay: 3000,
+                          disableOnInteraction: false,
+                        }}
+                        loop={true}
+                        pagination={{clickable: true}}
+                        className={styles.gallerySwiper}
+                      >
+                        {galleryImages.map((imageUrl, index) => (
+                          <SwiperSlide key={index}>
+                            <div className={styles.galleryItem}>
+                              <div
+                                style={{
+                                  width: 500,
+                                  height: 500
+                                }}
+                              >
+                                <Image
+                                  src={imageUrl}
+                                  alt={title ? `${title} - ${index + 1}` : `Product image ${index + 1}`}
+                                  fill
+                                  className="object-cover"
+                                  sizes="(max-width: 768px) 100vw, 70vw"
+                                />
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    <div className='custom-nav-next'style={{ zIndex: 999, cursor: 'pointer'}}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </>
                 ) : (
                   <div className={styles.galleryItem}>
                     <div className="absolute inset-0 flex items-center justify-center text-waura-deep-gray">

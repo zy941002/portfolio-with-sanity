@@ -66,6 +66,7 @@
   --waura-deep-gray: #000;
   --waura-border: rgba(79, 47, 47, 0.2);
   --waura-bg: #fef1f3;
+  --swiper-navigation-sides-offset: -50px;
 }
 
 body {

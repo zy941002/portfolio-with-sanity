@@ -57,11 +57,13 @@
   color: var(--waura-deep-gray);
   margin-top: 8px;
   letter-spacing: 0.1em;
+  font-family: '方正兰亭细黑', sans-serif;
 }
 
 .description {
   color: var(--waura-deep-gray);
   font-size: 0.875rem;
+  font-family: '方正兰亭细黑', sans-serif;
 }
 
 .eventsSection {
@@ -73,6 +75,7 @@
 }
 
 .eventsTitle {
+  font-family: '方正兰亭细黑', sans-serif;
   text-align: center;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -283,6 +286,49 @@
   font-family: '方正兰亭细黑', sans-serif;
   color: var(--waura-deep-gray);
   line-height: 1.6;
+}
+
+.eventProductTags {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.eventProductTag {
+  font-size: 12px;
+  font-family: '方正兰亭细黑', sans-serif;
+  color: var(--waura-deep-gray);
+  white-space: nowrap;
+  min-width: 0;
+  width: 150px;
+
+}
+
+.eventProductTag:first-child {
+  text-align: right;
+}
+
+.eventProductTag:last-child {
+  text-align: left;
+}
+
+.eventProductTagCenter {
+  font-size: 12px;
+  font-family: '方正兰亭细黑', sans-serif;
+  color: var(--waura-deep-gray);
+  border-radius: 0.25rem;
+  background-color: transparent;
+  width: max-content;
+  max-width: 100px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tagSeparator {
+  color: var(--waura-deep-gray);
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
 .eventProductTitle {

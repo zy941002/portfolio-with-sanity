@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={`page-transition-wrapper ${isTransitioning ? 'transitioning' : ''}`}>
-        <Component {...pageProps} />
+      <Component {...pageProps} />
       </div>
     </>
   )
