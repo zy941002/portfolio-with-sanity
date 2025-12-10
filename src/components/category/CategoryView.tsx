@@ -74,7 +74,11 @@ export default function CategoryView({category, language, langParam, platform}: 
               <RichText value={description} className={styles.description} />
               {eventProducts.length > 0 ? (
                 <div className={styles.eventsSection}>
-                  <p className={styles.eventsTitle}>相关店内活动</p>
+                  <p className={styles.eventsTitle}>
+                    {language === 'zhHans' && '店内相关活动'}
+                    {language === 'zhHant' && '店內相關活動'}
+                    {language === 'en' && 'Related In-Store Events'}
+                  </p>
                   <div className={styles.eventsList}>
                     {eventProducts.map((product) => (
                       <EventProductCard key={product._id} product={product} language={language} langParam={langParam} />
@@ -87,14 +91,18 @@ export default function CategoryView({category, language, langParam, platform}: 
             {platform?.platforms && platform.platforms.length > 0 && (
               <div className={styles.contactPlatforms}>
                 <div className={styles.contactTitleWrapper}>
-                  <span className={styles.contactTitle}>★联系方式★</span>
+                  <span className={styles.contactTitle}>
+                    {language === 'zhHans' && '★联系方式★'}
+                    {language === 'zhHant' && '★聯繫方式★'}
+                    {language === 'en' && '★Contact★'}
+                  </span>
                   <div className={styles.qrCodesContainer}>
                     {platform.platforms.map((platformItem) => (
                       platformItem.qrCodeUrl && (
                         <div key={platformItem._key}>
                           <Image
                             src={platformItem.qrCodeUrl}
-                            alt="二维码"
+                            alt={language === 'zhHans' ? '二维码' : language === 'zhHant' ? '二維碼' : 'QR Code'}
                             width={150}
                             height={150}
                             className={styles.qrCodeImage}

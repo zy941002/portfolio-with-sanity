@@ -59,47 +59,69 @@ export default function ProductView({product, language, langParam, platform}: Pr
 
 
   return (
-    <section>
+    <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.flexContainer}>
           {/* 左侧边栏：图片、标题、描述 */}
           <aside className={styles.aside}>
-            {coverImage ? (
-              <div className={styles.coverImageWrapper}>
-                <Image src={coverImage} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+            <div className={styles.coverImageSection}>
+              {coverImage ? (
+                <div className={styles.coverImageWrapper}>
+                  <Image src={coverImage} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
+                </div>
+              ) : null}
+              <div className={styles.titleSection}>
+                <h1 className={styles.mainTitle}>{title}</h1>
+                {summary && <p className={styles.summary}>{summary}</p>}
               </div>
-            ) : null}
-            <div className={styles.titleSection}>
-              <h1 className={styles.mainTitle}>{title}</h1>
-              {summary && <p className={styles.summary}>{summary}</p>}
             </div>
-            {description && (
-              <RichText value={description} className={styles.description} />
-            )}
-            <div className={styles.productInfo}>
-              {materials && (
-                <div className={styles.infoItem}>
-                  <p className={styles.infoLabel}>材质</p>
-                  <p className={styles.infoValue}>{materials}</p>
-                </div>
+
+            <div className={styles.descriptionSection}>
+              {description && (
+                <RichText value={description} className={styles.description} />
               )}
-              {size && (
-                <div className={styles.infoItem}>
-                  <p className={styles.infoLabel}>尺寸</p>
-                  <p className={styles.infoValue}>{size}</p>
-                </div>
-              )}
-              {product.price && (
-                <div className={styles.infoItem}>
-                  <p className={styles.infoLabel}>价格</p>
-                  <p className={styles.price}>{product.price}</p>
-                </div>
-              )}
+              <div className={styles.productInfo}>
+                {materials && (
+                  <div className={styles.infoItem}>
+                    <p className={styles.infoLabel}>
+                      {language === 'zhHans' && '材质'}
+                      {language === 'zhHant' && '材質'}
+                      {language === 'en' && 'Materials'}
+                    </p>
+                    <p className={styles.infoValue}>{materials}</p>
+                  </div>
+                )}
+                {size && (
+                  <div className={styles.infoItem}>
+                    <p className={styles.infoLabel}>
+                      {language === 'zhHans' && '尺寸'}
+                      {language === 'zhHant' && '尺寸'}
+                      {language === 'en' && 'Size'}
+                    </p>
+                    <p className={styles.infoValue}>{size}</p>
+                  </div>
+                )}
+                {product.price && (
+                  <div className={styles.infoItem}>
+                    <p className={styles.infoLabel}>
+                      {language === 'zhHans' && '价格'}
+                      {language === 'zhHant' && '價格'}
+                      {language === 'en' && 'Price'}
+                    </p>
+                    <p className={styles.price}>{product.price}</p>
+                  </div>
+                )}
+              </div>
             </div>
+
             {platform?.platforms && platform.platforms.length > 0 && (
               <div className={styles.contactPlatforms}>
                 <div className={styles.contactTitleWrapper}>
-                  <span className={styles.contactTitle}>★联系方式★</span>
+                  <span className={styles.contactTitle}>
+                    {language === 'zhHans' && '★联系方式★'}
+                    {language === 'zhHant' && '★聯繫方式★'}
+                    {language === 'en' && '★Contact★'}
+                  </span>
                   <div className={styles.qrCodesContainer}>
                     {platform.platforms.map((platformItem) => (
                       platformItem.qrCodeUrl && (
@@ -122,14 +144,14 @@ export default function ProductView({product, language, langParam, platform}: Pr
 
           {/* 右侧内容区：有视频则优先展示视频，没有视频则展示图集 */}
           <div className={styles.content}>
-            <div className={styles.contentInner}>
-              <Breadcrumb
-                product={product}
-                level1Category={level1Category}
-                level2Category={level2Category}
-                langParam={langParam}
-                language={language}
-              />
+            <Breadcrumb
+              product={product}
+              level1Category={level1Category}
+              level2Category={level2Category}
+              langParam={langParam}
+              language={language}
+            />
+            <div className={styles.mainContent}>
               <div className={styles.gallery}>
               {/* 有视频则优先展示视频 */}
               {hasVideo ? (
@@ -142,7 +164,7 @@ export default function ProductView({product, language, langParam, platform}: Pr
                         className="w-full h-full object-contain"
                         playsInline
                       >
-                        您的浏览器不支持视频播放
+                        {language === 'zhHans' ? '您的浏览器不支持视频播放' : language === 'zhHant' ? '您的瀏覽器不支持視頻播放' : 'Your browser does not support video playback'}
                       </video>
                     ) : product.videoLink ? (
                       <iframe
@@ -185,17 +207,12 @@ export default function ProductView({product, language, langParam, platform}: Pr
                         {galleryImages.map((imageUrl, index) => (
                           <SwiperSlide key={index}>
                             <div className={styles.galleryItem}>
-                              <div
-                                style={{
-                                  width: 500,
-                                  height: 500
-                                }}
-                              >
+                              <div className={styles.galleryImageWrapper}>
                                 <Image
                                   src={imageUrl}
                                   alt={title ? `${title} - ${index + 1}` : `Product image ${index + 1}`}
                                   fill
-                                  className="object-cover"
+                                  className="object-contain"
                                   sizes="(max-width: 768px) 100vw, 70vw"
                                 />
                               </div>
@@ -212,7 +229,7 @@ export default function ProductView({product, language, langParam, platform}: Pr
                 ) : (
                   <div className={styles.galleryItem}>
                     <div className="absolute inset-0 flex items-center justify-center text-waura-deep-gray">
-                      暂无图片
+                      {language === 'zhHans' ? '暂无图片' : language === 'zhHant' ? '暫無圖片' : 'No image available'}
                     </div>
                   </div>
                 )

@@ -219,16 +219,18 @@
   letter-spacing: 0.4em;
   color: var(--waura-deep-gray);
   position: relative;
+  display: inline-block;
+  padding-left: 120px;
 
   &::before {
     content: '';
     position: absolute;
-    right: 150px;
-    top: 12px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     width: 100px;
     height: 1px;
     background-color: var(--waura-deep-gray);
-    z-index: 1;
   }
 }
 
@@ -380,7 +382,7 @@
 
 .contactLabel {
   font-family: '方正兰亭细黑', sans-serif;
-  width: 100px;
+  width: 120px;
   font-weight: normal;
   margin-bottom: 0.25rem;
 }

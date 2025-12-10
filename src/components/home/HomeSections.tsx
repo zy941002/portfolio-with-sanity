@@ -322,7 +322,11 @@ function Contact({section, language, platform}: {section: ContactModule; languag
           )}
           {address && (
             <div className={styles.contactItem}>
-              <p className={styles.contactLabel}>地址:</p>
+              <p className={styles.contactLabel}>
+                {language === 'zhHans' && '地址:'}
+                {language === 'zhHant' && '地址:'}
+                {language === 'en' && 'Address:'}
+              </p>
               <p>{address}</p>
             </div>
           )}
@@ -340,7 +344,11 @@ function Contact({section, language, platform}: {section: ContactModule; languag
           )}
           {businessHours && (
             <div className={styles.contactItem}>
-              <p className={styles.contactLabel}>营业时间:</p>
+              <p className={styles.contactLabel}>
+                {language === 'zhHans' && '营业时间:'}
+                {language === 'zhHant' && '營業時間:'}
+                {language === 'en' && 'Business Hours:'}
+              </p>
               <p>{businessHours}</p>
             </div>
           )}
@@ -358,7 +366,7 @@ function Contact({section, language, platform}: {section: ContactModule; languag
                     <div className={styles.platformLogoWrapper}>
                       <Image
                         src={platformItem.logoUrl}
-                        alt="平台 Logo"
+                        alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
                         width={30}
                         height={30}
                         className={styles.platformLogo}
@@ -367,7 +375,7 @@ function Contact({section, language, platform}: {section: ContactModule; languag
                         <div className={styles.platformQrCode}>
                           <Image
                             src={platformItem.qrCodeUrl}
-                            alt="二维码"
+                            alt={language === 'zhHans' ? '二维码' : language === 'zhHant' ? '二維碼' : 'QR Code'}
                             width={200}
                             height={200}
                             className={styles.qrCodeImage}
