@@ -57,7 +57,7 @@ export default function CategoryView({category, language, langParam, platform}: 
       <div className={styles.container}>
         <div className={styles.flexContainer}>
           <aside className={styles.aside}>
-            <div style={{height: '50vh'}} className={styles.coverImageSection}>
+            <div className={styles.coverImageSection}>
               {category.coverURL ? (
                 <div className={styles.coverImageWrapper}>
                   <Image src={category.coverURL} alt={title || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 40vw" />
@@ -70,7 +70,7 @@ export default function CategoryView({category, language, langParam, platform}: 
               </div>
             </div>
 
-            <div style={{height: '50vh'}} className={styles.descriptionSection}>
+            <div className={styles.descriptionSection}>
               <RichText value={description} className={styles.description} />
               {eventProducts.length > 0 ? (
                 <div className={styles.eventsSection}>
@@ -110,16 +110,18 @@ export default function CategoryView({category, language, langParam, platform}: 
 
           <div className={styles.content}>
             <Breadcrumb category={category} langParam={langParam} language={language} />
-            <div className={styles.grid}>
-              {gridItems.map((item, index) => {
-                if (item === null) {
-                  return <PlaceholderCard key={`placeholder-${index}`} />
-                } else if (isCategoryItem(item)) {
-                  return <CategoryCard key={item._id} item={item} langParam={langParam} language={language} parentId={isLevel1 ? category._id : undefined} />
-                } else {
-                  return <ProductCard key={item._id} product={item} language={language} langParam={langParam} />
-                }
-              })}
+            <div className={styles.mainContent}>
+              <div className={styles.grid}>
+                {gridItems.map((item, index) => {
+                  if (item === null) {
+                    return <PlaceholderCard key={`placeholder-${index}`} />
+                  } else if (isCategoryItem(item)) {
+                    return <CategoryCard key={item._id} item={item} langParam={langParam} language={language} parentId={isLevel1 ? category._id : undefined} />
+                  } else {
+                    return <ProductCard key={item._id} product={item} language={language} langParam={langParam} />
+                  }
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -259,13 +261,13 @@ function EventProductCard({
       <div className={styles.eventProductInfo}>
         {tags.length > 0 && (
           <div className={styles.eventProductTags}>
-            {tag1 && <span className={styles.eventProductTag}>{tag1}</span>}
-            {tag1 && tag2 && <span className={styles.tagSeparator}>★</span>}
+            {tag1 && <p className={styles.eventProductTag}>{tag1}</p>}
+            {tag1 && tag2 && <p className={styles.tagSeparator}>★</p>}
             {tag2 && (
-              <span className={styles.eventProductTagCenter}>{tag2}</span>
+              <p className={styles.eventProductTagCenter}>{tag2}</p>
             )}
-            {tag2 && tag3 && <span className={styles.tagSeparator}>★</span>}
-            {tag3 && <span className={styles.eventProductTag}>{tag3}</span>}
+            {tag2 && tag3 && <p className={styles.tagSeparator}>★</p>}
+            {tag3 && <p className={styles.eventProductTag}>{tag3}</p>}
           </div>
         )}
       </div>

@@ -14,6 +14,7 @@
 /* 左侧边栏 */
 .aside {
   width: 30%;
+  padding-top: var(--waura-bread-height);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,20 +23,21 @@
 
 
 .coverImageSection {
-  height: 50vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: blue;
+  transform: translateY(-75px);
+  /* background-color: blue; */
 }
 .descriptionSection {
-  height: 50vh;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background-color: pink;
+  justify-content: flex-start;
+  /* background-color: yellow; */
 }
 
 .coverImageWrapper {
@@ -64,7 +66,7 @@
 }
 
 .mainTitle {
-  font-size: 1.875rem;
+  font-size: 22px;
   font-weight: 600;
 }
 
@@ -92,9 +94,7 @@
 .eventsTitle {
   font-family: '方正兰亭细黑', sans-serif;
   text-align: center;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  font-size: 0.875rem;
+  font-size: 14px;
   margin-bottom: 0.75rem;
 }
 
@@ -109,11 +109,21 @@
   flex: 1;
   background-color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
 .grid {
   display: grid;
@@ -126,14 +136,15 @@
 
 /* Breadcrumb */
 .breadcrumb {
-  font-size: 0.875rem;
-  color: var(--waura-deep-gray);
+  font-size: 14px;
+  width: 100%;
+  height: var(--waura-bread-height);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  position: absolute;
-  top: 20px;
-  left: 150px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-right: 20px;
 }
 
 .breadcrumbLink {
@@ -262,7 +273,6 @@
 
 .eventTitle {
   font-size: 1rem;
-  font-weight: 500;
 }
 
 .eventTitleSidebar {
@@ -311,7 +321,7 @@
 }
 
 .eventProductTag {
-  font-size: 12px;
+  font-size: 14px;
   font-family: '方正兰亭细黑', sans-serif;
   color: var(--waura-deep-gray);
   white-space: nowrap;

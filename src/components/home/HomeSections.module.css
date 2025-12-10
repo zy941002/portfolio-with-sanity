@@ -143,51 +143,18 @@
   max-width: 56rem;
   height: 40%;
   margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .quoteText {
-  font-size: 16px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.quoteSection :global(p) {
   font-family: '方正兰亭细黑', sans-serif;
   font-size: 28px;
   font-weight: bold;
   line-height: 1.75;
 }
 
-.quoteText :global(div) {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.quoteText :global(p:empty) {
-  margin-bottom: 0;
-}
-
-.quoteSection :global(strong) {
-  margin: 0;
-  font-weight: bold;
-}
-
-
-.aboutContent :global(p) {
-  font-size: 22px;
-}
-
-.aboutContent :global(p:empty) {
-  margin-bottom: 0;
-}
-
-.aboutContent :global(strong) {
-  margin: 0;
-  font-weight: bold;
-}
 
 
 .quoteAuthor {
@@ -210,27 +177,31 @@
 
 .aboutContainer {
   max-width: 60%;
-  position: absolute;
-  height: 60%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 10%;
 }
 
 .aboutContent {
   font-family: '方正兰亭细黑', sans-serif;
   font-size: 14px; /* 12号 = 12pt = 16px */
   text-align: left;
-  height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.aboutContent :global(div) {
-  height: 100%;
+  /* height: 55%; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
 }
+
+.aboutContent :global(p) {
+  font-size: 22px;
+  margin-bottom: 22px;
+}
+
 
 .aboutSignature {
   margin-top: 2rem;
@@ -247,6 +218,18 @@
   font-size: 16px; /* 12号 = 12pt = 16px */
   letter-spacing: 0.4em;
   color: var(--waura-deep-gray);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 150px;
+    top: 12px;
+    width: 100px;
+    height: 1px;
+    background-color: var(--waura-deep-gray);
+    z-index: 1;
+  }
 }
 
 /* ChannelGrid 模块 */

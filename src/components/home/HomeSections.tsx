@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import RichText from '@/components/RichText'
 import {pickLocalizedImage, pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
 import {LANGUAGE_OPTIONS, buildLanguageHref, type LanguageKey} from '@/lib/language'
 import type {
@@ -109,43 +108,74 @@ function Hero({section, language, langParam}: {section: HeroModule; language: La
 
 function Quote({section, language}: {section: QuoteModule; language: LanguageKey}) {
   const quote = pickLocalizedRichText(section.quote, language)
-  const author = pickLocalizedText(section.author, language)
-  const source = pickLocalizedText(section.source, language)
 
+  const quoteTexts: Record<LanguageKey, string> = {
+    zhHans: '<p>“美是永生揽镜自照，但你就是永生，你也是镜子”</p>',
+    zhHant: '<p>“美是永生攬鏡自照，但你就是永生，你也是鏡子”</p>',
+    en: `<p>"Beauty is eternity gazing at itself in a mirror. <br/>
+      &nbsp;But you are eternity and you are the mirror."</p>`,
+  }
+
+  const quoteAuthors: Record<LanguageKey, string> = {
+    zhHans: '纪伯伦，《先知·论美》',
+    zhHant: '紀伯倫，《先知·論美》',
+    en: 'Kahlil Gibran, 《The Prophet · On Beauty》',
+  }
+
+  const quoteText = quoteTexts[language] || quoteTexts.zhHans
+  const quoteAuthor = quoteAuthors[language] || quoteAuthors.zhHans
 
   if (!quote || quote.length === 0) return null
   return (
     <section className={styles.quoteSection}>
       <div className={styles.quoteContainer}>
-        <div className={styles.quoteText}>
-          <RichText value={quote} />
-        </div>
-        {(author || source) && (
-          <p className={styles.quoteAuthor}>
-            {author}
-            {source ? `，《${source}》` : ''}
-          </p>
-        )}
+        <div className={styles.quoteText} dangerouslySetInnerHTML={{__html: quoteText}} />
+        <span className={styles.quoteAuthor}>
+          {quoteAuthor}
+        </span>
       </div>
     </section>
   )
 }
 
-function About({section, language}: {section: AboutModule; language: LanguageKey}) {
-  const body = pickLocalizedRichText(section.body, language)
+function About({language}: {section: AboutModule; language: LanguageKey}) {
+  const aboutTexts: Record<LanguageKey, string[]> = {
+    zhHans: [
+      '瓦闻的伊始，源于我对中古手作器物的热爱，对"无心之美"的好奇探寻与粗浅实践。我喜欢器物在实用之外偶尔流露出的本真--当它们融入生活，会呈现出一种沉浸于日常又超然其上的美，它朦胧、生动、耐读。这种不刻意、不完美的特质，如自然般坦然，不带批判地审视着我们也被我们审视。',
+      '如今，瓦闻不只汇集国内外手作器物，也逐渐成长为一个美学发生的角落。我们以陶艺为原点，联结相近气息的创作者，通过茶、花、音乐、书画、空间等方式，将这份美感编织进当下生活。我们也希望通过设计与服务，将这种观看日常的视角，轻盈地传递给更多追求多元美感的个体。',
+    ],
+    zhHant: [
+      '瓦聞的伊始，源於我對中古手作器物的熱愛，對"無心之美"的好奇探尋與粗淺實踐。我喜歡器物在實用之外偶爾流露出的本真--當它們融入生活，會呈現出一種沉浸於日常又超然其上的美，它朦朧、生動、耐讀。這種不刻意、不完美的特質，如自然般坦然，不帶批判地審視著我們也被我們審視。',
+      '如今，瓦聞不只匯集國內外手作器物，也逐漸成長為一個美學發生的角落。我們以陶藝為原點，聯結相近氣息的創作者，通過茶、花、音樂、書畫、空間等方式，將這份美感編織進當下生活。我們也希望通過設計與服務，將這種觀看日常的視角，輕盈地傳遞給更多追求多元美感的個體。',
+    ],
+    en: [
+      'The beginning of Wauramoon stems from my love for antique handmade objects and my curious exploration and humble practice of "unintentional beauty." I appreciate the authenticity that objects occasionally reveal beyond their utility—when they integrate into life, they present a beauty that is immersed in the everyday yet transcendent, hazy, vivid, and enduring. This unforced, imperfect quality, as natural as nature itself, observes us without judgment, just as we observe it.',
+      'Today, Wauramoon not only gathers handmade objects from home and abroad but has also gradually grown into a corner where aesthetics emerge. We take ceramics as our starting point, connecting creators with similar sensibilities, weaving this sense of beauty into contemporary life through tea, flowers, music, calligraphy, painting, and space. We also hope to gently pass on this perspective of viewing daily life to more individuals seeking diverse aesthetics through design and service.',
+    ],
+  }
+
+  const signatures: Record<LanguageKey, string> = {
+    zhHans: '(主理人)张蕾',
+    zhHant: '(主理人)張蕾',
+    en: '(Curator) Zhang Lei',
+  }
+
+  const aboutText = aboutTexts[language] || aboutTexts.zhHans
+  const signature = signatures[language] || signatures.zhHans
+
   return (
     <section className={styles.aboutSection}>
       <div className={styles.aboutContainer}>
-        {/* {title ? <h2 className={styles.aboutTitle}>{title}</h2> : null} */}
         <div className={styles.aboutContent}>
-          <RichText value={body} />
+          {aboutText.map((text, index) => (
+            <p key={index}>{text}</p>
+          ))}
         </div>
-        {/* {signature ? (
-          <div className={styles.aboutSignature}>
-            <hr className={styles.aboutSignatureLine} />
-            <p className={styles.aboutSignatureText}>{signature}</p>
-          </div>
-        ) : null} */}
+        <div className={styles.aboutSignature}>
+          <p className={styles.aboutSignatureText}>
+          {signature}
+          </p>
+        </div>
       </div>
     </section>
   )
@@ -208,9 +238,9 @@ function ChannelGrid({
           </div>
         </div>
         <div className={styles.channelGridDescription}>
-          {language === 'zhHans' && '图标设计截取自劳伦·科里的插画'}
-          {language === 'zhHant' && '圖標設計截取自勞倫·科里的插畫'}
-          {language === 'en' && 'Icon design excerpted from Lauren Corey\'s illustration'}
+          {language === 'zhHans' && '★图标设计截取自劳伦·科里的插画'}
+          {language === 'zhHant' && '★圖標設計截取自勞倫·科里的插畫'}
+          {language === 'en' && '★Icon design excerpted from Lauren Corey\'s illustration'}
         </div>
       </section>
     )

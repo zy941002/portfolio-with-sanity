@@ -48,7 +48,7 @@
 
 @font-face {
   font-family: '方正兰亭细黑';
-  src: url('/fonts/方正兰亭细黑.TTF') format('truetype');
+  src: url('/fonts/方正兰亭圆_GBK.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -56,7 +56,15 @@
 
 @font-face {
   font-family: '方正兰亭细黑';
-  src: url('/fonts/方正兰亭细黑.TTF') format('truetype');
+  src: url('/fonts/方正兰亭圆_GBK.TTF') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '方正兰亭细黑1';
+  src: url('/fonts/方正兰亭圆_GBK.TTF') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -70,6 +78,7 @@
   --waura-deep-gray: #000;
   --waura-border: rgba(79, 47, 47, 0.2);
   --waura-bg: #fef1f3;
+  --waura-bread-height: 54px;
   --swiper-navigation-sides-offset: -50px;
 }
 
