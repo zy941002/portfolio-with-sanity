@@ -19,7 +19,6 @@
 /* 左侧边栏 */
 .aside {
   width: 30%;
-  padding-top: var(--waura-bread-height);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,24 +26,25 @@
 }
 
 .coverImageSection {
-  flex: 1;
+  flex: 0.4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .descriptionSection {
-  flex: 1;
+  flex: 0.6;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding: 0px 32px;
   min-height: 0;
-  overflow-y: auto;
 }
-
+.descriptionSection p {
+  margin-bottom: 15px;
+}
 .coverImageWrapper {
   position: relative;
   width: 150px;
@@ -86,6 +86,7 @@
   color: var(--waura-deep-gray);
   font-size: 0.875rem;
   font-family: '方正兰亭细黑', sans-serif;
+  padding-top: 20px;
 }
 
 .productInfo {

@@ -12,6 +12,7 @@ import type {
   QuoteModule,
 } from '@/types/content'
 import styles from './HomeSections.module.css'
+import RichText from '../RichText'
 
 interface HomeSectionsProps {
   sections: HomePageSection[]
@@ -141,11 +142,11 @@ function Quote({section, language}: {section: QuoteModule; language: LanguageKey
 function About({language}: {section: AboutModule; language: LanguageKey}) {
   const aboutTexts: Record<LanguageKey, string[]> = {
     zhHans: [
-      '瓦闻的伊始，源于我对中古手作器物的热爱，对"无心之美"的好奇探寻与粗浅实践。我喜欢器物在实用之外偶尔流露出的本真--当它们融入生活，会呈现出一种沉浸于日常又超然其上的美，它朦胧、生动、耐读。这种不刻意、不完美的特质，如自然般坦然，不带批判地审视着我们也被我们审视。',
+      '瓦闻的伊始，源于我对中古手作器物的热爱，对"无心之美"的好奇探寻与粗浅实践。我喜欢器物在实用之外偶尔流露出的本真&#58;当它们融入生活，会呈现出一种沉浸于日常又超然其上的美，它朦胧、生动、耐读。这种不刻意、不完美的特质，如自然般坦然，不带批判地审视着我们也被我们审视。',
       '如今，瓦闻不只汇集国内外手作器物，也逐渐成长为一个美学发生的角落。我们以陶艺为原点，联结相近气息的创作者，通过茶、花、音乐、书画、空间等方式，将这份美感编织进当下生活。我们也希望通过设计与服务，将这种观看日常的视角，轻盈地传递给更多追求多元美感的个体。',
     ],
     zhHant: [
-      '瓦聞的伊始，源於我對中古手作器物的熱愛，對"無心之美"的好奇探尋與粗淺實踐。我喜歡器物在實用之外偶爾流露出的本真--當它們融入生活，會呈現出一種沉浸於日常又超然其上的美，它朦朧、生動、耐讀。這種不刻意、不完美的特質，如自然般坦然，不帶批判地審視著我們也被我們審視。',
+      '瓦聞的伊始，源於我對中古手作器物的熱愛，對"無心之美"的好奇探尋與粗淺實踐。我喜歡器物在實用之外偶爾流露出的本真&#58;當它們融入生活，會呈現出一種沉浸於日常又超然其上的美，它朦朧、生動、耐讀。這種不刻意、不完美的特質，如自然般坦然，不帶批判地審視著我們也被我們審視。',
       '如今，瓦聞不只匯集國內外手作器物，也逐漸成長為一個美學發生的角落。我們以陶藝為原點，聯結相近氣息的創作者，通過茶、花、音樂、書畫、空間等方式，將這份美感編織進當下生活。我們也希望通過設計與服務，將這種觀看日常的視角，輕盈地傳遞給更多追求多元美感的個體。',
     ],
     en: [
@@ -168,17 +169,15 @@ function About({language}: {section: AboutModule; language: LanguageKey}) {
       <div className={styles.aboutContainer}>
         <div className={styles.aboutContent}>
           {aboutText.map((text, index) => (
-            <p key={index}>{text}</p>
+            <p key={index} dangerouslySetInnerHTML={{__html: text}} />
           ))}
         </div>
         <div className={styles.aboutSignature}>
-          <p className={styles.aboutSignatureText}>
-          {signature}
-          </p>
+          <p className={styles.aboutSignatureText} dangerouslySetInnerHTML={{__html: signature}} />
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function ChannelGrid({
@@ -238,9 +237,9 @@ function ChannelGrid({
           </div>
         </div>
         <div className={styles.channelGridDescription}>
-          {language === 'zhHans' && '★图标设计截取自劳伦·科里的插画'}
-          {language === 'zhHant' && '★圖標設計截取自勞倫·科里的插畫'}
-          {language === 'en' && '★Icon design excerpted from Lauren Corey\'s illustration'}
+          {language === 'zhHans' && '*图标设计截取自劳伦·科里的插画'}
+          {language === 'zhHant' && '*圖標設計截取自勞倫·科里的插畫'}
+          {language === 'en' && '*Icon design excerpted from Lauren Corey\'s illustration'}
         </div>
       </section>
     )

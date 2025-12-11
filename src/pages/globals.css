@@ -48,7 +48,7 @@
 
 @font-face {
   font-family: '方正兰亭细黑';
-  src: url('/fonts/方正兰亭圆_GBK.TTF') format('truetype');
+  src: url('/fonts/方正兰亭黑_GBK.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -56,15 +56,15 @@
 
 @font-face {
   font-family: '方正兰亭细黑';
-  src: url('/fonts/方正兰亭圆_GBK.TTF') format('truetype');
+  src: url('/fonts/方正兰亭黑_GBK.TTF') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: '方正兰亭细黑1';
-  src: url('/fonts/方正兰亭圆_GBK.TTF') format('truetype');
+  font-family: '方正兰亭细黑';
+  src: url('/fonts/方正兰亭黑_GBK.TTF') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
