@@ -12,7 +12,7 @@ import type {
   QuoteModule,
 } from '@/types/content'
 import styles from './HomeSections.module.css'
-import RichText from '../RichText'
+
 
 interface HomeSectionsProps {
   sections: HomePageSection[]
