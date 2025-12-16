@@ -5,6 +5,7 @@ import {pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
 import type {LanguageKey} from '@/lib/language'
 import type {CategoryDocument, CategorySummary, ProductItem} from '@/types/content'
 import styles from './CategoryView.module.css'
+import { useSearchParams } from 'next/navigation'
 
 interface CategoryViewProps {
   category: CategoryDocument
@@ -221,8 +222,9 @@ function ProductCard({
   language: LanguageKey
   langParam: string
 }) {
+  const parentId = useSearchParams().get('parent')
   return (
-    <Link href={`/${langParam}/product/${product._id}`} className={styles.productCard}>
+    <Link href={parentId ? `/${langParam}/product/${product._id}?parent=${parentId}` : `/${langParam}/product/${product._id}`} className={styles.productCard}>
       {product.thumbnail ? (
         <div className={styles.productImageWrapper}>
           <Image

@@ -10,6 +10,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import styles from './ProductView.module.css'
+import { useSearchParams } from 'next/navigation'
 
 interface ProductViewProps {
   product: ProductItem & {
@@ -296,6 +297,8 @@ function Breadcrumb({
     label: pickLocalizedText(product.title, language),
   })
 
+  const parentId = useSearchParams().get('parent')
+  console.log(segments)
   return (
     <nav className={styles.breadcrumb}>
       <Link href={`/${langParam}`} className={styles.breadcrumbLink}>
@@ -306,7 +309,7 @@ function Breadcrumb({
           <span className={styles.breadcrumbSeparator}>/</span>
           {segment.id ? (
             <Link
-              href={`/${langParam}/category/${segment.id}`}
+              href={`/${langParam}/category/${segment.id}?parent=${parentId}`}
               className={index === segments.length - 1 ? styles.breadcrumbActive : styles.breadcrumbLink}
             >
               {segment.label}

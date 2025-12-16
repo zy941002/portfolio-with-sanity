@@ -41,7 +41,12 @@
   justify-content: flex-start;
   padding: 0px 32px;
   min-height: 0;
+
+  :global(ol li ) {
+    margin-bottom: 10px;
+  }
 }
+
 .descriptionSection p {
   margin-bottom: 15px;
 }
