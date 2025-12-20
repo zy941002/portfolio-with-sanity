@@ -150,8 +150,8 @@ function About({language}: {section: AboutModule; language: LanguageKey}) {
       '如今，瓦聞不只匯集國內外手作器物，也逐漸成長為一個美學發生的角落。我們以陶藝為原點，聯結相近氣息的創作者，通過茶、花、音樂、書畫、空間等方式，將這份美感編織進當下生活。我們也希望通過設計與服務，將這種觀看日常的視角，輕盈地傳遞給更多追求多元美感的個體。',
     ],
     en: [
-      'The beginning of Wauramoon stems from my love for antique handmade objects and my curious exploration and humble practice of "unintentional beauty." I appreciate the authenticity that objects occasionally reveal beyond their utility—when they integrate into life, they present a beauty that is immersed in the everyday yet transcendent, hazy, vivid, and enduring. This unforced, imperfect quality, as natural as nature itself, observes us without judgment, just as we observe it.',
-      'Today, Wauramoon not only gathers handmade objects from home and abroad but has also gradually grown into a corner where aesthetics emerge. We take ceramics as our starting point, connecting creators with similar sensibilities, weaving this sense of beauty into contemporary life through tea, flowers, music, calligraphy, painting, and space. We also hope to gently pass on this perspective of viewing daily life to more individuals seeking diverse aesthetics through design and service.',
+      'The beginning of wauramoon stems from my love for antique handmade objects and my curious exploration and humble practice of "unintentional beauty." I appreciate the authenticity that objects occasionally reveal beyond their utility—when they integrate into life, they present a beauty that is immersed in the everyday yet transcendent, hazy, vivid, and enduring. This unforced, imperfect quality, as natural as nature itself, observes us without judgment, just as we observe it.',
+      'Today, wauramoon not only gathers handmade objects from home and abroad but has also gradually grown into a corner where aesthetics emerge. We take ceramics as our starting point, connecting creators with similar sensibilities, weaving this sense of beauty into contemporary life through tea, flowers, music, calligraphy, painting, and space. We also hope to gently pass on this perspective of viewing daily life to more individuals seeking diverse aesthetics through design and service.',
     ],
   }
 
@@ -331,13 +331,21 @@ function Contact({section, language, platform}: {section: ContactModule; languag
           )}
           {section.phone && (
             <div className={styles.contactItem}>
-              <p className={styles.contactLabel}>TEL:</p>
+              <p className={styles.contactLabel}>
+                {language === 'zhHans' && '电话:'}
+                {language === 'zhHant' && '電話:'}
+                {language === 'en' && 'Tel:'}
+              </p>
               <p>{section.phone}{section.mobile ? ` / ${section.mobile}` : ''}</p>
             </div>
           )}
           {section.email && (
             <div className={styles.contactItem}>
-              <p className={styles.contactLabel}>EMAIL:</p>
+              <p className={styles.contactLabel}>
+                {language === 'zhHans' && '邮箱:'}
+                {language === 'zhHant' && '郵箱:'}
+                {language === 'en' && 'Email:'}
+              </p>
               <p>{section.email}</p>
             </div>
           )}

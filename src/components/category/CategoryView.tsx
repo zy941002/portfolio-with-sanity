@@ -163,7 +163,9 @@ function Breadcrumb({
   return (
     <nav className={styles.breadcrumb}>
       <Link href={`/${langParam}`} className={styles.breadcrumbLink}>
-        Home
+        {language === 'zhHans' && '首页'}
+        {language === 'zhHant' && '首頁'}
+        {language === 'en' && 'Home'}
       </Link>
       {segments.map((segment, index) => (
         <span key={segment.id || index} className={styles.breadcrumbSegment}>
@@ -265,9 +267,9 @@ function EventProductCard({
     tags[1] || '',
     tags[2] || '',
   ]
-
+  const parentId = useSearchParams().get('parent')
   return (
-    <Link href={`/${langParam}/product/${product._id}`} className={styles.eventProductCard}>
+    <Link href={parentId ? `/${langParam}/product/${product._id}?parent=${parentId}` : `/${langParam}/product/${product._id}`} className={styles.eventProductCard}>
       <div className={styles.eventProductInfo}>
         {tags.length > 0 && (
           <div className={styles.eventProductTags}>

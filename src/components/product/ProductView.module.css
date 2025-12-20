@@ -63,7 +63,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-family: '方正兰亭细黑', sans-serif;
   margin-top: 20px;
   gap: 3px;
 }
@@ -84,13 +83,11 @@
   color: var(--waura-deep-gray);
   font-size: 0.875rem;
   margin-top: 0.5rem;
-  font-family: '方正兰亭细黑', sans-serif;
 }
 
 .description {
   color: var(--waura-deep-gray);
   font-size: 0.875rem;
-  font-family: '方正兰亭细黑', sans-serif;
   padding-top: 20px;
 }
 
@@ -99,7 +96,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  font-family: '方正兰亭细黑', sans-serif;
   text-align: center;
 }
 
@@ -248,7 +244,6 @@
 }
 
 .contactTitle {
-  font-family: '方正兰亭细黑', sans-serif;
   font-size: 0.875rem;
   color: var(--waura-deep-gray);
   letter-spacing: 0.1em;
