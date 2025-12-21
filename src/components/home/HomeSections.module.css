@@ -317,7 +317,7 @@
 }
 
 .channelStar {
-  /* font-size: 6px; */
+  display: inline-block;
 }
 .channelTag {
   font-size: 12px;
@@ -474,4 +474,324 @@
 
 .chinese {
   font-family: '方正兰亭细黑, sans-serif' !important;
+}
+
+/* 移动端媒体查询 */
+@media (max-width: 768px) {
+  /* Hero 模块 - 移动端 */
+  .heroContent {
+    top: 10px;
+    right: 10px;
+  }
+
+  .languageSwitcher {
+    font-size: 10px;
+    gap: 2px;
+  }
+
+  .brandContainer {
+    top: 150px;
+    right: 10vw;
+  }
+
+  .brandTitle {
+    font-size: 48px;
+    letter-spacing: 10px;
+  }
+
+  .brandName {
+    font-size: 24px;
+    letter-spacing: 0.2em;
+  }
+
+  .brandStar {
+    font-size: 16px;
+  }
+
+  .brandEyebrow {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Quote 模块 - 移动端 */
+  .quoteSection {
+    aspect-ratio: 9 / 16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quoteContainer {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 5%;
+  }
+
+  .quoteText {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .quoteAuthor {
+    font-size: 14px;
+    margin-top: 1rem;
+  }
+
+  /* About 模块 - 移动端 */
+  .aboutSection {
+    aspect-ratio: 9 / 16;
+    padding: 2rem 1rem;
+  }
+
+  .aboutContainer {
+    max-width: 100%;
+  }
+
+  .aboutContent :global(p) {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .aboutSignature {
+    margin-top: 1.5rem;
+  }
+
+  .aboutSignatureText {
+    font-size: 12px;
+    padding-left: 80px;
+  }
+
+  .aboutSignatureText::before {
+    width: 70px;
+  }
+
+  /* ChannelGrid 模块 - 移动端 */
+  .channelGridSection {
+    aspect-ratio: 9 / 16;
+    padding: 1.5rem 0.75rem;
+  }
+
+  .channelGridContainer {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .channelGrid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem 0.5rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .channelItem {
+    padding: 0;
+    gap: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .channelItemLarge {
+    grid-column: span 3;
+  }
+
+  .channelIcon {
+    width: 70px;
+    height: 70px;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .channelIconLarge {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .channelLabelContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  .channelLabel {
+    font-size: 10px;
+    line-height: 1.3;
+    word-break: keep-all;
+    text-align: center;
+  }
+
+  .channelTag {
+    font-size: 9px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .channelStar {
+    font-size: 8px;
+  }
+
+  .channelDescription {
+    font-size: 0.65rem;
+    margin-top: 0.2rem;
+    text-align: center;
+  }
+
+  .channelGridDescription {
+    font-size: 9px;
+    bottom: 12px;
+    left: 0.75rem;
+    right: 0.75rem;
+    text-align: center;
+    width: auto;
+  }
+
+  /* Contact 模块 - 移动端 */
+  .contactSection {
+    aspect-ratio: 9 / 16;
+    padding: 2rem 1rem;
+  }
+
+  .contactContainer {
+    width: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+  }
+
+  .contactList {
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .contactStudioName {
+    font-size: 14px;
+    margin-bottom: 1rem;
+  }
+
+  .contactLabel {
+    width: 80px;
+    font-size: 12px;
+  }
+
+  .contactNotes {
+    font-size: 12px;
+    margin-top: 0.75rem;
+  }
+
+  .contactPlatforms {
+    gap: 8px;
+    margin-top: 1.5rem;
+  }
+
+  .platformLogo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .qrCodeImage {
+    height: 250px;
+    padding: 8px;
+  }
+
+  .platformQrCode {
+    bottom: calc(100% + 8px);
+  }
+
+  /* Image 模块 - 移动端 */
+  .imageSection {
+    width: 100vw;
+  }
+}
+
+/* 小屏幕移动端 (小于 480px) */
+@media (max-width: 480px) {
+  .brandContainer {
+    top: 100px;
+    right: 5vw;
+  }
+
+  .brandTitle {
+    font-size: 36px;
+    letter-spacing: 5px;
+  }
+
+  .brandName {
+    font-size: 18px;
+  }
+
+  .quoteText {
+    font-size: 16px;
+  }
+
+  .quoteAuthor {
+    font-size: 12px;
+  }
+
+  .aboutContent :global(p) {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .channelGridSection {
+    padding: 1rem 0.5rem;
+  }
+
+  .channelGrid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem 0.35rem;
+  }
+
+  .channelItemLarge {
+    grid-column: span 3;
+  }
+
+  .channelIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.4rem;
+  }
+
+  .channelIconLarge {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .channelLabel {
+    font-size: 9px;
+  }
+
+  .channelTag {
+    font-size: 8px;
+  }
+
+  .channelStar {
+    font-size: 7px;
+  }
+
+  .channelDescription {
+    font-size: 0.6rem;
+  }
+
+  .channelGridDescription {
+    font-size: 8px;
+    bottom: 10px;
+    left: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .contactLabel {
+    width: 70px;
+    font-size: 11px;
+  }
+
+  .contactList {
+    font-size: 11px;
+  }
 }
