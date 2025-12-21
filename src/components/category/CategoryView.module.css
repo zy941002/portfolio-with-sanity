@@ -36,7 +36,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* background-color: yellow; */
 }
 
 .coverImageWrapper {
@@ -207,7 +206,8 @@
 }
 
 .productInfo {
-  /* 商品信息容器 */
+  display: flex;
+  flex-direction: column;
 }
 
 .productTitle {
@@ -261,7 +261,8 @@
 }
 
 .eventInfo {
-  /* 活动信息容器 */
+  display: flex;
+  flex-direction: column;
 }
 
 .eventTitle {
@@ -296,7 +297,8 @@
 }
 
 .eventProductInfo {
-  /* 活动商品信息容器 */
+  display: flex;
+  flex-direction: column;
 }
 
 .eventProductDescription {
@@ -385,18 +387,19 @@
 /* 联系方式平台 */
 .contactPlatforms {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   position: absolute;
   bottom: 20px;
 }
 
-.contactTitleWrapper {
-  position: relative;
-  display: inline-block;
+.contactPlatformsRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
-.contactTitle {
+.contactTitleWrapper {
   font-size: 0.875rem;
   color: var(--waura-deep-gray);
   letter-spacing: 0.1em;
@@ -455,9 +458,6 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 .platformItem {
@@ -465,17 +465,268 @@
 }
 
 .platformLogo {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
-  border-radius: 8px;
-  background-color: white;
+  border-radius: 12px;
+  /* background-color: white; */
   padding: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
   transition: transform 0.2s ease;
 }
 
 .platformLogo:hover {
-  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* 移动端媒体查询 */
+@media (max-width: 768px) {
+  .flexContainer {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* 左侧边栏 - 移动端 */
+  .aside {
+    width: 100%;
+    padding-top: 0;
+    order: 1;
+    /* flex-direction: row; */
+  }
+
+  .coverImageSection {
+    transform: translateY(0);
+    padding: 2rem 1rem 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .coverImageWrapper {
+    width: 50vw;
+    height: 50vw;
+    margin-bottom: 1rem;
+  }
+
+  .titleSection {
+    gap: 0.5rem;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .mainTitle {
+    font-size: 20px;
+  }
+
+  .subTitle {
+    font-size: 11px;
+    margin-top: 0;
+  }
+
+  .descriptionSection {
+    padding: 0 1rem 1rem;
+    align-items: center;
+  }
+
+  .description {
+    font-size: 0.8rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .eventsSection {
+    width: 100%;
+  }
+
+  .eventsTitle {
+    font-size: 13px;
+    margin-bottom: 1rem;
+  }
+
+  .eventsList {
+    gap: 1rem;
+  }
+
+  .eventProductCard {
+    padding: 0;
+  }
+
+  .eventProductTags {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .eventProductTag {
+    width: auto;
+    font-size: 12px;
+  }
+
+  .eventProductTagCenter {
+    font-size: 11px;
+  }
+
+  .contactPlatforms {
+    /* position: relative; */
+    bottom: auto;
+    padding: 1rem;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    background-color: white;
+  }
+
+  .qrCodesContainer {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .qrCodeWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .qrCodeImage {
+    width: 120px;
+    height: 120px;
+  }
+
+  .platformsList {
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .platformLogo {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* 右侧内容区 - 移动端 */
+  .content {
+    width: 100%;
+    min-height: auto;
+    display: contents; /* 让子元素直接参与 flexContainer 的排序 */
+  }
+
+  .breadcrumb {
+    order: 0;
+    padding: 1rem;
+    padding-right: 1rem;
+    font-size: 12px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .mainContent {
+    order: 2;
+    padding: 1rem;
+    width: 100%;
+    background-color: white;
+    margin-bottom: 62px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 100%;
+    column-gap: 1rem;
+    row-gap: 1.5rem;
+    padding: 0;
+  }
+
+  .categoryCard {
+    gap: 0.75rem;
+  }
+
+  .categoryImageWrapper {
+    width: 100%;
+    max-width: 120px;
+  }
+
+  .categoryTitle {
+    font-size: 12px;
+  }
+
+  .productCard {
+    gap: 0.75rem;
+  }
+
+  .productImageWrapper {
+    width: 100%;
+  }
+
+  .productTitle {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .productPrice {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .placeholderImageWrapper {
+    width: 100%;
+    max-width: 150px;
+  }
+}
+
+/* 小屏幕移动端 (小于 480px) */
+@media (max-width: 480px) {
+  .coverImageWrapper {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .mainTitle {
+    font-size: 18px;
+  }
+
+  .subTitle {
+    font-size: 10px;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 0.75rem;
+    row-gap: 1.25rem;
+  }
+
+  .categoryImageWrapper {
+    max-width: 120px;
+  }
+
+  .categoryTitle {
+    font-size: 11px;
+  }
+
+  .productTitle {
+    font-size: 0.85rem;
+  }
+
+  .breadcrumb {
+    font-size: 11px;
+    padding: 0.75rem;
+  }
+
+  .qrCodeImage {
+    width: 100px;
+    height: 100px;
+  }
+
+  .platformLogo {
+    width: 35px;
+    height: 35px;
+  }
 }
 

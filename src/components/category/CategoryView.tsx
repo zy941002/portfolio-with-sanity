@@ -57,7 +57,7 @@ export default function CategoryView({category, language, langParam, platform}: 
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.flexContainer}>
-          <aside className={styles.aside}>
+          <div className={styles.aside}>
             <div className={styles.coverImageSection}>
               {category.coverURL ? (
                 <div className={styles.coverImageWrapper}>
@@ -89,34 +89,48 @@ export default function CategoryView({category, language, langParam, platform}: 
               ) : null}
             </div>
 
-            {platform?.platforms && platform.platforms.length > 0 && (
-              <div className={styles.contactPlatforms}>
-                <div className={styles.contactTitleWrapper}>
-                  <span className={styles.contactTitle}>
-                    {language === 'zhHans' && '★联系方式★'}
-                    {language === 'zhHant' && '★聯繫方式★'}
-                    {language === 'en' && '★Contact★'}
-                  </span>
-                  <div className={styles.qrCodesContainer}>
-                    {platform.platforms.map((platformItem) => (
-                      platformItem.qrCodeUrl && (
-                        <div key={platformItem._key}>
-                          <Image
-                            src={platformItem.qrCodeUrl}
-                            alt={language === 'zhHans' ? '二维码' : language === 'zhHant' ? '二維碼' : 'QR Code'}
-                            width={150}
-                            height={150}
-                            className={styles.qrCodeImage}
-                          />
-                        </div>
-                      )
-                    ))}
-                  </div>
+{/*
+          {platform?.platforms && platform.platforms.length > 0 && (
+            <div className={styles.contactPlatforms}>
+              {platform.platforms.map((platformItem) => (
+                <div key={platformItem._key} className={styles.platformItem}>
+                  {platformItem.logoUrl && (
+                    <div
+                      className={styles.platformLogoWrapper}
+                      onClick={() => {
+                        window.open(platformItem.url, '_blank')
+                      }}>
+                        <Image
+                          src={platformItem.logoUrl}
+                          alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
+                          width={30}
+                          height={30}
+                          className={styles.platformLogo}
+                        />
+                      </div>
+                    )}
+                    </div>
+                  ))}
                 </div>
+              )} */}
+          {
+            platform?.platforms && platform.platforms.length > 0 && (
+              <div className={styles.contactPlatforms}>
+                {platform.platforms.map((platformItem) => (
+                  <div key={platformItem._key} className={styles.platformItem}>
+                    {platformItem.logoUrl && (
+                      <div className={styles.platformLogoWrapper} onClick={() => {
+                        window.open(platformItem.qrCodeUrl, '_blank')
+                      }}>
+                        <Image src={platformItem.logoUrl} alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'} width={30} height={30} className={styles.platformLogo} />
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-            )}
-          </aside>
-
+            )
+          }
+          </div>
           <div className={styles.content}>
             <Breadcrumb category={category} langParam={langParam} language={language} />
             <div className={styles.mainContent}>
