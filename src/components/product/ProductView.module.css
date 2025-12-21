@@ -71,7 +71,7 @@
   color: var(--waura-deep-gray);
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  font-size: 0.875rem;
+  font-size: 14px;
 }
 
 .mainTitle {
@@ -81,44 +81,44 @@
 
 .summary {
   color: var(--waura-deep-gray);
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
+  font-size: 14px;
+  margin-top: 8px;
 }
 
 .description {
   color: var(--waura-deep-gray);
-  font-size: 0.875rem;
+  font-size: 14px;
   padding-top: 20px;
 }
 
 .productInfo {
-  margin-top: 1rem;
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 8px;
   text-align: center;
 }
 
 .infoItem {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 4px;
 }
 
 .infoLabel {
-  font-size: 0.75rem;
+  font-size: 12px;
   color: var(--waura-deep-gray);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
 .infoValue {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: var(--waura-deep-gray);
 }
 
 .price {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 600;
   color: var(--waura-brown);
 }
@@ -185,7 +185,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   flex-shrink: 0;
 }
 
@@ -223,7 +223,7 @@
 .breadcrumbSegment {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
 }
 
 .breadcrumbSeparator {
@@ -232,9 +232,34 @@
 
 .contactPlatforms {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+
+  /* justi: center; */
+  gap: 10px;
   padding: 20px 0;
+}
+
+.platformItem {
+  position: relative;
+}
+
+.platformLogoWrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.platformLogoWrapper:hover {
+  transform: scale(1.1);
+}
+
+.platformLogo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
 }
 
 .contactTitleWrapper {
@@ -244,7 +269,7 @@
 }
 
 .contactTitle {
-  font-size: 0.875rem;
+  font-size: 14px;
   color: var(--waura-deep-gray);
   letter-spacing: 0.1em;
   transition: color 0.2s ease;
@@ -284,10 +309,7 @@
 }
 
 .qrCodeWrapper {
-  background-color: white;
-  padding: 12px;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .qrCodeImage {
@@ -295,5 +317,265 @@
   height: 150px;
   object-fit: contain;
   display: block;
+}
+
+/* 移动端媒体查询 */
+@media (max-width: 768px) {
+  .section {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .container {
+    overflow: visible;
+  }
+
+  .flexContainer {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  /* 左侧边栏 - 移动端 */
+  .aside {
+    width: 100%;
+    order: 1;
+  }
+
+  .coverImageSection {
+    flex: none;
+    transform: translateY(0);
+    padding: 32px 16px 16px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .coverImageWrapper {
+    width: 50vw;
+    height: 50vw;
+    margin-bottom: 16px;
+  }
+
+  .titleSection {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .mainTitle {
+    font-size: 20px;
+  }
+
+  .summary {
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  .descriptionSection {
+    flex: none;
+    padding: 0 16px 24px;
+    align-items: center;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 13px;
+    max-width: 100%;
+    padding-top: 0;
+  }
+
+  .productInfo {
+    margin-top: 24px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .infoItem {
+    margin-bottom: 16px;
+  }
+
+  .infoLabel {
+    font-size: 11px;
+  }
+
+  .infoValue {
+    font-size: 13px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .contactPlatforms {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 16px;
+    background-color: white;
+    display: flex;
+    /* justify-content: center; */
+    justify-content: center;
+    z-index: 100;
+  }
+
+  .platformLogo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contactTitleWrapper {
+    position: relative;
+  }
+
+  .qrCodesContainer {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .qrCodeWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .qrCodeImage {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* 右侧内容区 - 移动端 */
+  .content {
+    width: 100%;
+    order: 0;
+    min-height: auto;
+    display: contents; /* 让子元素直接参与 flexContainer 的排序 */
+  }
+
+  .breadcrumb {
+    order: 0;
+    padding: 16px;
+    padding-right: 16px;
+    font-size: 12px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+    height: auto;
+  }
+
+  .mainContent {
+    order: 2;
+    padding: 16px;
+    width: 100%;
+    background-color: white;
+    margin-bottom: 62px;
+  }
+
+  .gallery {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    overflow: visible;
+    gap: 16px;
+  }
+
+  .gallerySwiper {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+  }
+
+  .galleryItem {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    max-width: 100%;
+  }
+
+  .galleryImageWrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .galleryItemVideo {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  .videoWrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .videoWrapper video,
+  .videoWrapper iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 隐藏 Swiper 导航箭头 */
+  .gallery :global(.custom-nav-prev),
+  .gallery :global(.custom-nav-next) {
+    display: none !important;
+  }
+}
+
+/* 小屏幕移动端 (小于 480px) */
+@media (max-width: 480px) {
+  .coverImageWrapper {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .mainTitle {
+    font-size: 18px;
+  }
+
+  .summary {
+    font-size: 12px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .infoLabel {
+    font-size: 10px;
+  }
+
+  .infoValue {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 18px;
+  }
+
+  .breadcrumb {
+    font-size: 11px;
+    padding: 12px;
+  }
+
+  .gallerySwiper {
+    max-height: 60vh;
+  }
+
+  .qrCodeImage {
+    width: 100px;
+    height: 100px;
+  }
+
+  .platformLogo {
+    width: 35px;
+    height: 35px;
+  }
 }
 

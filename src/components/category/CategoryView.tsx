@@ -89,30 +89,6 @@ export default function CategoryView({category, language, langParam, platform}: 
               ) : null}
             </div>
 
-{/*
-          {platform?.platforms && platform.platforms.length > 0 && (
-            <div className={styles.contactPlatforms}>
-              {platform.platforms.map((platformItem) => (
-                <div key={platformItem._key} className={styles.platformItem}>
-                  {platformItem.logoUrl && (
-                    <div
-                      className={styles.platformLogoWrapper}
-                      onClick={() => {
-                        window.open(platformItem.url, '_blank')
-                      }}>
-                        <Image
-                          src={platformItem.logoUrl}
-                          alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
-                          width={30}
-                          height={30}
-                          className={styles.platformLogo}
-                        />
-                      </div>
-                    )}
-                    </div>
-                  ))}
-                </div>
-              )} */}
           {
             platform?.platforms && platform.platforms.length > 0 && (
               <div className={styles.contactPlatforms}>

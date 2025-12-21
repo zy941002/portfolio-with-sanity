@@ -441,10 +441,7 @@
 }
 
 .qrCodeWrapper {
-  background-color: white;
-  padding: 12px;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .qrCodeImage {
@@ -465,18 +462,15 @@
 }
 
 .platformLogo {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
-  border-radius: 12px;
-  /* background-color: white; */
-  padding: 6px;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  border-radius: 8px;
   transition: transform 0.2s ease;
 }
 
 .platformLogo:hover {
-  cursor: pointer;
+  transform: scale(1.1);
 }
 
 /* 移动端媒体查询 */
@@ -566,15 +560,15 @@
   }
 
   .contactPlatforms {
-    /* position: relative; */
+
     bottom: auto;
+    margin-top: 2rem;
     padding: 1rem;
     width: 100%;
     position: fixed;
+    justify-content: center;;
     left: 0;
     bottom: 0;
-    justify-content: center;
-    background-color: white;
   }
 
   .qrCodesContainer {
@@ -628,7 +622,6 @@
     padding: 1rem;
     width: 100%;
     background-color: white;
-    margin-bottom: 62px;
   }
 
   .grid {

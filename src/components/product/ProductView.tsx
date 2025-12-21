@@ -117,28 +117,25 @@ export default function ProductView({product, language, langParam, platform}: Pr
 
             {platform?.platforms && platform.platforms.length > 0 && (
               <div className={styles.contactPlatforms}>
-                <div className={styles.contactTitleWrapper}>
-                  <span className={styles.contactTitle}>
-                    {language === 'zhHans' && '★联系方式★'}
-                    {language === 'zhHant' && '★聯繫方式★'}
-                    {language === 'en' && '★Contact★'}
-                  </span>
-                  <div className={styles.qrCodesContainer}>
-                    {platform.platforms.map((platformItem) => (
-                      platformItem.qrCodeUrl && (
-                        <div key={platformItem._key} className={styles.qrCodeWrapper}>
-                          <Image
-                            src={platformItem.qrCodeUrl}
-                            alt="二维码"
-                            width={150}
-                            height={150}
-                            className={styles.qrCodeImage}
-                          />
-                        </div>
-                      )
-                    ))}
+                {platform.platforms.map((platformItem) => (
+                  <div key={platformItem._key} className={styles.platformItem}>
+                    {platformItem.logoUrl && (
+                      <div
+                        className={styles.platformLogoWrapper}
+                        onClick={() => {
+                          window.open(platformItem.qrCodeUrl, '_blank')
+                        }}>
+                        <Image
+                          src={platformItem.logoUrl}
+                          alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
+                          width={30}
+                          height={30}
+                          className={styles.platformLogo}
+                        />
+                      </div>
+                    )}
                   </div>
-                </div>
+                ))}
               </div>
             )}
           </aside>
@@ -298,7 +295,7 @@ function Breadcrumb({
   })
 
   const parentId = useSearchParams().get('parent')
-  console.log(segments)
+
   return (
     <nav className={styles.breadcrumb}>
       <Link href={`/${langParam}`} className={styles.breadcrumbLink}>
