@@ -115,8 +115,9 @@ export default function ProductView({product, language, langParam, platform}: Pr
               </div>
             </div>
 
+            {/* 桌面端：联系方式在左侧边栏底部 */}
             {platform?.platforms && platform.platforms.length > 0 && (
-              <div className={styles.contactPlatforms}>
+              <div className={styles.contactPlatformsDesktop}>
                 {platform.platforms.map((platformItem) => (
                   <div key={platformItem._key} className={styles.platformItem}>
                     {platformItem.logoUrl && (
@@ -234,6 +235,30 @@ export default function ProductView({product, language, langParam, platform}: Pr
               )}
               </div>
             </div>
+            {/* 移动端：联系方式在所有内容的最底部 */}
+            {platform?.platforms && platform.platforms.length > 0 && (
+              <div className={styles.contactPlatformsMobile}>
+                {platform.platforms.map((platformItem) => (
+                  <div key={platformItem._key} className={styles.platformItem}>
+                    {platformItem.logoUrl && (
+                      <div
+                        className={styles.platformLogoWrapper}
+                        onClick={() => {
+                          window.open(platformItem.qrCodeUrl, '_blank')
+                        }}>
+                        <Image
+                          src={platformItem.logoUrl}
+                          alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
+                          width={30}
+                          height={30}
+                          className={styles.platformLogo}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -299,7 +324,9 @@ function Breadcrumb({
   return (
     <nav className={styles.breadcrumb}>
       <Link href={`/${langParam}`} className={styles.breadcrumbLink}>
-        Home
+        {language === 'zhHans' && '首页'}
+        {language === 'zhHant' && '首頁'}
+        {language === 'en' && 'Home'}
       </Link>
       {segments.map((segment, index) => (
         <span key={segment.id || index} className={styles.breadcrumbSegment}>

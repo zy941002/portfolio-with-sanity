@@ -73,8 +73,9 @@ export default function CategoryView({category, language, langParam, platform}: 
 
             <div className={styles.descriptionSection}>
               <RichText value={description} className={styles.description} />
+              {/* 桌面端：活动展示在左侧描述下方 */}
               {eventProducts.length > 0 ? (
-                <div className={styles.eventsSection}>
+                <div className={styles.eventsSectionDesktop}>
                   <p className={styles.eventsTitle}>
                     {language === 'zhHans' && '店内相关活动'}
                     {language === 'zhHant' && '店內相關活動'}
@@ -89,9 +90,10 @@ export default function CategoryView({category, language, langParam, platform}: 
               ) : null}
             </div>
 
+          {/* 桌面端：联系方式在左侧边栏底部 */}
           {
             platform?.platforms && platform.platforms.length > 0 && (
-              <div className={styles.contactPlatforms}>
+              <div className={styles.contactPlatformsDesktop}>
                 {platform.platforms.map((platformItem) => (
                   <div key={platformItem._key} className={styles.platformItem}>
                     {platformItem.logoUrl && (
@@ -122,6 +124,37 @@ export default function CategoryView({category, language, langParam, platform}: 
                 })}
               </div>
             </div>
+            {/* 移动端：活动展示在网格内容下面 */}
+            {eventProducts.length > 0 ? (
+              <div className={styles.eventsSectionMobile}>
+                <p className={styles.eventsTitle}>
+                  {language === 'zhHans' && '店内相关活动'}
+                  {language === 'zhHant' && '店內相關活動'}
+                  {language === 'en' && 'Related In-Store Events'}
+                </p>
+                <div className={styles.eventsList}>
+                  {eventProducts.map((product) => (
+                    <EventProductCard key={product._id} product={product} language={language} langParam={langParam} />
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            {/* 移动端：联系方式在所有内容的最底部 */}
+            {platform?.platforms && platform.platforms.length > 0 && (
+              <div className={styles.contactPlatformsMobile}>
+                {platform.platforms.map((platformItem) => (
+                  <div key={platformItem._key} className={styles.platformItem}>
+                    {platformItem.logoUrl && (
+                      <div className={styles.platformLogoWrapper} onClick={() => {
+                        window.open(platformItem.qrCodeUrl, '_blank')
+                      }}>
+                        <Image src={platformItem.logoUrl} alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'} width={30} height={30} className={styles.platformLogo} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -79,11 +79,15 @@
   font-size: 0.875rem;
 }
 
-.eventsSection {
+.eventsSectionDesktop {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* 活动区域容器 */
+  /* 活动区域容器（桌面端左侧） */
+}
+
+.eventsSectionMobile {
+  display: none;
 }
 
 .eventsTitle {
@@ -384,13 +388,18 @@
   border-radius: 0.25rem;
 }
 
-/* 联系方式平台 */
-.contactPlatforms {
+/* 联系方式平台 - 桌面端 */
+.contactPlatformsDesktop {
   display: flex;
   flex-direction: row;
   align-items: center;
   position: absolute;
   bottom: 20px;
+}
+
+/* 联系方式平台 - 移动端 */
+.contactPlatformsMobile {
+  display: none;
 }
 
 .contactPlatformsRow {
@@ -489,6 +498,8 @@
     /* flex-direction: row; */
   }
 
+
+
   .coverImageSection {
     transform: translateY(0);
     padding: 2rem 1rem 1rem;
@@ -528,7 +539,8 @@
     max-width: 100%;
   }
 
-  .eventsSection {
+  .eventsSectionDesktop,
+  .eventsSectionMobile {
     width: 100%;
   }
 
@@ -539,6 +551,20 @@
 
   .eventsList {
     gap: 1rem;
+  }
+
+  /* 移动端顺序：面包屑 → 头图+分类 → 网格内容 → 店内相关活动
+     因此隐藏左侧的活动区，只显示内容区域下方的活动区 */
+  .eventsSectionDesktop {
+    display: none;
+  }
+
+  .eventsSectionMobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1rem 1.5rem;
+    order: 3;
   }
 
   .eventProductCard {
@@ -559,16 +585,21 @@
     font-size: 11px;
   }
 
-  .contactPlatforms {
+  /* 桌面端联系方式在移动端隐藏 */
+  .contactPlatformsDesktop {
+    display: none;
+  }
 
-    bottom: auto;
-    margin-top: 2rem;
-    padding: 1rem;
+  /* 移动端联系方式显示在所有内容最底部 */
+  .contactPlatformsMobile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    position: fixed;
-    justify-content: center;;
-    left: 0;
-    bottom: 0;
+    padding: 2rem 1rem;
+    order: 4;
+    gap: 10px;
   }
 
   .qrCodesContainer {
@@ -621,7 +652,6 @@
     order: 2;
     padding: 1rem;
     width: 100%;
-    background-color: white;
   }
 
   .grid {
@@ -638,8 +668,7 @@
   }
 
   .categoryImageWrapper {
-    width: 100%;
-    max-width: 120px;
+    max-width: 100px;
   }
 
   .categoryTitle {
@@ -652,6 +681,9 @@
 
   .productImageWrapper {
     width: 100%;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
   }
 
   .productTitle {
@@ -696,7 +728,8 @@
   }
 
   .categoryImageWrapper {
-    max-width: 120px;
+    max-width: 100px;
+    border-radius: 8px;
   }
 
   .categoryTitle {
