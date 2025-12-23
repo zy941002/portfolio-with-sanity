@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import {pickLocalizedImage, pickLocalizedRichText, pickLocalizedText} from '@/lib/localize'
 import {LANGUAGE_OPTIONS, buildLanguageHref, type LanguageKey} from '@/lib/language'
 import type {
@@ -310,6 +311,9 @@ function Contact({section, language, platform}: {section: ContactModule; languag
   // 使用独立的 platform document 数据
   const platforms = platform?.platforms || []
 
+  // 控制当前显示二维码的平台（替代 hover，移动端可长按保存）
+  const [activePlatformId, setActivePlatformId] = useState<string | null>(null)
+
   return (
     <section className={styles.contactSection}>
       <div className={styles.contactContainer}>
@@ -370,7 +374,14 @@ function Contact({section, language, platform}: {section: ContactModule; languag
               {platforms.map((platformItem) => (
                 <div key={platformItem._key} className={styles.platformItem}>
                   {platformItem.logoUrl && (
-                    <div className={styles.platformLogoWrapper}>
+                    <div
+                      className={styles.platformLogoWrapper}
+                      onClick={() =>
+                        setActivePlatformId((prev) =>
+                          prev === platformItem._key ? null : platformItem._key,
+                        )
+                      }
+                    >
                       <Image
                         src={platformItem.logoUrl}
                         alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
@@ -379,7 +390,11 @@ function Contact({section, language, platform}: {section: ContactModule; languag
                         className={styles.platformLogo}
                       />
                       {platformItem.qrCodeUrl && (
-                        <div className={styles.platformQrCode}>
+                        <div
+                          className={`${styles.platformQrCode} ${
+                            activePlatformId === platformItem._key ? styles.platformQrCodeActive : ''
+                          }`}
+                        >
                           <Image
                             src={platformItem.qrCodeUrl}
                             alt={language === 'zhHans' ? '二维码' : language === 'zhHant' ? '二維碼' : 'QR Code'}

@@ -225,7 +225,7 @@
     transform: translateY(-50%);
     width: 100px;
     height: 1px;
-    background-color: #000;
+    background-color: rgb(79, 47, 47);
   }
 }
 
@@ -432,9 +432,16 @@
   visibility: visible;
 }
 
+/* 通过 JS 激活的二维码（移动端可长按保存） */
+.platformQrCodeActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
 .qrCodeImage {
-  width: 100%;
-  /* width: 300px; */
+  /* width: 100%; */
+  width: auto;
   height: 350px;
   object-fit: contain;
   background-color: white;

@@ -57,8 +57,6 @@ export default function ProductView({product, language, langParam, platform}: Pr
     ? (hasThumbnail ? product.gallery : product.gallery.slice(1))
     : []
 
-
-
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -124,8 +122,11 @@ export default function ProductView({product, language, langParam, platform}: Pr
                       <div
                         className={styles.platformLogoWrapper}
                         onClick={() => {
-                          window.open(platformItem.qrCodeUrl, '_blank')
-                        }}>
+                          if (platformItem.qrCodeUrl) {
+                            window.open(platformItem.qrCodeUrl, '_blank')
+                          }
+                        }}
+                      >
                         <Image
                           src={platformItem.logoUrl}
                           alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
@@ -244,8 +245,11 @@ export default function ProductView({product, language, langParam, platform}: Pr
                       <div
                         className={styles.platformLogoWrapper}
                         onClick={() => {
-                          window.open(platformItem.qrCodeUrl, '_blank')
-                        }}>
+                          if (platformItem.qrCodeUrl) {
+                            window.open(platformItem.qrCodeUrl, '_blank')
+                          }
+                        }}
+                      >
                         <Image
                           src={platformItem.logoUrl}
                           alt={language === 'zhHans' ? '平台 Logo' : language === 'zhHant' ? '平台 Logo' : 'Platform Logo'}
