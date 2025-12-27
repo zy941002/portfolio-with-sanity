@@ -37,6 +37,14 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>gallery瓦聞</title>
         <meta name="description" content="gallery瓦聞" />
         <link rel="icon" href="/favicon.ico" />
+        {/* 字体预加载 - 优化加载性能 */}
+        <link
+          rel="preload"
+          href="/fonts/方正兰亭黑_GBK.TTF"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
       </Head>
       <div className={`page-transition-wrapper ${isTransitioning ? 'transitioning' : ''}`}>
       <Component {...pageProps} />
