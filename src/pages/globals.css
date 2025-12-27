@@ -44,9 +44,11 @@
 }
 
 /* 优化：合并重复的字体定义，使用 unicode-range 优化中文字体加载 */
+/* 使用 WOFF2 格式（2.9MB，比 TTF 减少 61%） */
 @font-face {
   font-family: '方正兰亭细黑';
-  src: url('/fonts/方正兰亭黑_GBK.TTF') format('truetype');
+  src: url('/fonts/方正兰亭黑_GBK.woff2') format('woff2'),
+       url('/fonts/方正兰亭黑_GBK.TTF') format('truetype'); /* 降级方案 */
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -55,7 +57,8 @@
 
 @font-face {
   font-family: '方正兰亭细黑';
-  src: url('/fonts/方正兰亭黑_GBK.TTF') format('truetype');
+  src: url('/fonts/方正兰亭黑_GBK.woff2') format('woff2'),
+       url('/fonts/方正兰亭黑_GBK.TTF') format('truetype'); /* 降级方案 */
   font-weight: bold;
   font-style: normal;
   font-display: swap;

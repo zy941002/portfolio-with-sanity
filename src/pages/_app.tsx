@@ -37,12 +37,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>gallery瓦聞</title>
         <meta name="description" content="gallery瓦聞" />
         <link rel="icon" href="/favicon.ico" />
-        {/* 字体预加载 - 优化加载性能 */}
+        {/* 字体预加载 - 优化加载性能（使用 WOFF2 格式，体积减少 61%） */}
         <link
           rel="preload"
-          href="/fonts/方正兰亭黑_GBK.TTF"
+          href="/fonts/方正兰亭黑_GBK.woff2"
           as="font"
-          type="font/ttf"
+          type="font/woff2"
           crossOrigin="anonymous"
         />
       </Head>
