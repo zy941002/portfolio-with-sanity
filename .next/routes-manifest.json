@@ -84,27 +84,27 @@
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/index\\.json$"
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/index\\.json$"
     },
     {
       "page": "/work",
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/work\\.json$"
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/work\\.json$"
     },
     {
       "page": "/work/project/[slug]",
       "routeKeys": {
         "nxtPslug": "nxtPslug"
       },
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/work/project/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/work/project/(?<nxtPslug>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/work/project/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/work/project/(?<nxtPslug>[^/]+?)\\.json$"
     },
     {
       "page": "/[lang]",
       "routeKeys": {
         "nxtPlang": "nxtPlang"
       },
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/(?<nxtPlang>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/(?<nxtPlang>[^/]+?)\\.json$"
     },
     {
       "page": "/[lang]/category/[slug]",
@@ -112,8 +112,8 @@
         "nxtPlang": "nxtPlang",
         "nxtPslug": "nxtPslug"
       },
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/([^/]+?)/category/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/(?<nxtPlang>[^/]+?)/category/(?<nxtPslug>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/([^/]+?)/category/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/(?<nxtPlang>[^/]+?)/category/(?<nxtPslug>[^/]+?)\\.json$"
     },
     {
       "page": "/[lang]/product/[id]",
@@ -121,8 +121,8 @@
         "nxtPlang": "nxtPlang",
         "nxtPid": "nxtPid"
       },
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/([^/]+?)/product/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/(?<nxtPlang>[^/]+?)/product/(?<nxtPid>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/([^/]+?)/product/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/(?<nxtPlang>[^/]+?)/product/(?<nxtPid>[^/]+?)\\.json$"
     }
   ],
   "rsc": {

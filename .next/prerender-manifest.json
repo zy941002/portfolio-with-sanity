@@ -5,7 +5,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": null,
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/work.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/work.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -19,7 +19,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hans.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hans.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -33,7 +33,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hant.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hant.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -47,7 +47,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/en.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/en.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -61,7 +61,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/work/project/[slug]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/work/project/x.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/work/project/x.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -75,7 +75,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hans/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hans/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -89,7 +89,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hant/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hant/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -103,7 +103,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/en/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/en/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -117,7 +117,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hans/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hans/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -131,7 +131,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hant/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hant/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -145,7 +145,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/en/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/en/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -159,7 +159,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hans/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hans/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -173,7 +173,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hant/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hant/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -187,7 +187,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/en/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/en/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -201,7 +201,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hans/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hans/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -215,7 +215,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hant/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hant/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -229,7 +229,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/en/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/en/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -243,7 +243,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hans/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hans/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -257,7 +257,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hant/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hant/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -271,7 +271,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/en/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/en/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -285,7 +285,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hans/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hans/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -299,7 +299,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/zh-hant/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/zh-hant/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -313,7 +313,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/en/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/en/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -327,9 +327,9 @@
   "dynamicRoutes": {
     "/[lang]": {
       "routeRegex": "^/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/[lang].json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/[lang].json",
       "fallback": null,
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/([^/]+?)\\.json$",
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/([^/]+?)\\.json$",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -341,9 +341,9 @@
     },
     "/work/project/[slug]": {
       "routeRegex": "^/work/project/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/work/project/[slug].json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/work/project/[slug].json",
       "fallback": null,
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/work/project/([^/]+?)\\.json$",
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/work/project/([^/]+?)\\.json$",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -355,9 +355,9 @@
     },
     "/[lang]/product/[id]": {
       "routeRegex": "^/([^/]+?)/product/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/75oGcLVN-nv1M5ewX9Dpa/[lang]/product/[id].json",
+      "dataRoute": "/_next/data/Xz2hKrcThFcgs5FpLUm5b/[lang]/product/[id].json",
       "fallback": null,
-      "dataRouteRegex": "^/_next/data/75oGcLVN\\-nv1M5ewX9Dpa/([^/]+?)/product/([^/]+?)\\.json$",
+      "dataRouteRegex": "^/_next/data/Xz2hKrcThFcgs5FpLUm5b/([^/]+?)/product/([^/]+?)\\.json$",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -370,8 +370,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "8b458da4d934107f4bd9e7c23382f905",
-    "previewModeSigningKey": "91f80f0b840c95919acfb73e02719467620b77c7613d73c3c38d662214a549ef",
-    "previewModeEncryptionKey": "75ab3dd3ad3ce061663bc29248d929d0fec9b8c87febc1ab9e7f2b34e7422e45"
+    "previewModeId": "92e9a329d3d6d922f4c4bed82fe381f8",
+    "previewModeSigningKey": "a263912f7770005652575e9e446a621fca31df94c293214eef180c5327a7d750",
+    "previewModeEncryptionKey": "8391a7ba709657f9b72f49506058ef20f6842ed4f02b4fe5d6fd6039e5ce997e"
   }
 }
