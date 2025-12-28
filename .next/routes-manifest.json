@@ -84,27 +84,27 @@
   "dataRoutes": [
     {
       "page": "/",
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/index\\.json$"
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/index\\.json$"
     },
     {
       "page": "/work",
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/work\\.json$"
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/work\\.json$"
     },
     {
       "page": "/work/project/[slug]",
       "routeKeys": {
         "nxtPslug": "nxtPslug"
       },
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/work/project/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/work/project/(?<nxtPslug>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/work/project/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/work/project/(?<nxtPslug>[^/]+?)\\.json$"
     },
     {
       "page": "/[lang]",
       "routeKeys": {
         "nxtPlang": "nxtPlang"
       },
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/(?<nxtPlang>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/(?<nxtPlang>[^/]+?)\\.json$"
     },
     {
       "page": "/[lang]/category/[slug]",
@@ -112,8 +112,8 @@
         "nxtPlang": "nxtPlang",
         "nxtPslug": "nxtPslug"
       },
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/([^/]+?)/category/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/(?<nxtPlang>[^/]+?)/category/(?<nxtPslug>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/([^/]+?)/category/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/(?<nxtPlang>[^/]+?)/category/(?<nxtPslug>[^/]+?)\\.json$"
     },
     {
       "page": "/[lang]/product/[id]",
@@ -121,8 +121,8 @@
         "nxtPlang": "nxtPlang",
         "nxtPid": "nxtPid"
       },
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/([^/]+?)/product/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/(?<nxtPlang>[^/]+?)/product/(?<nxtPid>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/([^/]+?)/product/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/(?<nxtPlang>[^/]+?)/product/(?<nxtPid>[^/]+?)\\.json$"
     }
   ],
   "rsc": {

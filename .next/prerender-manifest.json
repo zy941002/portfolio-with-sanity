@@ -1,25 +1,11 @@
 {
   "version": 4,
   "routes": {
-    "/work": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": null,
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/work.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/zh-hans": {
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hans.json",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hans.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -33,7 +19,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hant.json",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hant.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -47,7 +33,7 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/[lang]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/en.json",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/en.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -57,249 +43,11 @@
         "x-next-revalidate-tag-token"
       ]
     },
-    "/zh-hans/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f": {
+    "/work": {
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hans/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hant/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hant/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/en/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/en/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hans/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hans/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hant/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hant/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/en/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/en/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hans/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hans/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hant/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hant/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/en/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/en/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hans/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hans/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hant/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hant/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/en/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/en/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hans/product/a7badc19-9e34-4106-ad99-3e726050d3b0": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hans/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hant/product/a7badc19-9e34-4106-ad99-3e726050d3b0": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hant/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/en/product/a7badc19-9e34-4106-ad99-3e726050d3b0": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/en/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hans/product/f1f0cc85-8065-4690-a06e-788fa55d8acf": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hans/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/zh-hant/product/f1f0cc85-8065-4690-a06e-788fa55d8acf": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/zh-hant/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/en/product/f1f0cc85-8065-4690-a06e-788fa55d8acf": {
-      "initialRevalidateSeconds": 60,
-      "initialExpireSeconds": 31536000,
-      "srcRoute": "/[lang]/product/[id]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/en/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
+      "srcRoute": null,
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/work.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -313,7 +61,259 @@
       "initialRevalidateSeconds": 60,
       "initialExpireSeconds": 31536000,
       "srcRoute": "/work/project/[slug]",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/work/project/x.json",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/work/project/x.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hans/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hans/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hant/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hant/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/en/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/en/product/0e0958b0-afb6-4e54-9aca-f5dc851aaf2f.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hans/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hans/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hant/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hant/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/en/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/en/product/3a0fba0d-3aa0-4b08-8b23-7cb56cac82e0.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hans/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hans/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hant/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hant/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/en/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/en/product/67f9f5b7-e732-4c1c-afb6-d06e82ac3231.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hans/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hans/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hant/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hant/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/en/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/en/product/a51ec08d-ca6f-41fe-8a4f-e0f04dc1bf4e.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hans/product/a7badc19-9e34-4106-ad99-3e726050d3b0": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hans/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hant/product/a7badc19-9e34-4106-ad99-3e726050d3b0": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hant/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/en/product/a7badc19-9e34-4106-ad99-3e726050d3b0": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/en/product/a7badc19-9e34-4106-ad99-3e726050d3b0.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hans/product/f1f0cc85-8065-4690-a06e-788fa55d8acf": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hans/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/zh-hant/product/f1f0cc85-8065-4690-a06e-788fa55d8acf": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/zh-hant/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/en/product/f1f0cc85-8065-4690-a06e-788fa55d8acf": {
+      "initialRevalidateSeconds": 60,
+      "initialExpireSeconds": 31536000,
+      "srcRoute": "/[lang]/product/[id]",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/en/product/f1f0cc85-8065-4690-a06e-788fa55d8acf.json",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -327,23 +327,9 @@
   "dynamicRoutes": {
     "/[lang]": {
       "routeRegex": "^/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/[lang].json",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/[lang].json",
       "fallback": null,
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/([^/]+?)\\.json$",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/[lang]/product/[id]": {
-      "routeRegex": "^/([^/]+?)/product/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/[lang]/product/[id].json",
-      "fallback": null,
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/([^/]+?)/product/([^/]+?)\\.json$",
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/([^/]+?)\\.json$",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -355,9 +341,23 @@
     },
     "/work/project/[slug]": {
       "routeRegex": "^/work/project/([^/]+?)(?:/)?$",
-      "dataRoute": "/_next/data/HpWqGdfLgNhSVRTs2ntbW/work/project/[slug].json",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/work/project/[slug].json",
       "fallback": null,
-      "dataRouteRegex": "^/_next/data/HpWqGdfLgNhSVRTs2ntbW/work/project/([^/]+?)\\.json$",
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/work/project/([^/]+?)\\.json$",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/[lang]/product/[id]": {
+      "routeRegex": "^/([^/]+?)/product/([^/]+?)(?:/)?$",
+      "dataRoute": "/_next/data/t66tekr_96qv8Dqd4Li8k/[lang]/product/[id].json",
+      "fallback": null,
+      "dataRouteRegex": "^/_next/data/t66tekr_96qv8Dqd4Li8k/([^/]+?)/product/([^/]+?)\\.json$",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -370,8 +370,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "73633c0c362936551f497edcba671dd8",
-    "previewModeSigningKey": "440a7cdea89341f47dd2e75287b8b6cb76306fbb470a856b784c983b82f10ece",
-    "previewModeEncryptionKey": "0c195d069a4597f2e656e466f24617222b461812ef17a92605803fa3659dfb01"
+    "previewModeId": "aa4d56fe33848b3a97e0a6cf31928ab5",
+    "previewModeSigningKey": "ae0524f606d323782f5c6e724d8f79df02d05956f5912582e282cfd9df030e9e",
+    "previewModeEncryptionKey": "bdba905fd45a4e52bae6c4a6e28989f80e4fbccf0352241be80552b53ec6f933"
   }
 }

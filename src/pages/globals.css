@@ -43,7 +43,6 @@
   font-display: swap;
 }
 
-/* 优化：合并重复的字体定义，使用 unicode-range 优化中文字体加载 */
 /* 使用 WOFF2 格式（2.9MB，比 TTF 减少 61%） */
 @font-face {
   font-family: '方正兰亭细黑';
@@ -52,7 +51,6 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
 }
 
 @font-face {
@@ -62,7 +60,6 @@
   font-weight: bold;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
 }
 
 :root {
