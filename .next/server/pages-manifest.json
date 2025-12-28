@@ -1,15 +1,6 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/about": "pages/about.html",
-  "/contact": "pages/contact.html",
-  "/": "pages/index.js",
-  "/[lang]/product/[id]": "pages/[lang]/product/[id].js",
-  "/[lang]": "pages/[lang].js",
-  "/layout": "pages/layout.html",
-  "/[lang]/category/[slug]": "pages/[lang]/category/[slug].js",
-  "/work/project/[slug]": "pages/work/project/[slug].js",
-  "/work": "pages/work.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/[lang]": "pages/[lang].js"
 }
